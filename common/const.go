@@ -1,7 +1,11 @@
 package common
 
 const (
-	SERVER_NET = "tcp"
+	SERVER_NET       = "tcp"
+	LOG_HEAD_SERVER  = "Server"
+	LOG_HEAD_CLIENT  = "Client"
+	HEART_RATE       = 10 //秒
+	//READ_ERROR_COUNT = 3  //允许包错误3次,连续3次错误，断开连接
 )
 const (
 	PACKAGE_HEAD_A = 0xaa

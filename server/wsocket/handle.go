@@ -5,11 +5,11 @@ import (
 	"net"
 	//"video/common"
 	//log "video/logger"
+	"video/intf"
 )
 
 type WSocket struct {
-	Ip   string
-	Port string
+	intf.CommonSocket
 }
 
 //处理连接

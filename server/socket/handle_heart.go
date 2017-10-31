@@ -13,5 +13,5 @@ func (this *Socket)ProcessingHeart(msg *common.Msg, conn net.Conn) {
 
 //删除会话
 func (this *Socket)DeleteSession(conn net.Conn) {
-	global.DeleteSessionMap(conn, common.SERVER_TYPE_WSOCKET)
+	global.DeleteSessionMap(conn, common.SERVER_TYPE_SOCKET)
 }

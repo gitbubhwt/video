@@ -1,16 +1,14 @@
 package common
 
-import "time"
-
 type MsgCommon struct {
-	Id         string    `json:"id"`         //消息id
-	Ip         string    `json:"ip"`         //消息ip
-	CreateTime time.Time `json:"createTime"` //消息创建时间
+	Id         string `json:"id"`         //消息id
+	Ip         string `json:"ip"`         //消息ip
+	CreateTime int64  `json:"createTime"` //消息创建时间
 }
 
 type Msg struct {
 	MsgCommon
-	MsgType uint8  `json:"msgType"` //0-视频
+	MsgType uint8  `json:"msgType"` //0-心跳  1-视频
 	MsgData []byte `json:"msgData"` //数据
 }
 

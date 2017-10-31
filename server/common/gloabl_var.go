@@ -106,11 +106,7 @@ func singleSend(session map[string]net.Conn, msg common.Msg, id string) bool {
 			log.Error("broad cast send,json.Marshal failed", err)
 			return false
 		}
-		if _, err = val.Write(bytes); err != nil {
-			log.Error("broad cast send ", val, "failed")
-			return false
-		}
-		return true
+		return common.SendMsgByTcp(bytes, val, common.LOG_HEAD_SERVER)
 	}
 	return false
 }
@@ -123,8 +119,6 @@ func broadCastSend(session map[string]net.Conn, msg common.Msg) {
 		return
 	}
 	for _, v := range session {
-		if _, err = v.Write(bytes); err != nil {
-			log.Error("broad cast send ", v, "failed", err)
-		}
+		common.SendMsgByTcp(bytes, v, common.LOG_HEAD_SERVER)
 	}
 }

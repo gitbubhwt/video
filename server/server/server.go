@@ -4,7 +4,7 @@ import (
 	"net"
 	"video/common"
 	log "video/logger"
-	"video/server/intf"
+	"video/intf"
 )
 
 type Server struct {
