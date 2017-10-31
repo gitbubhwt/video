@@ -90,11 +90,11 @@ func deleteSession(session map[string]net.Conn, conn net.Conn) {
 	for k, v := range session {
 		if v == conn {
 			delete(session, k)
-			if err := conn.Close(); err != nil {
-				log.Error("close client user failed", err)
-			}
 			break
 		}
+	}
+	if err := conn.Close(); err != nil {
+		log.Error("close client user failed", err)
 	}
 }
 

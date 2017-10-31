@@ -5,29 +5,15 @@ import (
 	"net"
 	"video/common"
 	log "video/logger"
+	"video/server/intf"
 )
 
-//开启服务
-func (this *Server) StartServer(ip, port string) {
-	addr := ip + ":" + port
-	listen, err := net.Listen(common.SERVER_NET, addr)
-	if err != nil {
-		log.Error("Start", addr, "server failed", err)
-		return
-	}
-	for {
-		conn, err := listen.Accept()
-		if err != nil {
-			log.Error("Server accept client failed", err)
-			DeleteSession(conn) //删除会话
-			break
-		}
-		go this.ProcessingConnection(conn)
-	}
+type Socket struct {
+	intf.CommonSocket
 }
 
 //处理连接
-func (this *Server) ProcessingConnection(conn net.Conn) {
+func (this *Socket) ProcessingConnection(conn net.Conn) {
 	for {
 		isSuccess, data := this.CheckPackage(conn)
 		if !isSuccess {
@@ -41,11 +27,11 @@ func (this *Server) ProcessingConnection(conn net.Conn) {
 		}
 		this.ProcessingMsg(msg, conn)
 	}
-	DeleteSession(conn)
+	this.DeleteSession(conn)
 }
 
 //校验包
-func (this *Server) CheckPackage(conn net.Conn) (bool, []byte) {
+func (this *Socket) CheckPackage(conn net.Conn) (bool, []byte) {
 	//校验包头
 	head := make([]byte, 2)
 	n, err := conn.Read(head)
@@ -88,16 +74,16 @@ func (this *Server) CheckPackage(conn net.Conn) (bool, []byte) {
 }
 
 //处理消息
-func (this *Server) ProcessingMsg(msg *common.Msg, conn net.Conn) {
+func (this *Socket) ProcessingMsg(msg *common.Msg, conn net.Conn) {
 	switch msg.MsgType {
 	case common.MessageType_MSG_TYPE_HEART:
 		{ //心跳
-			ProcessingHeart(msg, conn)
+			this.ProcessingHeart(msg, conn)
 		}
 
 	case common.MessageType_MSG_TYPE_VEDIO:
 		{ //视频
-			ProcessingVideo(msg, conn)
+			this.ProcessingVideo(msg, conn)
 		}
 	}
 }

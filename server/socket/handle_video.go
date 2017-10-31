@@ -8,7 +8,7 @@ import (
 )
 
 //处理视频
-func ProcessingVideo(msg *common.Msg, conn net.Conn) {
+func (this *Socket)ProcessingVideo(msg *common.Msg, conn net.Conn) {
 	log.Info(msg)
 	msgData := msg.MsgData
 	video := new(common.Video)
