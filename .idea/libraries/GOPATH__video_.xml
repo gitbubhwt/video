@@ -58,6 +58,7 @@
       <root url="file://$PROJECT_DIR$/../github.com" />
       <root url="file://$PROJECT_DIR$/../sourcegraph.com" />
       <root url="file://$PROJECT_DIR$/../queueing" />
+      <root url="file://$PROJECT_DIR$/../timer" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
@@ -118,6 +119,7 @@
       <root url="file://$PROJECT_DIR$/../github.com" />
       <root url="file://$PROJECT_DIR$/../sourcegraph.com" />
       <root url="file://$PROJECT_DIR$/../queueing" />
+      <root url="file://$PROJECT_DIR$/../timer" />
     </SOURCES>
     <excluded>
       <root url="file://$PROJECT_DIR$" />
