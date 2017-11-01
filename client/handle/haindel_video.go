@@ -9,13 +9,13 @@ import (
 
 //处理视频
 func (this *Client) ProcessingVideo(msg *common.Msg, conn net.Conn) {
-	log.Info(msg)
 	msgData := msg.MsgData
-	video := new(common.Video)
+	video := new(common.VideoClient)
 	err := json.Unmarshal(msgData, &video)
 	if err != nil {
-		log.Error("json.Unmarshal video failed", err)
+		log.Error("Processing video fail,err:", err)
 		return
 	}
-	log.Info(video)
+    //path:=common.CLIENT_FILE_ROOT_PATH+video.Name
+	//common.ReadFile(path)
 }

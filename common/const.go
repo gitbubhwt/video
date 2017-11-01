@@ -1,11 +1,14 @@
 package common
 
 const (
-	SERVER_NET       = "tcp"
-	LOG_HEAD_SERVER  = "Server"
-	LOG_HEAD_CLIENT  = "Client"
-	HEART_RATE       = 10 //秒
+	SERVER_NET      = "tcp"
+	LOG_HEAD_SERVER = "Server"
+	LOG_HEAD_CLIENT = "Client"
+	HEART_RATE      = 10 //秒
 	//READ_ERROR_COUNT = 3  //允许包错误3次,连续3次错误，断开连接
+	UPLOAD_COMPLETE       = 1 //上传完成
+	UPLOAD_CONTINUE       = 0 //继续上传
+	CLIENT_FILE_ROOT_PATH = "C:/icsoc/"
 )
 const (
 	PACKAGE_HEAD_A = 0xaa

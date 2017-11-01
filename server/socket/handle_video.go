@@ -8,10 +8,10 @@ import (
 )
 
 //处理视频
-func (this *Socket)ProcessingVideo(msg *common.Msg, conn net.Conn) {
+func (this *Socket) ProcessingVideo(msg *common.Msg, conn net.Conn) {
 	log.Info(msg)
 	msgData := msg.MsgData
-	video := new(common.Video)
+	video := new(common.VideoServer)
 	err := json.Unmarshal(msgData, &video)
 	if err != nil {
 		log.Error("json.Unmarshal video failed", err)

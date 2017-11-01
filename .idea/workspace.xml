@@ -2,20 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8dfd9402-64f8-4e85-8902-3201de8fb2c2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/handle/haindel_video.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/handle/handle.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/main.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/common/tcp_util.go" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/server/intf/intf.go" afterPath="$PROJECT_DIR$/intf/intf.go" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/common/file_util.go" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/common/file_util_test.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/handle/haindel_video.go" afterPath="$PROJECT_DIR$/client/handle/haindel_video.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/const.go" afterPath="$PROJECT_DIR$/common/const.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/entity.go" afterPath="$PROJECT_DIR$/common/entity.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/common/gloabl_var.go" afterPath="$PROJECT_DIR$/server/common/gloabl_var.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/main.go" afterPath="$PROJECT_DIR$/server/main.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/server/server.go" afterPath="$PROJECT_DIR$/server/server/server.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/socket/handle.go" afterPath="$PROJECT_DIR$/server/socket/handle.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/socket/handle_heart.go" afterPath="$PROJECT_DIR$/server/socket/handle_heart.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/wsocket/handle.go" afterPath="$PROJECT_DIR$/server/wsocket/handle.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/util.go" afterPath="$PROJECT_DIR$/common/util.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/socket/handle_video.go" afterPath="$PROJECT_DIR$/server/socket/handle_video.go" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,7 +20,108 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="entity.go" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/common/entity.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="29" column="16" lean-forward="false" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="16" />
+              <folding>
+                <element signature="e#16#37#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="util.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/util.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="24" column="16" lean-forward="false" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="16" />
+              <folding>
+                <element signature="e#16#72#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="handle_video.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/socket/handle_video.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="13" column="36" lean-forward="false" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="handle.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/handle/handle.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="393">
+              <caret line="78" column="39" lean-forward="false" selection-start-line="78" selection-start-column="39" selection-end-line="78" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="haindel_video.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/handle/haindel_video.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="12" column="36" lean-forward="true" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
+              <folding>
+                <element signature="e#16#86#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="file_util_test.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/file_util_test.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="297">
+              <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+              <folding>
+                <element signature="e#16#57#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="file_util.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/file_util.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1269">
+              <caret line="47" column="46" lean-forward="false" selection-start-line="47" selection-start-column="46" selection-end-line="47" selection-end-column="46" />
+              <folding>
+                <element signature="e#16#99#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tcp_util.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/tcp_util.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="const.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/const.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="235">
+              <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -49,28 +144,30 @@
         <option value="$PROJECT_DIR$/common/common_const.go" />
         <option value="$PROJECT_DIR$/server/handleMsg/start_server.go" />
         <option value="$PROJECT_DIR$/logger/logger.go" />
-        <option value="$PROJECT_DIR$/common/util.go" />
         <option value="$PROJECT_DIR$/server/handle/handle_vedio.go" />
         <option value="$PROJECT_DIR$/server/handle/handle_video.go" />
         <option value="$PROJECT_DIR$/server/handle/handle_heart.go" />
         <option value="$PROJECT_DIR$/server/handle/start_server.go" />
         <option value="$PROJECT_DIR$/server/handle/entity.go" />
         <option value="$PROJECT_DIR$/server/socket/entity.go" />
-        <option value="$PROJECT_DIR$/server/socket/handle_video.go" />
         <option value="$PROJECT_DIR$/server/server/server.go" />
         <option value="$PROJECT_DIR$/server/intf/intf.go" />
         <option value="$PROJECT_DIR$/server/socket/handle_heart.go" />
         <option value="$PROJECT_DIR$/server/wsocket/handle.go" />
         <option value="$PROJECT_DIR$/server/common/gloabl_var.go" />
         <option value="$PROJECT_DIR$/client/main.go" />
-        <option value="$PROJECT_DIR$/common/entity.go" />
-        <option value="$PROJECT_DIR$/common/const.go" />
-        <option value="$PROJECT_DIR$/client/handle/haindel_video.go" />
         <option value="$PROJECT_DIR$/client/handle/handle.go" />
         <option value="$PROJECT_DIR$/server/main.go" />
         <option value="$PROJECT_DIR$/common/tcp_util.go" />
         <option value="$PROJECT_DIR$/server/socket/handle.go" />
         <option value="$PROJECT_DIR$/intf/intf.go" />
+        <option value="$PROJECT_DIR$/server/socket/handle_video.go" />
+        <option value="$PROJECT_DIR$/common/const.go" />
+        <option value="$PROJECT_DIR$/common/file_util.go" />
+        <option value="$PROJECT_DIR$/client/handle/haindel_video.go" />
+        <option value="$PROJECT_DIR$/common/file_util_test.go" />
+        <option value="$PROJECT_DIR$/common/util.go" />
+        <option value="$PROJECT_DIR$/common/entity.go" />
       </list>
     </option>
   </component>
@@ -101,7 +198,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -142,10 +238,43 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="video" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="video" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="video" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="video" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="handle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -154,7 +283,7 @@
     <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/client/main.go" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="ignore_missing_gitignore" value="true" />
@@ -176,7 +305,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Application.server">
+  <component name="RunManager" selected="Go Test.fileTest">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
@@ -606,9 +735,21 @@
       <package value="vedio" />
       <method />
     </configuration>
-    <list size="2">
+    <configuration default="false" name="fileTest" type="GoTestRunConfiguration" factoryName="Go Test">
+      <module name="video" />
+      <working_directory value="$PROJECT_DIR$" />
+      <go_parameters value="-i" />
+      <framework value="gotest" />
+      <kind value="FILE" />
+      <package value="vedio" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/common/file_util_test.go" />
+      <method />
+    </configuration>
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Go Application.server" />
       <item index="1" class="java.lang.String" itemvalue="Go Application.client" />
+      <item index="2" class="java.lang.String" itemvalue="Go Test.fileTest" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
@@ -630,15 +771,49 @@
       <workItem from="1509357413496" duration="787000" />
       <workItem from="1509411519653" duration="193000" />
       <workItem from="1509411999570" duration="1227000" />
-      <workItem from="1509418655961" duration="17559000" />
+      <workItem from="1509418655961" duration="19358000" />
+      <workItem from="1509513387780" duration="13163000" />
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="fileTest - 2017.11.01 at 14h 37m 35s.xml">
+      <configuration name="fileTest" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="fileTest - 2017.11.01 at 14h 44m 04s.xml">
+      <configuration name="fileTest" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="fileTest - 2017.11.01 at 14h 44m 26s.xml">
+      <configuration name="fileTest" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="fileTest - 2017.11.01 at 14h 45m 53s.xml">
+      <configuration name="fileTest" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="fileTest - 2017.11.01 at 14h 46m 09s.xml">
+      <configuration name="fileTest" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="fileTest - 2017.11.01 at 14h 47m 12s.xml">
+      <configuration name="fileTest" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="fileTest - 2017.11.01 at 14h 47m 55s.xml">
+      <configuration name="fileTest" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="fileTest - 2017.11.01 at 14h 48m 12s.xml">
+      <configuration name="fileTest" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="fileTest - 2017.11.01 at 14h 48m 26s.xml">
+      <configuration name="fileTest" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="fileTest - 2017.11.01 at 14h 48m 37s.xml">
+      <configuration name="fileTest" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54373000" />
+    <option name="totallyTimeSpent" value="69335000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="1" width="1918" height="1028" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -648,13 +823,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28038508" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16245487" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972324" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1729935" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17516269" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -713,6 +888,16 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/common/entity.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#16#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/intf/intf.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -725,7 +910,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#14#70#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -790,7 +977,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="2" column="20" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -806,7 +992,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="7" column="23" lean-forward="true" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -820,30 +1005,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/util.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/socket/handle_video.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="19" column="19" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="19" selection-end-column="19" />
-          <folding>
-            <element signature="e#16#86#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/main.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
           <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding>
-            <element signature="e#14#42#0" expanded="true" />
+            <element signature="e#14#42#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -853,16 +1020,8 @@
         <state relative-caret-position="378">
           <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
-            <element signature="e#14#70#0" expanded="true" />
+            <element signature="e#14#70#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/const.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="10" column="4" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -872,16 +1031,6 @@
           <caret line="43" column="28" lean-forward="true" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="28" />
           <folding>
             <element signature="e#16#100#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/handle/handle.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="78" column="39" lean-forward="false" selection-start-line="78" selection-start-column="39" selection-end-line="78" selection-end-column="39" />
-          <folding>
-            <element signature="e#16#94#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -899,16 +1048,8 @@
         <state relative-caret-position="1639">
           <caret line="78" column="5" lean-forward="false" selection-start-line="78" selection-start-column="5" selection-end-line="78" selection-end-column="5" />
           <folding>
-            <element signature="e#16#94#0" expanded="true" />
+            <element signature="e#16#94#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/handle/haindel_video.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="6" column="8" lean-forward="true" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -920,20 +1061,100 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/entity.go">
+    <entry file="file://C:/Go/src/os/file_windows.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="17" column="16" lean-forward="false" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="16" />
+        <state relative-caret-position="519">
+          <caret line="159" column="22" lean-forward="true" selection-start-line="159" selection-start-column="22" selection-end-line="159" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/handle/handle.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="78" column="39" lean-forward="false" selection-start-line="78" selection-start-column="39" selection-end-line="78" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Go/src/os/file.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="62" column="12" lean-forward="false" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/common/tcp_util.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="24" column="20" lean-forward="true" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
+        <state relative-caret-position="135">
+          <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/const.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/file_util.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1269">
+          <caret line="47" column="46" lean-forward="false" selection-start-line="47" selection-start-column="46" selection-end-line="47" selection-end-column="46" />
           <folding>
-            <element signature="e#16#60#0" expanded="true" />
+            <element signature="e#16#99#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/socket/handle_video.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="13" column="36" lean-forward="false" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/handle/haindel_video.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="12" column="36" lean-forward="true" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
+          <folding>
+            <element signature="e#16#86#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/file_util_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+          <folding>
+            <element signature="e#16#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/util.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="24" column="16" lean-forward="false" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="16" />
+          <folding>
+            <element signature="e#16#72#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/entity.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="29" column="16" lean-forward="false" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="16" />
+          <folding>
+            <element signature="e#16#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
