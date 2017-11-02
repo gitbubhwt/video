@@ -13,8 +13,7 @@ func SendMsgByTcp(bytes []byte, conn net.Conn, logHead string) bool {
 	head := []byte{PACKAGE_HEAD_A, PACKAGE_HEAD_B}
 	data = append(data, head...)
 	//封装数据长度
-	util := new(Util)
-	length := util.Uint642Bytes(uint64(len(bytes)))
+	length := Uint642Bytes(uint64(len(bytes)))
 	data = append(data, length...)
 	//封装数据
 	data = append(data, bytes...)
@@ -47,8 +46,7 @@ func ReceiveMsgByTcp(conn net.Conn, logHead string) (bool, []byte) {
 		log.Error(logHead, "read length fail", "err:", err, "size:", len(lenPackage), "read size:", n)
 		return false, nil
 	}
-	util := new(Util)
-	length := util.Bytes2Uint64(lenPackage)
+	length := Bytes2Uint64(lenPackage)
 	//读取包数据
 	data := make([]byte, length)
 	n, err = conn.Read(data)

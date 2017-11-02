@@ -3,8 +3,8 @@ package server
 import (
 	"net"
 	"video/common"
-	log "video/logger"
 	"video/intf"
+	log "video/logger"
 )
 
 type Server struct {

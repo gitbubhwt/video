@@ -2,19 +2,18 @@ package common
 
 import (
 	"bufio"
+	"encoding/json"
 	"io"
 	"net"
 	"os"
-	log "video/logger"
 	"time"
-	"encoding/json"
+	log "video/logger"
 )
 
 //读文件
 func ReadFile(path string, conn net.Conn) {
 	isExist := checkFileIsExist(path)
 	if isExist {
-		//file, err := os.OpenFile(path, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)
 		file, err := os.Open(path)
 		defer file.Close()
 		if err != nil {
@@ -23,10 +22,9 @@ func ReadFile(path string, conn net.Conn) {
 		}
 		buf := make([]byte, 1024)
 		buffer := bufio.NewReader(file)
-
-		msg:=new(Msg)
-		msg.CreateTime=time.Now().Unix()
-		msg.MsgType=MessageType_MSG_TYPE_VEDIO
+		msg := new(Msg) //发送消息
+		msg.CreateTime = time.Now().Unix()
+		msg.MsgType = MessageType_MSG_TYPE_VEDIO
 		video := new(VideoServer)
 		video.Name = path
 		var off int64
@@ -40,18 +38,35 @@ func ReadFile(path string, conn net.Conn) {
 				log.Info("read file complete,path:", path)
 				break
 			}
-			video.Data=buf[:n]
-			video.Off=off
-			video.Complete=UPLOAD_CONTINUE
-			data,err:=json.Marshal(video)
-			if err!=nil{
-				log.Error("read file fail,err:", err)
-				break
-			}
+			video.Data = buf[:n]
+			video.Off = off
+			video.Complete = UPLOAD_CONTINUE
+			bytes := PackFileMsg(msg, video)
+			SendMsgByTcp(bytes, conn, "Client send file")
 			off += int64(n)
-			//SendMsgByTcp()
 		}
+		video.Data = nil
+		video.Off = 0
+		video.Complete = UPLOAD_COMPLETE
+		bytes := PackFileMsg(msg, video)
+		SendMsgByTcp(bytes, conn, "Client send file")
 	}
+}
+
+//打包文件消息
+func PackFileMsg(msg *Msg, video *VideoServer) []byte {
+	data, err := json.Marshal(video)
+	if err != nil {
+		log.Error("read file fail,err:", err)
+		return nil
+	}
+	msg.MsgData = data
+	bytes, err := json.Marshal(msg)
+	if err != nil {
+		log.Error("read file fail,err:", err)
+		return nil
+	}
+	return bytes
 }
 
 //写文件

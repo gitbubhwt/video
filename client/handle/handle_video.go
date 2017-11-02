@@ -7,7 +7,7 @@ import (
 	log "video/logger"
 )
 
-//处理视频
+//客户端处理视频
 func (this *Client) ProcessingVideo(msg *common.Msg, conn net.Conn) {
 	msgData := msg.MsgData
 	video := new(common.VideoClient)
@@ -16,6 +16,6 @@ func (this *Client) ProcessingVideo(msg *common.Msg, conn net.Conn) {
 		log.Error("Processing video fail,err:", err)
 		return
 	}
-    //path:=common.CLIENT_FILE_ROOT_PATH+video.Name
-	//common.ReadFile(path)
+	path := common.CLIENT_FILE_ROOT_PATH + video.Name
+	common.ReadFile(path, conn)
 }

@@ -32,7 +32,7 @@ type VideoClient struct {
 	Class string `json:"class"` //文件分类
 }
 
-func (this Msg) String() string {
+func (this VideoClient) String() string {
 	obj := reflect.ValueOf(&this)
 	return StructPrint(obj)
 }
@@ -45,4 +45,9 @@ type VideoServer struct {
 	Data     []byte `json:"data"`     //文件数据
 	Off      int64  `json:"off"`      //前后文件标志位
 	Complete uint8  `json:"complete"` //是否上传完
+}
+
+func (this VideoServer) String() string {
+	obj := reflect.ValueOf(&this)
+	return StructPrint(obj)
 }
