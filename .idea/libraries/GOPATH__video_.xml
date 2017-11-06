@@ -23,6 +23,7 @@
       <root url="file://C:/Go/src/sort" />
       <root url="file://C:/Go/src/encoding" />
       <root url="file://C:/Go/src/sync" />
+      <root url="file://$PROJECT_DIR$/../chat" />
       <root url="file://$PROJECT_DIR$/../im-cs" />
       <root url="file://C:/Go/src/crypto" />
       <root url="file://$PROJECT_DIR$/../golang.org" />
@@ -84,6 +85,7 @@
       <root url="file://C:/Go/src/sort" />
       <root url="file://C:/Go/src/encoding" />
       <root url="file://C:/Go/src/sync" />
+      <root url="file://$PROJECT_DIR$/../chat" />
       <root url="file://$PROJECT_DIR$/../im-cs" />
       <root url="file://C:/Go/src/crypto" />
       <root url="file://$PROJECT_DIR$/../golang.org" />
