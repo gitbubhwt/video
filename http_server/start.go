@@ -8,9 +8,6 @@ import (
 )
 
 func main() {
-
-
-	
 	addr := ":5020"
 	//log.Info(http.Dir("/http_server/html/video.html"))
 	http.Handle("/", http.FileServer(http.Dir("./http_server")))
