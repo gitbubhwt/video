@@ -1,11 +1,11 @@
 package common
 
 const (
-	SERVER_NET      = "tcp"
-	LOG_HEAD_SERVER = "Server"
-	LOG_HEAD_CLIENT = "Client"
-	LOG_HEAD_WS_SERVER="WsServer"
-	HEART_RATE      = 10 //秒
+	SERVER_NET         = "tcp"
+	LOG_HEAD_SERVER    = "Server"
+	LOG_HEAD_CLIENT    = "Client"
+	LOG_HEAD_WS_SERVER = "WsServer"
+	HEART_RATE         = 10 //秒
 	//READ_ERROR_COUNT = 3  //允许包错误3次,连续3次错误，断开连接
 	UPLOAD_COMPLETE       = 1 //上传完成
 	UPLOAD_CONTINUE       = 0 //继续上传
@@ -33,4 +33,8 @@ const (
 	WS_HEADERS_KEY = "Sec-WebSocket-Key"
 	WS_QUID        = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"
 	WS_RESPONSE    = "HTTP/1.1 101 Switching Protocols\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Accept: %s\r\n\r\n"
+)
+
+const (
+	WEB_SERVER_PORT = "5020"
 )

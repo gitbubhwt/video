@@ -2,18 +2,16 @@ package main
 
 import (
 	"net/http"
+	"video/common"
+	webCommon "video/http_server/common"
 	"video/http_server/handle/handle_video"
 	"video/http_server/route"
 	log "video/logger"
 )
 
 func main() {
-
-
-	
-	addr := ":5020"
-	//log.Info(http.Dir("/http_server/html/video.html"))
-	http.Handle("/", http.FileServer(http.Dir("./http_server")))
+	addr := ":" + common.WEB_SERVER_PORT
+	http.Handle(webCommon.WEN_SERVER_STATIC_FILE_PATTERN, http.FileServer(http.Dir(webCommon.WEN_SERVER_STATIC_FILE_PATH)))
 	http.HandleFunc(route.ROUTE_HEAD_REQUEST, handle_video.VideoHeadHtml)
 	err := http.ListenAndServe(addr, nil)
 	if err != nil {

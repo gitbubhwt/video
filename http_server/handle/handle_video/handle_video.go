@@ -1,17 +1,12 @@
 package handle_video
 
 import (
-	"html/template"
 	"net/http"
+	webCommon "video/http_server/common"
 	"video/http_server/route"
-	log "video/logger"
 )
 
+//视频播放页面
 func VideoHeadHtml(w http.ResponseWriter, r *http.Request) {
-	t, err := template.ParseFiles(route.ROUTE_HEAD_HTML_PATH)
-	if err == nil {
-		//w.Write()
-		t.Execute(w, nil)
-	}
-	log.Info(err)
+	webCommon.GoToPage(w, route.ROUTE_HEAD_HTML_PATH)
 }

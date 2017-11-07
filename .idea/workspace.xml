@@ -2,7 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8dfd9402-64f8-4e85-8902-3201de8fb2c2" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/http_server/common/const.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/http_server/common/web_util.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/http_server/static/js/video.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/http_server/static/upload/demo.mp4" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/common/const.go" afterPath="$PROJECT_DIR$/common/const.go" />
+      <change beforePath="$PROJECT_DIR$/http_server/handle/handle_video/handle_video.go" afterPath="$PROJECT_DIR$/http_server/handle/handle_video/handle_video.go" />
+      <change beforePath="$PROJECT_DIR$/http_server/html/video.html" afterPath="$PROJECT_DIR$/http_server/html/video.html" />
       <change beforePath="$PROJECT_DIR$/http_server/start.go" afterPath="$PROJECT_DIR$/http_server/start.go" />
+      <change beforePath="$PROJECT_DIR$/http_server/upload/demo_1.mp4" afterPath="$PROJECT_DIR$/http_server/static/upload/demo_1.mp4" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,34 +25,10 @@
       <file leaf-file-name="start.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/http_server/start.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="12" column="4" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
+            <state relative-caret-position="390">
+              <caret line="13" column="50" lean-forward="false" selection-start-line="13" selection-start-column="50" selection-end-line="13" selection-end-column="50" />
               <folding>
-                <element signature="e#14#124#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="handle_video.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/http_server/handle/handle_video/handle_video.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-              <folding>
-                <element signature="e#22#108#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="video.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/http_server/html/video.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="7" column="7" lean-forward="false" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
-              <folding>
-                <element signature="n#style#0;n#video#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#14#178#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -109,17 +94,21 @@
         <option value="$PROJECT_DIR$/server/start_socket/main.go" />
         <option value="$PROJECT_DIR$/server/start_wsocket/main.go" />
         <option value="$PROJECT_DIR$/server/wsocket/ws_socket.go" />
-        <option value="$PROJECT_DIR$/common/const.go" />
         <option value="$PROJECT_DIR$/client/http_server/handle.go" />
         <option value="$PROJECT_DIR$/client/http_server/common.go" />
         <option value="$PROJECT_DIR$/client/http_server/start.go" />
         <option value="$PROJECT_DIR$/common/util.go" />
         <option value="$PROJECT_DIR$/http_server/route/route_const.go" />
-        <option value="$PROJECT_DIR$/http_server/handle/handle_video/handle_video.go" />
         <option value="$PROJECT_DIR$/http_server/html/copy.yml" />
-        <option value="$PROJECT_DIR$/http_server/html/video.html" />
         <option value="$PROJECT_DIR$/go_get_address.yml" />
+        <option value="$PROJECT_DIR$/http_server/html/js/video.js" />
+        <option value="$PROJECT_DIR$/http_server/static/js/video.js" />
+        <option value="$PROJECT_DIR$/http_server/html/video.html" />
+        <option value="$PROJECT_DIR$/http_server/common/const.go" />
+        <option value="$PROJECT_DIR$/common/const.go" />
         <option value="$PROJECT_DIR$/http_server/start.go" />
+        <option value="$PROJECT_DIR$/http_server/common/web_util.go" />
+        <option value="$PROJECT_DIR$/http_server/handle/handle_video/handle_video.go" />
       </list>
     </option>
   </component>
@@ -129,7 +118,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="1" />
     <option name="y" value="1" />
     <option name="width" value="1918" />
@@ -160,12 +149,25 @@
             <path>
               <item name="video" type="b2602c69:ProjectViewProjectNode" />
               <item name="video" type="462c0819:PsiDirectoryNode" />
-              <item name="doc" type="462c0819:PsiDirectoryNode" />
+              <item name="http_server" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="video" type="b2602c69:ProjectViewProjectNode" />
               <item name="video" type="462c0819:PsiDirectoryNode" />
               <item name="http_server" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="video" type="b2602c69:ProjectViewProjectNode" />
+              <item name="video" type="462c0819:PsiDirectoryNode" />
+              <item name="http_server" type="462c0819:PsiDirectoryNode" />
+              <item name="route" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="video" type="b2602c69:ProjectViewProjectNode" />
+              <item name="video" type="462c0819:PsiDirectoryNode" />
+              <item name="http_server" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="video" type="b2602c69:ProjectViewProjectNode" />
@@ -208,6 +210,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\2853818307\go\src\video\http_server\static" />
       <recent name="C:\Users\2853818307\go\src\video" />
       <recent name="C:\Users\2853818307\go\src\video\server\start_wsocket" />
       <recent name="C:\Users\2853818307\go\src\video\server\start_socket" />
@@ -746,7 +749,7 @@
     <option name="totallyTimeSpent" value="105962000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="1" width="1918" height="1028" extended-state="0" />
+    <frame x="1" y="1" width="1918" height="1028" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14421053" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -836,33 +839,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/http_server/handle/handle_video/handle_video.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <element signature="e#22#108#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/http_server/html/video.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="4" column="84" lean-forward="false" selection-start-line="4" selection-start-column="84" selection-end-line="4" selection-end-column="84" />
-          <folding>
-            <element signature="n#style#0;n#video#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/handle/handle_video.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/common/entity.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1047,13 +1023,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/socket/main.go" />
-    <entry file="file://$PROJECT_DIR$/common/const.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="27" column="39" lean-forward="true" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/common/file_util.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -1139,13 +1108,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/http_server/route/route_const.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/http_server/html/copy.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="738">
@@ -1162,32 +1124,74 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/http_server/static/js/video.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="15" lean-forward="false" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/http_server/html/video.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="7" column="7" lean-forward="false" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+        <state relative-caret-position="240">
+          <caret line="8" column="7" lean-forward="false" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
           <folding>
             <element signature="n#style#0;n#video#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/http_server/common/web_util.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="8" column="5" lean-forward="false" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+          <folding>
+            <element signature="e#16#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/http_server/route/route_const.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="6" column="41" lean-forward="false" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/http_server/handle/handle_video/handle_video.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state relative-caret-position="300">
+          <caret line="10" column="20" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
           <folding>
-            <element signature="e#22#108#0" expanded="true" />
+            <element signature="e#22#109#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/http_server/common/const.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="4" column="40" lean-forward="false" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/const.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="548">
+          <caret line="38" column="26" lean-forward="false" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/http_server/start.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="12" column="4" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
+        <state relative-caret-position="390">
+          <caret line="13" column="50" lean-forward="false" selection-start-line="13" selection-start-column="50" selection-end-line="13" selection-end-column="50" />
           <folding>
-            <element signature="e#14#124#0" expanded="true" />
+            <element signature="e#14#178#0" expanded="true" />
           </folding>
         </state>
       </provider>
