@@ -7,8 +7,8 @@ import (
 
 func main() {
 	serverIntf := new(server.Server)
-	serverIntf.Ip = "192.168.96.131"
-	serverIntf.Port = "56234"
+	serverIntf.Ip = "127.0.0.1"
+	serverIntf.Port = "5624"
 	serverIntf.Intf = &socket.Socket{}
 	serverIntf.StartServer()
 }
