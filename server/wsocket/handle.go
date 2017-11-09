@@ -6,6 +6,7 @@ import (
 	"video/common"
 	"video/intf"
 	log "video/logger"
+	"fmt"
 )
 
 type WSocket struct {
@@ -25,9 +26,9 @@ func (this *WSocket) ProcessingConnection(conn net.Conn) {
 			break
 		}
 		this.WsSocket.OpcodeByte = opcodeByte
-		if opcodeByte[0] == 0x47 {
+		if opcodeByte[0] == common.WS_ON_LINE {
 			isHand = this.UserOnline()
-		} else if opcodeByte[0] == 0x81 {
+		} else if opcodeByte[0] == common.WS_NORMAL {
 			if !isHand {
 				break
 			}
@@ -36,7 +37,7 @@ func (this *WSocket) ProcessingConnection(conn net.Conn) {
 				continue
 			}
 			this.ProcessingMsg(data)
-		} else if opcodeByte[0] == 0x88 {
+		} else if opcodeByte[0] == common.WS_OFF_LINE {
 			this.UserOffline()
 		}
 	}
@@ -93,6 +94,7 @@ func (this *WSocket) ProcessingMsg(data []byte) {
 	case common.MessageType_MSG_TYPE_VEDIO:
 		{
 			//视频
+
 		}
 	}
 }

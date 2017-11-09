@@ -1,4 +1,4 @@
-var address ="192.168.96.131:56234";
+var address ="127.0.0.1:56234";
 try {
     if ("WebSocket" in window) {
         ws = new WebSocket("ws://" + address);
@@ -36,5 +36,7 @@ function sendMsg(msgType,data) {
     obj.ip="192.168.96.131";
     obj.msgType=msgType;
     obj.msgData=data;
-    ws.send(JSON.stringify(obj));
+    var sendData=JSON.stringify(obj);
+    logInfo("ws send:",sendData);
+    ws.send(sendData);
 }

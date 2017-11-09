@@ -1,5 +1,7 @@
 var video = document.getElementById("video");
 var source = document.getElementById("source");
+var name=source.src;
+name="demo.mp4";
 var vTime =0;
 if(video.canPlayType){
     //暂停事件
@@ -31,7 +33,7 @@ if(video.canPlayType){
 function videoPlayAction(){
     logInfo("video play");
     var obj=new Object();
-    obj.name=source.src;
+    obj.name=name;
     obj.state=VIDEO_PLAY;
     obj.currentTime=vTime;
     sendMsg(MessageType_MSG_TYPE_VEDIO,obj);
@@ -40,7 +42,7 @@ function videoPlayAction(){
 function videoPauseAction(){
     logInfo("video pause");
     var obj=new Object();
-    obj.name=source.src;
+    obj.name=name;
     obj.state=VIDEO_PAUSE;
     obj.currentTime=vTime;
     sendMsg(MessageType_MSG_TYPE_VEDIO,obj);
@@ -49,7 +51,7 @@ function videoPauseAction(){
 function videoEnded(){
     logInfo("video ended");
     var obj=new Object();
-    obj.name=source.src;
+    obj.name=name;
     obj.state=VIDEO_ENDED;
     obj.currentTime=vTime;
     sendMsg(MessageType_MSG_TYPE_VEDIO,obj);
