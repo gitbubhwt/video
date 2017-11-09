@@ -15,6 +15,7 @@ import (
 type WsSocket struct {
 	MaskingKey []byte
 	Conn       net.Conn
+	OpcodeByte []byte
 }
 
 //创建wssocket
@@ -55,8 +56,8 @@ func (this *WsSocket) Write(data []byte) error {
 func (this *WsSocket) Read() (data []byte, err error) {
 	err = nil
 	//第一个字节：FIN + RSV1-3 + OPCODE
-	opcodeByte := make([]byte, 1)
-	this.Conn.Read(opcodeByte)
+	opcodeByte := this.OpcodeByte
+	//this.Conn.Read(opcodeByte)
 	FIN := opcodeByte[0] >> 7
 	RSV1 := opcodeByte[0] >> 6 & 1
 	RSV2 := opcodeByte[0] >> 5 & 1
@@ -104,7 +105,16 @@ func (this *WsSocket) Read() (data []byte, err error) {
 }
 
 //握手
-func (this *WsSocket) HandShake(data []byte) bool {
+func (this *WsSocket) HandShake() bool {
+	buf := make([]byte, 1024)
+	n, err := this.Conn.Read(buf)
+	if err != nil {
+		log.Error("Ws hand shake read data fail,err:", err)
+		return false
+	}
+	data := make([]byte, 0)
+	data = append(data, this.OpcodeByte...)
+	data = append(data, buf[:n]...)
 	//解析握手包
 	headers := this.parseHandshake(string(data))
 	//组装回复包 握手连接

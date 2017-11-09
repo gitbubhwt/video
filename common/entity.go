@@ -18,7 +18,7 @@ func (this MsgCommon) String() string {
 type Msg struct {
 	MsgCommon
 	MsgType uint8  `json:"msgType"` //0-心跳  1-视频
-	MsgData []byte `json:"msgData"` //数据
+	MsgData interface{} `json:"msgData"` //数据
 }
 
 func (this Msg) String() string {

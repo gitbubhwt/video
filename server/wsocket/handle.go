@@ -15,30 +15,54 @@ type WSocket struct {
 
 //处理连接
 func (this *WSocket) ProcessingConnection(conn net.Conn) {
-	buf := make([]byte, 1024)
-	if n, err := conn.Read(buf); err != nil {
-		log.Error("Ws hand shake read data fail,err:", err)
-	} else {
-		var isHttp bool = false
-		if string(buf[0:3]) == common.WS_HAND_SHAKE {
-			isHttp = true
+	wsocket := NewWsSocket(conn)
+	this.WsSocket = wsocket
+	var isHand bool
+	for {
+		opcodeByte := make([]byte, 1)
+		_, err := this.WsSocket.Conn.Read(opcodeByte)
+		if err != nil {
+			break
 		}
-		if !isHttp {
-			return
-		}
-		wsocket := NewWsSocket(conn)
-		isHand := wsocket.HandShake(buf[:n]) //先握手
-		if isHand {
-			this.WsSocket = wsocket
-			for {
-				isSuccess, data := this.CheckPackage()
-				if !isSuccess {
-					break
-				}
-				this.ProcessingMsg(data)
+		this.WsSocket.OpcodeByte = opcodeByte
+		if opcodeByte[0] == common.WS_ON_LINE {
+			isHand = this.UserOnline()
+		} else if opcodeByte[0] == common.WS_NORMAL {
+			if !isHand {
+				break
 			}
+			isSuccess, data := this.CheckPackage()
+			if !isSuccess {
+				continue
+			}
+			this.ProcessingMsg(data)
+		} else if opcodeByte[0] == common.WS_OFF_LINE {
+			this.UserOffline()
 		}
 	}
+}
+
+//用户结束
+func (this *WSocket) UserOffline() bool {
+	log.Info("User offline")
+	data, err := this.WsSocket.Read()
+	if err != nil {
+		log.Error("User offline,read data fail", err)
+		return false
+	}
+	str := string(data)
+	if err = this.WsSocket.Write([]byte(str)); err != nil {
+		log.Error("User offline,write data to user fail", err)
+		return false
+	}
+	return true
+}
+
+//用户登录
+func (this *WSocket) UserOnline() bool {
+	log.Info("User online")
+	isHand := this.WsSocket.HandShake() //先握手
+	return isHand
 }
 
 //校验包

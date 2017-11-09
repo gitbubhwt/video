@@ -29,6 +29,9 @@ const (
 )
 
 const (
+	WS_ON_LINE     = 0x47
+	WS_NORMAL      = 0x81
+	WS_OFF_LINE    = 0x88
 	WS_HAND_SHAKE  = "GET"
 	WS_HEADERS_KEY = "Sec-WebSocket-Key"
 	WS_QUID        = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"
