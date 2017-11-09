@@ -20,7 +20,6 @@ type Msg struct {
 	CreateTime int64       `json:"createTime"` //消息创建时间
 	MsgType    uint8       `json:"msgType"`    //0-心跳  1-视频
 	Content    interface{} `json:"content"`    //数据
-	Ty         string      `json:"ty"`
 }
 
 func (this Msg) String() string {
