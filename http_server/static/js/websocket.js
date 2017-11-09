@@ -12,10 +12,13 @@ try {
 ws.onopen=function () {
     setInterval(function() {
         logInfo(ws,"open");
-        var obj=new Object();
-        obj.name="ddddddddd";
-        sendMsg(MessageType_MSG_TYPE_VEDIO,obj);
-    }, 1000*60);
+        var from=new Object();
+        from.id="1";
+        var to=new Object();
+        to.id="2";
+        var content="heart";
+        sendMessage(from,to,MessageType_MSG_TYPE_HEART,content);
+    }, 1000);
 }
 //关闭
 ws.onclose=function(ev) {
@@ -37,6 +40,18 @@ function sendMsg(msgType,data) {
     obj.msgType=msgType;
     obj.msgData=data;
     var sendData=JSON.stringify(obj);
+    logInfo("ws send:",sendData);
+    ws.send(sendData);
+}
+
+//发送消息
+function sendMessage(from,to,msgType,content) {
+    var data=new Object();
+    data.from=from;
+    data.to=to;
+    data.content=content;
+    data.msgType=msgType;
+    var sendData=JSON.stringify(data);
     logInfo("ws send:",sendData);
     ws.send(sendData);
 }

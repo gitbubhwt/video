@@ -8,7 +8,7 @@ import (
 
 //心跳
 func (this *WSocket) ProcessingHeart(msg *common.Msg, conn net.Conn) {
-	global.UpdateSessionMap(msg.Id, conn, common.SERVER_TYPE_WSOCKET)
+	global.UpdateSessionMap(msg.From.Id, conn, common.SERVER_TYPE_WSOCKET)
 }
 
 //删除会话

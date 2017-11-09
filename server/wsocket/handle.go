@@ -6,7 +6,6 @@ import (
 	"video/common"
 	"video/intf"
 	log "video/logger"
-	"fmt"
 )
 
 type WSocket struct {
@@ -84,7 +83,8 @@ func (this *WSocket) ProcessingMsg(data []byte) {
 		log.Error(common.LOG_HEAD_WS_SERVER, "json.Unmarshal fail", "err:", err, "data:", string(data))
 		return
 	}
-	log.Info(common.LOG_HEAD_WS_SERVER, "receive:", *msg, string(data), msg.MsgType)
+	log.Info(common.LOG_HEAD_WS_SERVER, "receive:", *msg)
+	log.Info(common.LOG_HEAD_WS_SERVER,"receive:",string(data))
 	switch msg.MsgType {
 	case common.MessageType_MSG_TYPE_HEART:
 		{

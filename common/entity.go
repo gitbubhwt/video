@@ -5,9 +5,8 @@ import (
 )
 
 type MsgCommon struct {
-	Id         string `json:"id"`         //消息id
-	Ip         string `json:"ip"`         //消息ip
-	CreateTime int64  `json:"createTime"` //消息创建时间
+	Id string `json:"id"` //消息id
+	Ip string `json:"ip"` //消息ip
 }
 
 func (this MsgCommon) String() string {
@@ -16,9 +15,12 @@ func (this MsgCommon) String() string {
 }
 
 type Msg struct {
-	MsgCommon
-	MsgType uint8       `json:"msgType"` //0-心跳  1-视频
-	MsgData interface{} `json:"msgData"` //数据
+	From       MsgCommon   `json:"from"`
+	To         MsgCommon   `json:"to"`
+	CreateTime int64       `json:"createTime"` //消息创建时间
+	MsgType    uint8       `json:"msgType"`    //0-心跳  1-视频
+	Content    interface{} `json:"content"`    //数据
+	Ty         string      `json:"ty"`
 }
 
 func (this Msg) String() string {

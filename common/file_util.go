@@ -60,7 +60,7 @@ func PackFileMsg(msg *Msg, video *VideoServer) []byte {
 		log.Error("read file fail,err:", err)
 		return nil
 	}
-	msg.MsgData = data
+	msg.Content = data
 	bytes, err := json.Marshal(msg)
 	if err != nil {
 		log.Error("read file fail,err:", err)
