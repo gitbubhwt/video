@@ -41,3 +41,9 @@ const (
 const (
 	WEB_SERVER_PORT = "5020"
 )
+
+const (
+	VIDEO_PLAYING = 0 //正在播放
+	VIDEO_PAUSE   = 1 //暂停
+	VIDEO_ENDED   = 2 //播放结束
+)

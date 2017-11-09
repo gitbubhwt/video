@@ -17,7 +17,7 @@ func (this MsgCommon) String() string {
 
 type Msg struct {
 	MsgCommon
-	MsgType uint8  `json:"msgType"` //0-心跳  1-视频
+	MsgType uint8       `json:"msgType"` //0-心跳  1-视频
 	MsgData interface{} `json:"msgData"` //数据
 }
 
@@ -50,4 +50,11 @@ type VideoServer struct {
 func (this VideoServer) String() string {
 	obj := reflect.ValueOf(&this)
 	return StructPrint(obj)
+}
+
+//当前播放视频状态
+type VideoState struct {
+	Name        string `json:"name"`        //视频名称
+	State       uint8  `json:"state"`       //视频状态
+	CurrentTime int64  `json:"currentTime"` //当前播放视频时间
 }

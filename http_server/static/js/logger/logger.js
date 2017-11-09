@@ -1,6 +1,6 @@
 function logInfo(){
     var count = arguments.length    //把参数的长度保存的count的变量中
-    var sum =0                      //声名一个总和的变量
+    var sum =""                      //声名一个总和的变量
     for(var i =0;i<count;i++){      //使用for循环把所有参数的长度遍历出来
         sum +=arguments[i]           //求出每个arguments所对应下标的参数的值相加
     }

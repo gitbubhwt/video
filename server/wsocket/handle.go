@@ -25,9 +25,9 @@ func (this *WSocket) ProcessingConnection(conn net.Conn) {
 			break
 		}
 		this.WsSocket.OpcodeByte = opcodeByte
-		if opcodeByte[0] == common.WS_ON_LINE {
+		if opcodeByte[0] == 0x47 {
 			isHand = this.UserOnline()
-		} else if opcodeByte[0] == common.WS_NORMAL {
+		} else if opcodeByte[0] == 0x81 {
 			if !isHand {
 				break
 			}
@@ -36,7 +36,7 @@ func (this *WSocket) ProcessingConnection(conn net.Conn) {
 				continue
 			}
 			this.ProcessingMsg(data)
-		} else if opcodeByte[0] == common.WS_OFF_LINE {
+		} else if opcodeByte[0] == 0x88 {
 			this.UserOffline()
 		}
 	}

@@ -1,5 +1,13 @@
-var wsUri ="ws://192.168.96.131:56234/";
-var ws = new WebSocket(wsUri);
+var address ="192.168.96.131:56234";
+try {
+    if ("WebSocket" in window) {
+        ws = new WebSocket("ws://" + address);
+    } else if ("MozWebSocket" in window) {
+        ws = new MozWebSocket("ws://" + address);
+    }
+} catch (ex) {
+    alert("连接异常");
+}
 //ws 开启
 ws.onopen=function () {
     setInterval(function() {
