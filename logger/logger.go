@@ -13,6 +13,9 @@ const (
 	DEBUG = "[DEBUG]"
 )
 
+var logOpen bool = false
+var logChannel chan interface{}
+
 // 获取调用文件和行号
 func caller() string {
 	pc, file, line, ok := runtime.Caller(2)
@@ -29,12 +32,40 @@ func caller() string {
 }
 
 func Info(v ...interface{}) {
-	log.Println(INFO, caller(), v)
+	//log.Println(v)
+	openLog()
+	writeLog(DEBUG, caller(), v)
+	//log.Println(INFO, caller(), v)
 }
 
 func Error(v ...interface{}) {
-	log.Println(ERROR, caller(), v)
+	openLog()
+	writeLog(DEBUG, caller(), v)
+	//log.Println(ERROR, caller(), v)
 }
 func Debug(v ...interface{}) {
-	log.Println(DEBUG, caller(), v)
+	openLog()
+	writeLog(DEBUG, caller(), v)
+	//log.Println(DEBUG, caller(), v)
+}
+
+func openLog() {
+	if logOpen == false {
+		logOpen = true
+		go func() {
+			logChannel = make(chan interface{})
+			for {
+				v ,ok:= <-logChannel
+				if !ok{
+					break
+				}
+				log.Println(v)
+			}
+			logOpen = false
+		}()
+	}
+}
+
+func writeLog(v ...interface{}) {
+	logChannel <- v
 }
