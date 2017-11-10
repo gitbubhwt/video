@@ -7,8 +7,8 @@ import (
 )
 
 //心跳
-func (this *Socket)ProcessingHeart(msg *common.Msg, conn net.Conn) {
-	global.UpdateSessionMap(msg.From.Id, conn, common.SERVER_TYPE_SOCKET)
+func (this *Socket)ProcessingHeart(msg *common.Msg) {
+	global.UpdateSessionMap(msg.From.Id, this.Conn, common.SERVER_TYPE_SOCKET)
 }
 
 //删除会话

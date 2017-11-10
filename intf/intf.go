@@ -6,11 +6,12 @@ import (
 )
 
 type ServerInterface interface {
-	ProcessingConnection(conn net.Conn)             //处理连接
-	CheckPackage() (bool, []byte)                   //校验数据包
-	ProcessingMsg(data []byte)                      //处理消息
-	ProcessingHeart(msg *common.Msg, conn net.Conn) //处理心跳
-	DeleteSession(conn net.Conn)                    //删除会话
+	ProcessingConnection(conn net.Conn)           //处理连接
+	CheckPackage() (bool, []byte)                 //校验数据包
+	ProcessingMsg(data []byte)                    //处理消息
+	ProcessingHeart(msg *common.Msg)              //处理心跳
+	DeleteSession(conn net.Conn)                  //删除会话
+	SendMsg(conn net.Conn, msg *common.Msg) error //发送消息
 }
 
 type CommonSocket struct {

@@ -1,10 +1,10 @@
 package common
 
 import (
-	"encoding/json"
 	"net"
 	"sync"
 	"video/common"
+	"video/intf"
 	log "video/logger"
 )
 
@@ -19,11 +19,21 @@ func UpdateSessionMap(id string, conn net.Conn, serverType int) {
 	switch serverType {
 	case common.SERVER_TYPE_SOCKET:
 		{
-			updateSessionMap(SocketSessionMap, id, conn)
+			if SocketSessionMap == nil { //初始化session
+				SocketSessionMap = make(map[string]net.Conn)
+			}
+			if _, ok := SocketSessionMap[id]; !ok {
+				SocketSessionMap[id] = conn //写入session
+			}
 		}
 	case common.SERVER_TYPE_WSOCKET:
 		{
-			updateSessionMap(WsocketSessionMap, id, conn)
+			if WsocketSessionMap == nil { //初始化session
+				WsocketSessionMap = make(map[string]net.Conn)
+			}
+			if _, ok := WsocketSessionMap[id]; !ok {
+				WsocketSessionMap[id] = conn //写入session
+			}
 		}
 	}
 
@@ -36,61 +46,21 @@ func DeleteSessionMap(conn net.Conn, serverType int) {
 	switch serverType {
 	case common.SERVER_TYPE_SOCKET:
 		{
-			deleteSession(SocketSessionMap, conn)
+			for k, v := range SocketSessionMap {
+				if v == conn {
+					delete(SocketSessionMap, k)
+					break
+				}
+			}
 		}
 	case common.SERVER_TYPE_WSOCKET:
 		{
-			deleteSession(WsocketSessionMap, conn)
-		}
-	}
-}
-
-//单一发送消息
-func SingleSendMsg(msg common.Msg, id string, serverType int) bool {
-	var ok bool = false
-	switch serverType {
-	case common.SERVER_TYPE_SOCKET:
-		{
-			ok = singleSend(SocketSessionMap, msg, id)
-		}
-	case common.SERVER_TYPE_WSOCKET:
-		{
-			ok = singleSend(WsocketSessionMap, msg, id)
-		}
-	}
-	return ok
-}
-
-//广播发送消息
-func BroadCastSendMsg(msg common.Msg, serverType int) {
-	switch serverType {
-	case common.SERVER_TYPE_SOCKET:
-		{
-			broadCastSend(SocketSessionMap, msg)
-		}
-	case common.SERVER_TYPE_WSOCKET:
-		{
-			broadCastSend(WsocketSessionMap, msg)
-		}
-	}
-}
-
-//更新会话
-func updateSessionMap(session map[string]net.Conn, id string, conn net.Conn) {
-	if session == nil { //初始化session
-		session = make(map[string]net.Conn)
-	}
-	if _, ok := session[id]; !ok {
-		session[id] = conn //写入session
-	}
-}
-
-//删除会话
-func deleteSession(session map[string]net.Conn, conn net.Conn) {
-	for k, v := range session {
-		if v == conn {
-			delete(session, k)
-			break
+			for k, v := range WsocketSessionMap {
+				if v == conn {
+					delete(WsocketSessionMap, k)
+					break
+				}
+			}
 		}
 	}
 	if err := conn.Close(); err != nil {
@@ -98,27 +68,26 @@ func deleteSession(session map[string]net.Conn, conn net.Conn) {
 	}
 }
 
-//单一发送
-func singleSend(session map[string]net.Conn, msg common.Msg, id string) bool {
-	if val, ok := session[id]; ok {
-		bytes, err := json.Marshal(msg)
-		if err != nil {
-			log.Error("broad cast send,json.Marshal failed", err)
-			return false
+//单一发送消息
+func SingleSendMsg(msg *common.Msg, intf intf.ServerInterface, serverType int) bool {
+	ok := false
+	switch serverType {
+	case common.SERVER_TYPE_WSOCKET:
+		{
+			if conn, ok1 := WsocketSessionMap[msg.To.Id]; ok1 {
+				if err := intf.SendMsg(conn, msg); err == nil {
+					ok = true
+				}
+			}
 		}
-		return common.SendMsgByTcp(bytes, val, common.LOG_HEAD_SERVER)
+	case common.SERVER_TYPE_SOCKET:
+		{
+			if conn, ok1 := SocketSessionMap[msg.To.Id]; ok1 {
+				if err := intf.SendMsg(conn, msg); err == nil {
+					ok = true
+				}
+			}
+		}
 	}
-	return false
-}
-
-//广播发送
-func broadCastSend(session map[string]net.Conn, msg common.Msg) {
-	bytes, err := json.Marshal(msg)
-	if err != nil {
-		log.Error("broad cast send,json.Marshal failed", err)
-		return
-	}
-	for _, v := range session {
-		common.SendMsgByTcp(bytes, v, common.LOG_HEAD_SERVER)
-	}
+	return ok
 }

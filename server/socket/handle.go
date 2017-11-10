@@ -2,6 +2,7 @@ package socket
 
 import (
 	"encoding/json"
+	"errors"
 	"net"
 	"video/common"
 	"video/intf"
@@ -51,4 +52,17 @@ func (this *Socket) ProcessingMsg(data []byte) {
 			this.ProcessingVideo(msg, this.Conn)
 		}
 	}
+}
+
+//发送消息
+func (this *Socket) SendMsg(conn net.Conn, msg *common.Msg) error {
+	data, err := json.Marshal(msg)
+	if err != nil {
+		log.Error(common.LOG_HEAD_WS_SERVER, "send msg fail,err:", err)
+		return err
+	}
+	if b := common.SendMsgByTcp(data, conn, common.LOG_HEAD_SERVER); !b {
+		err = errors.New(common.LOG_HEAD_WS_SERVER + " " + "send msg fail")
+	}
+	return err
 }

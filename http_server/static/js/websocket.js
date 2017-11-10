@@ -15,10 +15,10 @@ ws.onopen=function () {
         var from=new Object();
         from.id="1";
         var to=new Object();
-        to.id="2";
+        to.id="1";
         var content="heart";
         sendMessage(from,to,MessageType_MSG_TYPE_HEART,content);
-    }, 1000);
+    }, 2000);
 }
 //关闭
 ws.onclose=function(ev) {

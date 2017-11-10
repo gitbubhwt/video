@@ -84,17 +84,37 @@ func (this *WSocket) ProcessingMsg(data []byte) {
 		return
 	}
 	log.Info(common.LOG_HEAD_WS_SERVER, "receive:", *msg)
-	log.Info(common.LOG_HEAD_WS_SERVER,"receive:",string(data))
+	//log.Info(common.LOG_HEAD_WS_SERVER,"receive:",string(data))
 	switch msg.MsgType {
 	case common.MessageType_MSG_TYPE_HEART:
 		{
 			//心跳
-			this.ProcessingHeart(msg, this.WsSocket.Conn)
+			this.ProcessingHeart(msg)
 		}
 	case common.MessageType_MSG_TYPE_VEDIO:
 		{
 			//视频
 
 		}
+	case common.MessageType_MSG_TYPE_VEDIO_STATE:
+		{
+			//视频状态
+
+		}
+
 	}
+}
+
+//发送消息
+func (this *WSocket) SendMsg(conn net.Conn, msg *common.Msg) error {
+	data, err := json.Marshal(msg)
+	if err != nil {
+		log.Error(common.LOG_HEAD_WS_SERVER, "send msg fail,err:", err)
+		return err
+	}
+	connT := this.WsSocket.Conn
+	this.WsSocket.Conn = conn
+	err = this.WsSocket.Write(data)
+	this.WsSocket.Conn = connT
+	return err
 }
