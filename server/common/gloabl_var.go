@@ -70,21 +70,23 @@ func DeleteSessionMap(conn net.Conn, serverType int) {
 
 //单一发送消息
 func SingleSendMsg(msg *common.Msg, intf intf.ServerInterface, serverType int) bool {
-	ok := false
+	ok := true
 	switch serverType {
 	case common.SERVER_TYPE_WSOCKET:
 		{
 			if conn, ok1 := WsocketSessionMap[msg.To.Id]; ok1 {
-				if err := intf.SendMsg(conn, msg); err == nil {
-					ok = true
+				if err := intf.SendMsg(conn, msg); err != nil {
+					ok = false
+					log.Error(common.LOG_HEAD_WS_SERVER, "send msg fail,err:", err)
 				}
 			}
 		}
 	case common.SERVER_TYPE_SOCKET:
 		{
 			if conn, ok1 := SocketSessionMap[msg.To.Id]; ok1 {
-				if err := intf.SendMsg(conn, msg); err == nil {
-					ok = true
+				if err := intf.SendMsg(conn, msg); err != nil {
+					ok = false
+					log.Error(common.LOG_HEAD_SERVER, "send msg fail,err:", err)
 				}
 			}
 		}

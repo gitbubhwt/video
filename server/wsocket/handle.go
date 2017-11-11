@@ -55,6 +55,7 @@ func (this *WSocket) UserOffline() bool {
 		log.Error("User offline,write data to user fail", err)
 		return false
 	}
+	this.DeleteSession(this.WsSocket.Conn)
 	return true
 }
 
@@ -83,8 +84,7 @@ func (this *WSocket) ProcessingMsg(data []byte) {
 		log.Error(common.LOG_HEAD_WS_SERVER, "json.Unmarshal fail", "err:", err, "data:", string(data))
 		return
 	}
-	log.Info(common.LOG_HEAD_WS_SERVER, "receive:", *msg)
-	log.Info(common.LOG_HEAD_WS_SERVER,"receive:",string(data))
+	//log.Info(common.LOG_HEAD_WS_SERVER,"receive:",string(data))
 	switch msg.MsgType {
 	case common.MessageType_MSG_TYPE_HEART:
 		{
@@ -99,6 +99,7 @@ func (this *WSocket) ProcessingMsg(data []byte) {
 	case common.MessageType_MSG_TYPE_VEDIO_STATE:
 		{
 			//视频状态
+			this.ProcessingVideoState(msg)
 
 		}
 

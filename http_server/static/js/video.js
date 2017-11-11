@@ -36,7 +36,9 @@ function videoPlayAction(){
     obj.name=name;
     obj.state=VIDEO_PLAY;
     obj.currentTime=vTime;
-    sendMsg(MessageType_MSG_TYPE_VEDIO,obj);
+    var to=new Object();
+    to.id=VIDEO_PLAY_TO_ID;
+    sendMessage(to,MessageType_MSG_TYPE_VEDIO_STATE,obj);
 }
 //暂停事件
 function videoPauseAction(){
@@ -45,7 +47,9 @@ function videoPauseAction(){
     obj.name=name;
     obj.state=VIDEO_PAUSE;
     obj.currentTime=vTime;
-    sendMsg(MessageType_MSG_TYPE_VEDIO,obj);
+    var to=new Object();
+    to.id=VIDEO_PAUSE_TO_ID;
+    sendMessage(to,MessageType_MSG_TYPE_VEDIO_STATE,obj);
 }
 //播放完毕
 function videoEnded(){
@@ -54,7 +58,9 @@ function videoEnded(){
     obj.name=name;
     obj.state=VIDEO_ENDED;
     obj.currentTime=vTime;
-    sendMsg(MessageType_MSG_TYPE_VEDIO,obj);
+    var to=new Object();
+    to.id=VIDEO_ENDED_TO_ID;
+    sendMessage(to,MessageType_MSG_TYPE_VEDIO_STATE,obj);
 }
 //时间更新
 function videoTimeUpdate(vTime){

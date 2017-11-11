@@ -3,7 +3,6 @@ package wsocket
 import (
 	"crypto/sha1"
 	"encoding/base64"
-	"errors"
 	"fmt"
 	"io"
 	"net"
@@ -24,31 +23,42 @@ func NewWsSocket(conn net.Conn) *WsSocket {
 }
 
 //写入数据
-func (this *WsSocket) Write(data []byte) error {
-	// 这里只处理data长度<125的
-	if len(data) >= 125 {
-		return errors.New("send ws socket data error")
+func (this *WsSocket) Write(msgByte []byte) error {
+	// 掩码开始位置
+	masking_key_startIndex  := 2
+	var length int = len(msgByte)
+	// 计算掩码开始位置
+	if length <= 125 {
+		masking_key_startIndex = 2
+	} else if length > 65536 {
+		masking_key_startIndex = 10
+	} else if length > 125 {
+		masking_key_startIndex = 4
 	}
-	lenth := len(data)
-	maskedData := make([]byte, lenth)
-	for i := 0; i < lenth; i++ {
-		if this.MaskingKey != nil {
-			maskedData[i] = data[i] ^ this.MaskingKey[i%4]
-		} else {
-			maskedData[i] = data[i]
-		}
+	// 创建返回数据
+	result  := make([]byte, masking_key_startIndex+length)
+	// 开始计算ws-frame
+	// frame-fin + frame-rsv1 + frame-rsv2 + frame-rsv3 + frame-opcode
+	result[0] = 0x81 // 129
+	// frame-masked+frame-payload-length
+	// 从第9个字节开始是 1111101=125,掩码是第3-第6个数据
+	// 从第9个字节开始是 1111110>=126,掩码是第5-第8个数据
+	if length <= 125 {
+		result[1] = byte(length)
+	} else if length > 65536 {
+		result[1] = 0x7F // 127
+	} else if length > 125 {
+		result[1] = 0x7E // 126
+		result[2] = byte(length >> 8)
+		result[3] = byte(length % 256)
 	}
-	this.Conn.Write([]byte{0x81})
-	var payLenByte byte
-	if this.MaskingKey != nil && len(this.MaskingKey) != 4 {
-		payLenByte = byte(0x80) | byte(lenth)
-		this.Conn.Write([]byte{payLenByte})
-		this.Conn.Write(this.MaskingKey)
-	} else {
-		payLenByte = byte(0x00) | byte(lenth)
-		this.Conn.Write([]byte{payLenByte})
+	// 将数据编码放到最后
+	for i := 0; i < length; i++ {
+		result[i+masking_key_startIndex] = msgByte[i]
 	}
-	this.Conn.Write(data)
+	if _,err:=this.Conn.Write(result);err!=nil{
+		return err
+	}
 	return nil
 }
 
