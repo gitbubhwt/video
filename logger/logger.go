@@ -33,20 +33,20 @@ func caller() string {
 
 func Info(v ...interface{}) {
 	//log.Println(v)
-	openLog()
-	writeLog(DEBUG, caller(), v)
-	//log.Println(INFO, caller(), v)
+	//openLog()
+	//writeLog(DEBUG, caller(), v)
+	log.Println(INFO, caller(), v)
 }
 
 func Error(v ...interface{}) {
-	openLog()
-	writeLog(DEBUG, caller(), v)
-	//log.Println(ERROR, caller(), v)
+	//openLog()
+	//writeLog(DEBUG, caller(), v)
+	log.Println(ERROR, caller(), v)
 }
 func Debug(v ...interface{}) {
-	openLog()
-	writeLog(DEBUG, caller(), v)
-	//log.Println(DEBUG, caller(), v)
+	//openLog()
+	//writeLog(DEBUG, caller(), v)
+	log.Println(DEBUG, caller(), v)
 }
 
 func openLog() {

@@ -84,7 +84,7 @@ func (this *WSocket) ProcessingMsg(data []byte) {
 		return
 	}
 	log.Info(common.LOG_HEAD_WS_SERVER, "receive:", *msg)
-	//log.Info(common.LOG_HEAD_WS_SERVER,"receive:",string(data))
+	log.Info(common.LOG_HEAD_WS_SERVER,"receive:",string(data))
 	switch msg.MsgType {
 	case common.MessageType_MSG_TYPE_HEART:
 		{
