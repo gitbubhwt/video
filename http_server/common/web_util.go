@@ -6,8 +6,8 @@ import (
 )
 
 //跳转页面
-func GoToPage(w http.ResponseWriter, htmlPath string) {
+func GoToPage(w http.ResponseWriter, htmlPath string,data interface{}) {
 	if t, err := template.ParseFiles(htmlPath); err == nil {
-		t.Execute(w, nil)
+		t.Execute(w, data)
 	}
 }

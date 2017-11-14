@@ -1,23 +1,10 @@
 <!DOCTYPE HTML>
 <html>
 <body>
-<div style="width: 100%;">
-    <div style="width: 50%;float: left;">
-        <img src="img/1.png" style="width: 96%;height: 350px;"/>
-    </div>
-    <div style="width: 50%;float: right;">
-        <img src="img/1.png" style="width: 96%;height: 350px;"/>
-    </div>
-</div>
-
-{{ range $k,$v :=.}}
-     {{$k}}
-     {{$v}}
-{{end}}
-
 <div>
-    <video style="width: 45%;height: 20%;display: none;" controls="controls" autobuffer muted controls id="video">
-        <source src="/upload/demo_1.mp4" type="video/mp4" id="source">
+    <video style="width: 100%;height: 20%;" controls="controls" autobuffer muted controls id="video" 
+    	poster="{{.ImgSrc}}">
+        <source src="{{.Path}}" type="video/mp4" id="source">
     </video>
 </div>
 <script src="/js/logger/logger.js"></script>

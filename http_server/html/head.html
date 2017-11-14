@@ -8,21 +8,15 @@
 <body>
 <div class="wrap"  >
     <ul class="content">
-        <li class="nav" onclick="palyingFunc();">
-            <img src="img/1.jpg" />
-        </li>
-        <li class="nav">
-            <img src="img/2.jpg" />
-        </li>
-        <li class="nav">
-            <img src="img/5.jpg" />
-        </li>
-        <li class="nav">
-            <img src="img/6.jpg" />
-        </li>
-
+    	{{range .}}
+          <li class="nav" onclick="palyingFunc({{.Index}});">
+            <img src="{{.ImgSrc}}" />
+          </li>
+        {{end}}
     </ul>
 </div>
-</video>
+
+<script src="/js/logger/logger.js"></script>
+<script src="js/head/head.js"></script>
 </body>
 </html>
