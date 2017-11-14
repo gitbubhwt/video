@@ -7,6 +7,11 @@ import (
 )
 
 //视频播放页面
-func VideoHeadHtml(w http.ResponseWriter, r *http.Request) {
-	webCommon.GoToPage(w, route.ROUTE_HEAD_HTML_PATH)
+func VideoPlayHtml(w http.ResponseWriter, r *http.Request) {
+	webCommon.GoToPage(w, route.ROUTE_PLAY_HTML_PATH)
+}
+
+//视频首页
+func VideoHeadHtml(w http.ResponseWriter, r *http.Request){
+	webCommon.GoToPage(w,route.ROUTE_HEAD_HTML_PATH)
 }

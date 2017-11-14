@@ -40,5 +40,5 @@ const (
 )
 
 const (
-	WEB_SERVER_PORT = "5020"
+	WEB_SERVER_PORT = "5021"
 )
