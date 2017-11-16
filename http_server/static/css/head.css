@@ -78,9 +78,6 @@ progress::-webkit-progress-value  { background: #0064B4; }
 	width: 60px;
 	height: 60px;
 }
-video::-webkit-media-controls {
-  display:none !important;
-}
 
 .value{border-bottom: 4px dashed #bdc3c7;text-align: center;font-weight: bold;font-size: 10em;width: 300px;height: 100px;line-height: 60px;margin: 40px auto;letter-spacing: -0.07em;text-shadow: white 2px 2px 2px;}
 input[type="range"] {display: block;-webkit-appearance: none;background-color: #bdc3c7;width: 100%;height: 10px;border-radius: 5px;margin: 0 auto;outline: 0;}

@@ -5,7 +5,7 @@ import (
 	"encoding/binary"
 	"fmt"
 	"os"
-	"os/exec"
+	"path/filepath"
 	"reflect"
 	"strings"
 )
@@ -54,12 +54,18 @@ func GetParentDirectory(dirctory string) string {
 
 //获取当前目录
 func GetCurrentDirectory() string {
-	s, err := exec.LookPath(os.Args[0])
-	checkErr(err)
-	i := strings.LastIndex(s, "\\")
-	path := string(s[0 : i+1])
-	path = strings.Replace(path, "\\", "/", -1)
-	return path
+	//s, err := exec.LookPath(os.Args[0])
+	//checkErr(err)
+	//i := strings.LastIndex(s, "\\")
+	//path := string(s[0 : i+1])
+	//path = strings.Replace(path, "\\", "/", -1)
+	//return path
+	dir, err := filepath.Abs(filepath.Dir(os.Args[0])) //返回绝对路径  filepath.Dir(os.Args[0])去除最后一个元素的路径
+	if err != nil {
+		panic(err)
+	}
+	return strings.Replace(dir, "\\", "/", -1) //将\替换成/
+
 }
 func checkErr(err error) {
 	if err != nil {
