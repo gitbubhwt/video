@@ -5,6 +5,6 @@ const (
 	HTML_ROOT_PATH       = "/html"
 	ROUTE_HEAD_REQUEST   = "/video"
 	ROUTE_PLAY_REQUEST   = "/play"
-	ROUTE_HEAD_HTML_PATH = HTML_ROOT_PATH + "/head.html"
-	ROUTE_PLAY_HTML_PATH = HTML_ROOT_PATH + "/video.html"
+	ROUTE_HEAD_HTML_PATH =  "/head.html"
+	ROUTE_PLAY_HTML_PATH =   "/video.html"
 )

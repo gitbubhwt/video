@@ -1,39 +1,82 @@
 package common
 
 import (
-	"bufio"
-	"net"
+	"errors"
+	"fmt"
+	"log"
+	"os"
+	"os/exec"
+	"path"
+	"path/filepath"
+	"runtime"
+	"strings"
 	"testing"
-	//"bytes"
-	log "video/logger"
 )
 
-func Test(t *testing.T) {
-	log.Info("单元测试")
-	addr := "192.168.96.131:2345"
-	listen, err := net.Listen("tcp", addr)
-	if err != nil {
-		log.Error(err)
-		return
+func substr(s string, pos, length int) string {
+	runes := []rune(s)
+	l := pos + length
+	if l > len(runes) {
+		l = len(runes)
 	}
-	for {
-		conn, err := listen.Accept()
-		if err != nil {
-			break
-		}
-		go HandConn(conn)
-	}
-
+	return string(runes[pos:l])
 }
-func HandConn(conn net.Conn) {
-	//var buf1 bytes.Buffer
-	//buf1:=bytes.NewBuffer(conn)
-	buf := bufio.NewReader(conn)
-	bytes := make([]byte, 1024)
-	for {
-		n,err:=buf.Read(bytes)
-		log.Info(n,err)
-		log.Info(string(bytes))
-	}
 
+func getParentDirectory(dirctory string) string {
+	return substr(dirctory, 0, strings.LastIndex(dirctory, "/"))
+}
+
+func getCurrentDirectory() string {
+	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
+	if err != nil {
+		log.Fatal(err)
+	}
+	return strings.Replace(dir, "\\", "/", -1)
+}
+
+func Test(t *testing.T) {
+
+	var str1, str2 string
+	str1 = getCurrentDirectory()
+
+	str2 = getParentDirectory(str1)
+	fmt.Println(str2)
+
+	_, filename, _, _ := runtime.Caller(2)
+	fmt.Println(filename)
+	f, err := os.Open(path.Join(path.Dir(filename), "data.csv"))
+	fmt.Println(f, err)
+
+	fmt.Println(getCurrentPath())
+
+	fmt.Println(getCurrentDirectory1())
+}
+
+func getCurrentPath() (string, error) {
+	file, err := exec.LookPath(os.Args[0])
+	if err != nil {
+		return "", err
+	}
+	path, err := filepath.Abs(file)
+	if err != nil {
+		return "", err
+	}
+	i := strings.LastIndex(path, "/")
+	if i < 0 {
+		i = strings.LastIndex(path, "\\")
+	}
+	if i < 0 {
+		return "", errors.New(`error: Can't find "/" or "\".`)
+	}
+	return string(path[0 : i+1]), nil
+}
+/*
+获取程序运行路径
+*/
+func getCurrentDirectory1() string {
+	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
+	if err != nil {
+		fmt.Println(err)
+	}
+	return strings.Replace(dir, "\\", "/", -1)
 }
