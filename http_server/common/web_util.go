@@ -3,24 +3,22 @@ package common
 import (
 	"html/template"
 	"net/http"
-	//"strings"
-	//"video/common"
+	"video/common"
+	"video/db"
 	log "video/logger"
 )
 
 //跳转页面
 func GoToPage(w http.ResponseWriter, htmlPath string, data interface{}) {
-	//directory := common.GetCurrentDirectory()
-	//log.Info(directory)
-	//if strings.Index(directory, SERVER_ROOT_PATH) != -1 {
-	//	htmlPath = directory + WEN_SERVER_STATIC_FILE_PATH + htmlPath
-	//} else {
-	//	htmlPath = SERVER_ROOT_PATH + WEN_SERVER_STATIC_FILE_PATH + htmlPath
-	//}
-	htmlPath = "C:/Users/2853818307/go/src/video/http_server/static/html" + htmlPath
-	if t, err := template.ParseFiles(htmlPath); err == nil {
-		t.Execute(w, data)
+	rootPathT := db.GetValue(common.SYSTEM_CONFIG_KEY, common.SYSTEM_CONFIG_ROOT_PATH)
+	if rootPath, ok := rootPathT.(string); ok && rootPath != "" {
+		htmlPath = rootPath + WEN_SERVER_HTML_PATH + htmlPath
+		if t, err := template.ParseFiles(htmlPath); err == nil {
+			t.Execute(w, data)
+		} else {
+			log.Error(err)
+		}
 	} else {
-		log.Error(err)
+		log.Error(common.SYSTEM_CONFIG_ROOT_PATH, "type is wrong")
 	}
 }

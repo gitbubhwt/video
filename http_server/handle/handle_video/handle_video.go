@@ -3,9 +3,9 @@ package handle_video
 import (
 	"fmt"
 	"net/http"
-	webCommon "video/http_server/common"
 	"video/http_server/route"
 	log "video/logger"
+	webCommon	"video/http_server/common"
 )
 
 //视频播放页面
