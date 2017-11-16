@@ -11,6 +11,7 @@ func UpdateHash(key, filedName string, value interface{}) bool {
 		log.Error("Update fail,key:", key, "filedName:", filedName, "value:", value, "err:", err)
 		return false
 	}
+	log.Info("Update success,key:", key, "filedName:", filedName, "value:", value)
 	return true
 }
 
@@ -19,6 +20,7 @@ func GetValue(key, filedName string) interface{} {
 	db := GetClient()
 	var err error
 	if result, err := db.HGet(key, filedName).Result(); err == nil {
+		log.Info("Get value success,key:", key, "filedName:", filedName, "result:", result)
 		return result
 	}
 	log.Error("Get value fail,key:", key, "filedName:", filedName, "err:", err)
