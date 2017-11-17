@@ -109,7 +109,7 @@ input[type="range"]::-webkit-slider-thumb {-webkit-appearance: none;background-c
 	color: red;
 }
 
-.video-add{
+.video-content{
     width: 80%;
     height: auto;
     position: absolute;
@@ -143,7 +143,11 @@ input[type="range"]::-webkit-slider-thumb {-webkit-appearance: none;background-c
 }
 
 .buttons{
-	width: 70%;
+	width: 80%;
+    height: auto;
+    top: 0;
+    margin: auto;
+    padding-top: 5%;
 	float: right;
 	font-size: 16px;
 }
