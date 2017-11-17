@@ -32,5 +32,10 @@ func VideoHeadHtml(w http.ResponseWriter, r *http.Request) {
 		count++
 		videos[i] = *video
 	}
-	webCommon.GoToPage(w, route.ROUTE_HEAD_HTML_PATH, videos)
+	webCommon.GoToPage(w, route.ROUTE_INDEX_HTML_PATH, videos)
+}
+
+//视频新增页面
+func VideoAddHtml(w http.ResponseWriter, r *http.Request){
+	webCommon.GoToPage(w, route.ROUTE_ADD_HTML_PATH, nil)
 }

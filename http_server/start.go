@@ -22,7 +22,8 @@ func main() {
 	http.Handle(webCommon.WEB_SERVER_IMG, http.FileServer(http.Dir(staticPath)))
 	http.Handle(webCommon.WEB_SERVER_UPLOAD, http.FileServer(http.Dir(staticPath)))
 	http.HandleFunc(route.ROUTE_PLAY_REQUEST, handle_video.VideoPlayHtml)
-	http.HandleFunc(route.ROUTE_HEAD_REQUEST, handle_video.VideoHeadHtml)
+	http.HandleFunc(route.ROUTE_INDEX_REQUEST, handle_video.VideoHeadHtml)
+	http.HandleFunc(route.ROUTE_ADMIN_REQUEST, handle_video.VideoAddHtml)
 	err := http.ListenAndServe(addr, nil)
 	if err != nil {
 		log.Error("Start web server fail,err:", err)
