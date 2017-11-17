@@ -3,9 +3,9 @@ package handle_video
 import (
 	"fmt"
 	"net/http"
+	webCommon "video/http_server/common"
 	"video/http_server/route"
 	log "video/logger"
-	webCommon	"video/http_server/common"
 )
 
 //视频播放页面
@@ -28,6 +28,7 @@ func VideoHeadHtml(w http.ResponseWriter, r *http.Request) {
 		video := new(webCommon.Video)
 		video.Index = fmt.Sprintf("%d", count)
 		video.ImgSrc = fmt.Sprintf("img/%d.jpg", count)
+		video.Name = fmt.Sprintf("电影%d", count)
 		count++
 		videos[i] = *video
 	}
