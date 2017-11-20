@@ -85,6 +85,9 @@ func WriteFile(path string, data []byte, off int64) {
 	file.WriteAt(data, off)
 }
 
+//创建文件
+//func CreateFile(path string,file )
+
 //判断文件是否存在
 func checkFileIsExist(path string) bool {
 	_, err := os.Stat(path)

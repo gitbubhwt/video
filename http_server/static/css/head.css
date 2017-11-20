@@ -128,13 +128,22 @@ input[type="range"]::-webkit-slider-thumb {-webkit-appearance: none;background-c
     color: grey;
 }
 .video-add-elem>span{
-    width: 30%;
+	float: left;
+    width: 5%;
+    max-width: 60px;
     margin-right: 10px;
 }
 .video-add-elem>input{
     width: 70%;
     height: 25px;
     max-width: 450px;
+}
+.video-add-elem .file{
+	float: left;
+    width: 30%;
+    height: 25px;
+    min-width: 150px;
+    max-width: 300px;
 }
 .video-add-elem>select{
     min-width: 100px;
@@ -181,5 +190,21 @@ input[type="range"]::-webkit-slider-thumb {-webkit-appearance: none;background-c
 	color: gray;
 }
 .buttons .buttons-right:hover{
+	background-color: lavender;
+}
+
+.video-btn{
+	float: left;
+    margin-right: 2%;
+    width: auto;
+    background-color: chartreuse;
+    text-align: center;
+    height: 25px;
+    padding-top: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: pointer;
+}
+.video-btn:hover{
 	background-color: lavender;
 }

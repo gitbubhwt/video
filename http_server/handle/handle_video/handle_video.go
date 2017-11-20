@@ -45,3 +45,9 @@ func VideoAddHtml(w http.ResponseWriter, r *http.Request){
 func VideoListHtml(w http.ResponseWriter, r *http.Request){
 	webCommon.GoToPage(w, route.ROUTE_LIST_HTML_PATH, nil)
 }
+
+//上传文件
+func VideoUpload(w http.ResponseWriter, r *http.Request){
+	r.ParseForm()
+
+}
