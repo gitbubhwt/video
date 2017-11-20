@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"encoding/json"
 	"io"
+	"mime/multipart"
 	"net"
 	"os"
 	"time"
@@ -86,7 +87,24 @@ func WriteFile(path string, data []byte, off int64) {
 }
 
 //创建文件
-//func CreateFile(path string,file )
+func CreateFile(path string, uploadFile multipart.File) error {
+	var file *os.File
+	var err error
+	if !checkFileIsExist(path) {
+		_, err = os.Create(path)
+		if err != nil {
+			return err
+		}
+	}
+	file, err = os.OpenFile(path, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)
+	_, err = io.Copy(file, uploadFile)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+	defer uploadFile.Close()
+	return nil
+}
 
 //判断文件是否存在
 func checkFileIsExist(path string) bool {

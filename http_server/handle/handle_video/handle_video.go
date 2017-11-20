@@ -3,8 +3,10 @@ package handle_video
 import (
 	"fmt"
 	"net/http"
-	webCommon "video/http_server/common"
+	"time"
 	"video/common"
+	"video/db"
+	webCommon "video/http_server/common"
 	"video/http_server/route"
 	log "video/logger"
 )
@@ -37,17 +39,32 @@ func VideoIndexHtml(w http.ResponseWriter, r *http.Request) {
 }
 
 //视频新增页面
-func VideoAddHtml(w http.ResponseWriter, r *http.Request){
+func VideoAddHtml(w http.ResponseWriter, r *http.Request) {
 	webCommon.GoToPage(w, route.ROUTE_ADD_HTML_PATH, nil)
 }
 
 //视频列表页面
-func VideoListHtml(w http.ResponseWriter, r *http.Request){
+func VideoListHtml(w http.ResponseWriter, r *http.Request) {
 	webCommon.GoToPage(w, route.ROUTE_LIST_HTML_PATH, nil)
 }
 
 //上传文件
-func VideoUpload(w http.ResponseWriter, r *http.Request){
+func VideoUpload(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
-
+	uploadFile, _, err := r.FormFile("file")
+	if err != nil {
+		log.Error("Video upload file fail,err:", err)
+		return
+	}
+	rootPathT := db.GetValue(common.SYSTEM_CONFIG_KEY, common.SYSTEM_CONFIG_ROOT_PATH)
+	if rootPath, ok := rootPathT.(string); ok {
+		path := fmt.Sprintf(rootPath+webCommon.WEB_SERVER_UPLOAD_FILE_PATH, time.Now().Unix())
+		if err := common.CreateFile(path, uploadFile); err != nil {
+			log.Error("Video upload file fail,err:", err)
+			return
+		}
+		log.Info("Video upload file success")
+	} else {
+		log.Error(common.SYSTEM_CONFIG_ROOT_PATH, "type is wrong", rootPath)
+	}
 }

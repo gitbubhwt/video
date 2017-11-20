@@ -25,6 +25,7 @@ func main() {
 	http.HandleFunc(route.ROUTE_INDEX_REQUEST, handle_video.VideoIndexHtml)
 	http.HandleFunc(route.ROUTE_VIDEO_ADD_REQUEST, handle_video.VideoAddHtml)   //视频添加
 	http.HandleFunc(route.ROUTE_VIDEO_LIST_REQUEST, handle_video.VideoListHtml) //视频列表
+	http.HandleFunc(route.ROUTE_VIDEO_UPLOAD_REQUEST, handle_video.VideoUpload) //视频上传
 	err := http.ListenAndServe(addr, nil)
 	if err != nil {
 		log.Error("Start web server fail,err:", err)

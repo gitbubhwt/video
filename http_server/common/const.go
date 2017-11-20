@@ -13,3 +13,7 @@ const (
 const (
 	HEAD_VIDEO_INDEX = "videoIndex"
 )
+
+const (
+	WEB_SERVER_UPLOAD_FILE_PATH = WEN_SERVER_STATIC_PATH + "/upload/%d" //文件上传路径
+)
