@@ -15,5 +15,6 @@ const (
 )
 
 const (
+	WEB_SERVER_UPLOAD_FILE_TEMP_PATH = "C:/FFOutput/video/upload/%d"
 	WEB_SERVER_UPLOAD_FILE_PATH = WEN_SERVER_STATIC_PATH + "/upload/%d" //文件上传路径
 )

@@ -58,12 +58,14 @@ func VideoUpload(w http.ResponseWriter, r *http.Request) {
 	}
 	rootPathT := db.GetValue(common.SYSTEM_CONFIG_KEY, common.SYSTEM_CONFIG_ROOT_PATH)
 	if rootPath, ok := rootPathT.(string); ok {
-		path := fmt.Sprintf(rootPath+webCommon.WEB_SERVER_UPLOAD_FILE_PATH, time.Now().Unix())
+		//path := fmt.Sprintf(rootPath+webCommon.WEB_SERVER_UPLOAD_FILE_PATH, time.Now().Unix())
+		path := fmt.Sprintf(webCommon.WEB_SERVER_UPLOAD_FILE_TEMP_PATH, time.Now().Unix())
 		if err := common.CreateFile(path, uploadFile); err != nil {
 			log.Error("Video upload file fail,err:", err)
 			return
 		}
 		log.Info("Video upload file success")
+		w.Write([]byte("upload success"))
 	} else {
 		log.Error(common.SYSTEM_CONFIG_ROOT_PATH, "type is wrong", rootPath)
 	}
