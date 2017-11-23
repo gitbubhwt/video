@@ -1,6 +1,7 @@
 package common
 
 import (
+	"encoding/json"
 	"reflect"
 )
 
@@ -58,4 +59,20 @@ type VideoState struct {
 	Name        string `json:"name"`        //视频名称
 	State       uint8  `json:"state"`       //视频状态
 	CurrentTime int64  `json:"currentTime"` //当前播放视频时间
+}
+
+type Ack struct {
+	Code int    `json:"code"`
+	Msg  string `json:"msg"`
+}
+
+func (ack *Ack) ResponseError() []byte {
+	ack.Code = ACK_FAIL
+	data, _ := json.Marshal(ack)
+	return data
+}
+func (ack *Ack) ResponseSuccess() []byte {
+	ack.Code = ACK_SUCCESS
+	data, _ := json.Marshal(ack)
+	return data
 }

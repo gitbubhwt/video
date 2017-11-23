@@ -3,7 +3,6 @@ package handle_video
 import (
 	"fmt"
 	"net/http"
-	"time"
 	"video/common"
 	"video/db"
 	webCommon "video/http_server/common"
@@ -50,23 +49,38 @@ func VideoListHtml(w http.ResponseWriter, r *http.Request) {
 
 //上传文件
 func VideoUpload(w http.ResponseWriter, r *http.Request) {
+	var msg string
+	fileName := r.FormValue("name")
+	if fileName == common.STRING_NULL {
+		msg = fmt.Sprintf("Video upload file fail,fileName is empty,fileName:%v", fileName)
+		log.Error(msg)
+		webCommon.GoToResponse(w, common.ACK_FAIL, msg)
+		return
+	}
+	//解析文件时候需要 ParseForm
 	r.ParseForm()
 	uploadFile, _, err := r.FormFile("file")
 	if err != nil {
-		log.Error("Video upload file fail,err:", err)
+		msg = fmt.Sprintf("Video upload file fail,err:%v", err)
+		log.Error(msg)
+		webCommon.GoToResponse(w, common.ACK_FAIL, msg)
 		return
 	}
 	rootPathT := db.GetValue(common.SYSTEM_CONFIG_KEY, common.SYSTEM_CONFIG_ROOT_PATH)
 	if rootPath, ok := rootPathT.(string); ok {
 		//path := fmt.Sprintf(rootPath+webCommon.WEB_SERVER_UPLOAD_FILE_PATH, time.Now().Unix())
-		path := fmt.Sprintf(webCommon.WEB_SERVER_UPLOAD_FILE_TEMP_PATH, time.Now().Unix())
+		path := fmt.Sprintf(webCommon.WEB_SERVER_UPLOAD_FILE_TEMP_PATH, fileName)
 		if err := common.CreateFile(path, uploadFile); err != nil {
-			log.Error("Video upload file fail,err:", err)
+			msg = fmt.Sprintf("Video upload file fail,err:%v", err)
+			log.Error(msg)
+			webCommon.GoToResponse(w, common.ACK_FAIL, msg)
 			return
 		}
-		log.Info("Video upload file success")
-		w.Write([]byte("upload success"))
+		msg = fmt.Sprintf("Video upload file success")
+		log.Info(msg)
 	} else {
-		log.Error(common.SYSTEM_CONFIG_ROOT_PATH, "type is wrong", rootPath)
+		msg = fmt.Sprintf(common.SYSTEM_CONFIG_ROOT_PATH+"type is wrong %v", rootPath)
+		log.Error(msg)
+		webCommon.GoToResponse(w, common.ACK_FAIL, msg)
 	}
 }

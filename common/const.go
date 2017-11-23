@@ -11,6 +11,7 @@ const (
 	UPLOAD_CONTINUE       = 0 //继续上传
 	CLIENT_FILE_ROOT_PATH = "C:/video/file/client/"
 	SERVER_FILE_ROOT_PATH = "C:/video/file/server/"
+	STRING_NULL           = ""
 )
 const (
 	PACKAGE_HEAD_A = 0xaa
@@ -43,3 +44,7 @@ const (
 	WEB_SERVER_PORT = "8080"
 )
 
+const (
+	ACK_FAIL    = -1
+	ACK_SUCCESS = 0
+)
