@@ -104,12 +104,12 @@ func VideoSave(w http.ResponseWriter, r *http.Request) {
 	video.Type = videoType   //类型
 
 	var responseError error
-	if _, err := sqlDb.Insert(video); err == nil {
+	if _, err := sqlDb.InsertOne(video); err == nil {
 		videoPath := new(common.VideoPath)
 		videoPath.VideoId = video.Id
 		videoPath.Order = 1
 		videoPath.Path = videoFile
-		if _, err = sqlDb.Insert(videoPath); err != nil {
+		if _, err := sqlDb.InsertOne(videoPath); err != nil {
 			responseError = err
 		}
 	} else {
