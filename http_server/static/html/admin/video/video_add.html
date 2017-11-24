@@ -7,22 +7,23 @@
 		<link rel="stylesheet" href="/css/dialog.css" />
 	</head>
 	<body>
-		
+		<form id="video-add-form">
 		<div class="video-content">
 			<div class="video-add-elem">
 				<span>名称</span>
-				<input type="text" />
+				<input type="text" name="video_name"/>
 			</div>
 			<div class="video-add-elem">
 				<span>类型</span>
-				<select>
+				<select name="video_type">
 					<option>1</option>
-					<option>1</option>
+					<option>2</option>
 				</select>
 			</div>
 			<div class="video-add-elem">
 				<span>封面</span>
 				<input type="file" class="file" id="video_cover" accept="image/*"/>
+				<input type="hidden" name="video_cover" id="video_cover_1"/>
 				<div class="video-btn" onclick="uploadEvent('video_cover')">
 					<span />上传</span>
 				</div>
@@ -30,12 +31,13 @@
 			<div class="video-add-elem">
 				<span>文件</span>
 				<input type="file" class="file" id="video_file" accept=".mp4"/>
+				<input type="hidden" name="video_file" id="video_file_1"/>
 				<div class="video-btn" onclick="uploadEvent('video_file')">
 					<span />上传</span>
 				</div>
 			</div>
 			<div class="buttons">
-				<div class="buttons-left">
+				<div class="buttons-left" onclick="saveEvent()">
 					<span >保存</span>
 				</div>
 				<div class="buttons-right">
@@ -43,6 +45,7 @@
 				</div>
 			</div>
 		</div>
+		</form>
 		
 		<dialog id="uploadProgress" class="nav-dialog">
 			<span>上传进度</span></br>

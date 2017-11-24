@@ -10,8 +10,7 @@ import (
 var engine *xorm.Engine
 
 /**单列模式**/
-func GetOneDb() (*xorm.Engine, error) {
-	var err error
+func GetMysqlDb() error {
 	if engine == nil {
 		newconfig, err := config.NewConfig("ini", "conf/db.conf")
 		userName := newconfig.String("mysqluser")
@@ -23,10 +22,18 @@ func GetOneDb() (*xorm.Engine, error) {
 		dbInfo := userName + ":" + password + "@(" + ip + ":" + port + ")" + "/" + dbName
 		engine, err = xorm.NewEngine("mysql", dbInfo+"?charset=utf8")
 		if err != nil {
-			return engine, err
+			return err
 		}
 		engine.ShowSQL(true)
 		engine.Sync2(new(common.Video))
+		engine.Sync2(new(common.VideoPath))
 	}
-	return engine, err
+	return nil
+}
+
+func GetMysql() *xorm.Engine {
+	if engine == nil {
+		GetMysqlDb()
+	}
+	return engine
 }
