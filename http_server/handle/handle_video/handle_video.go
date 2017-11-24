@@ -70,9 +70,9 @@ func VideoUpload(w http.ResponseWriter, r *http.Request) {
 	}
 	rootPathT := db.GetValue(common.SYSTEM_CONFIG_KEY, common.SYSTEM_CONFIG_ROOT_PATH)
 	if rootPath, ok := rootPathT.(string); ok {
-		//path := fmt.Sprintf(rootPath+webCommon.WEB_SERVER_UPLOAD_FILE_PATH, time.Now().Unix())
 		fileName = path + fileName
-		path := fmt.Sprintf(webCommon.WEB_SERVER_UPLOAD_FILE_TEMP_PATH, fileName)
+		//path := fmt.Sprintf(webCommon.WEB_SERVER_UPLOAD_FILE_PATH, fileName)
+		path := fmt.Sprintf(rootPath+webCommon.WEB_SERVER_UPLOAD_FILE_PATH, fileName)
 		if err := common.CreateFile(path, uploadFile); err != nil {
 			msg = fmt.Sprintf("Video upload file fail,err:%v", err)
 			log.Error(msg)
