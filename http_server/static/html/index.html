@@ -15,8 +15,8 @@
 <div class="wrap"  >
     <ul class="content">
     	{{range .}}
-          <li class="nav" onclick="palyingFunc({{.Index}});">
-            <img src="{{.ImgSrc}}" />
+          <li class="nav" onclick="palyingFunc({{.Id}});">
+            <img src="{{.Cover}}" />
             <span>{{.Name}}</span>
           </li>
         {{end}}
