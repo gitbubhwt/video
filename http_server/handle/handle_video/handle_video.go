@@ -3,7 +3,6 @@ package handle_video
 import (
 	"fmt"
 	"net/http"
-	"strconv"
 	"video/common"
 	"video/db"
 	webCommon "video/http_server/common"
@@ -14,27 +13,33 @@ import (
 //视频播放页面
 func VideoPlayHtml(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
-	index := r.Form.Get(webCommon.HEAD_VIDEO_INDEX) //video index
-	log.Info("input params:", webCommon.HEAD_VIDEO_INDEX, ":", index)
+	index := r.FormValue(webCommon.HEAD_VIDEO_ID)    //video id
+	order := r.FormValue(webCommon.HEAD_VIDEO_ORDER) //video order
+	log.Info("input params:", webCommon.HEAD_VIDEO_ID, ":", index, webCommon.HEAD_VIDEO_ORDER, ":", order)
+	sqlDb := db.GetMysql()
+	//视频封面
 	video := new(common.Video)
-	value, _ := strconv.Atoi(index)
-	video.Id = int64(value)
-	video.Cover = fmt.Sprintf("img/%s.jpg", index)
-	webCommon.GoToPage(w, route.ROUTE_PLAY_HTML_PATH, video)
+	sqlDb.Id(index).Cols("cover").Get(video)
+	//视频路径信息
+	videoPath := new(common.VideoPath)
+	sql := fmt.Sprintf(common.VIDEO_PATH_SQL, index, order)
+	sqlDb.Sql(sql).Get(videoPath)
+	//播放视频信息
+	videoPlay := new(webCommon.VideoPlay)
+	videoPlay.VideoId = index
+	videoPlay.Cover = video.Cover
+	videoPlay.Path = videoPath.Path
+	videoPlay.Order = order
+    log.Info(*videoPlay)
+	webCommon.GoToPage(w, route.ROUTE_PLAY_HTML_PATH, videoPlay)
 }
 
 //视频首页
 func VideoIndexHtml(w http.ResponseWriter, r *http.Request) {
-	videos := make([]common.Video, 4)
-	count := 1
-	for i := 0; i < len(videos); i++ {
-		video := new(common.Video)
-		video.Id = int64(count)
-		video.Cover = fmt.Sprintf("img/%d.jpg", count)
-		video.Name = fmt.Sprintf("电影%d", count)
-		count++
-		videos[i] = *video
-	}
+	videos := make([]common.Video, 0)
+	videoPageSql := fmt.Sprintf(common.VIDEO_PAGE_LIST_SQL, 0, 10)
+	sqlDb := db.GetMysql()
+	sqlDb.Sql(videoPageSql).Find(&videos)
 	webCommon.GoToPage(w, route.ROUTE_INDEX_HTML_PATH, videos)
 }
 
@@ -107,7 +112,7 @@ func VideoSave(w http.ResponseWriter, r *http.Request) {
 	if _, err := sqlDb.InsertOne(video); err == nil {
 		videoPath := new(common.VideoPath)
 		videoPath.VideoId = video.Id
-		videoPath.Order = 1
+		videoPath.OrderNum = 1
 		videoPath.Path = videoFile
 		if _, err := sqlDb.InsertOne(videoPath); err != nil {
 			responseError = err

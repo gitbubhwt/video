@@ -16,9 +16,8 @@ const (
 )
 
 const (
-	TABLE_VIDEO           = "video"
-	TABLE_VIDEO_PATH      = "video_path"
-	VIDEO_INSERT_SQL      = "INSERT INTO " + TABLE_VIDEO + "(cover,name,type,create_time) values(?,?,?,now())"
-	VIDEO_PATH_INSERT_SQL = "INSERT INTO " + TABLE_VIDEO_PATH + "(video_id,path,order,create_time) values(?,?,?,now())"
-	GET_LAST_ID           = "select LAST_INSERT_ID()"
+	TABLE_VIDEO         = "video"
+	TABLE_VIDEO_PATH    = "video_path"
+	VIDEO_PAGE_LIST_SQL = "select * from " + TABLE_VIDEO + " limit %d,%d"
+	VIDEO_PATH_SQL      = "select * from " + TABLE_VIDEO_PATH + " where video_id=%v and order_num=%v "
 )

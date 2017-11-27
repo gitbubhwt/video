@@ -11,13 +11,11 @@ const (
 )
 
 const (
-	HEAD_VIDEO_INDEX = "videoIndex"
+	HEAD_VIDEO_ID    = "id"
+	HEAD_VIDEO_ORDER = "order"
 )
 
 const (
 	WEB_SERVER_UPLOAD_FILE_TEMP_PATH = "C:/FFOutput/video/upload/%s"
 	WEB_SERVER_UPLOAD_FILE_PATH      = WEN_SERVER_STATIC_PATH + "/upload/%s" //文件上传路径
 )
-
-
-

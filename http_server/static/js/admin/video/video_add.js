@@ -1,4 +1,5 @@
 var uploadProgress=document.getElementById("uploadProgress");
+var fileName =null;
 //上传文件
 function uploadEvent(fileId){
 	var elem=document.getElementById(fileId);
@@ -8,6 +9,10 @@ function uploadEvent(fileId){
 	}
 	var fileObj = document.getElementById(fileId).files[0];
 	var name=fileObj.name;
+	if(fileName==name){
+		alert("该文件已上传成功过");
+		return ;
+	}
 	var path ="img/"
 	if(name.indexOf('.')!=-1){
 		var arr=name.split('.');
@@ -43,6 +48,7 @@ function uploadEvent(fileId){
 	        	alert(data.msg);
 	        }else if(data.code==0){
 	        	document.getElementById(fileId+"_1").value=data.msg;
+	        	fileName=fileObj.name;
 	        }
 	    }
     };
@@ -53,7 +59,6 @@ function uploadEvent(fileId){
 function saveEvent(){
 	var form=document.getElementById("video-add-form");
 	var fd = new FormData(form);
-//	fd.append("name","hhhh");
 	logInfo(fd);
 	var url = "/admin/video/save";
 	var xhr = new XMLHttpRequest();
@@ -64,6 +69,8 @@ function saveEvent(){
 	        var data=JSON.parse(response);
 	        if(data.code==-1){
 	        	alert(data.msg);
+	        }else{
+	        	alert("保存成功");
 	        }
 	    }
     };
