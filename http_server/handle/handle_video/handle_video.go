@@ -30,7 +30,7 @@ func VideoPlayHtml(w http.ResponseWriter, r *http.Request) {
 	videoPlay.Cover = video.Cover
 	videoPlay.Path = videoPath.Path
 	videoPlay.Order = order
-    log.Info(*videoPlay)
+	log.Info(*videoPlay)
 	webCommon.GoToPage(w, route.ROUTE_PLAY_HTML_PATH, videoPlay)
 }
 
@@ -96,7 +96,6 @@ func VideoUpload(w http.ResponseWriter, r *http.Request) {
 
 //保存数据
 func VideoSave(w http.ResponseWriter, r *http.Request) {
-	//r.ParseForm()
 	videoName := r.FormValue("video_name")
 	videoType := r.FormValue("video_type")
 	videoCover := r.FormValue("video_cover")

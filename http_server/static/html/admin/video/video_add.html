@@ -16,15 +16,15 @@
 			<div class="video-add-elem">
 				<span>类型</span>
 				<select name="video_type">
-					<option>1</option>
-					<option>2</option>
+					<option value="1">MOVIE</option>
+					<option value="2">TV</option>
 				</select>
 			</div>
 			<div class="video-add-elem">
 				<span>封面</span>
 				<input type="file" class="file" id="video_cover" accept="image/*"/>
 				<input type="hidden" name="video_cover" id="video_cover_1"/>
-				<div class="video-btn" onclick="uploadEvent('video_cover')">
+				<div class="video-btn" onclick="uploadEvent('video_cover')" disabled="disabled">
 					<span />上传</span>
 				</div>
 			</div>
