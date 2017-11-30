@@ -128,6 +128,9 @@ function saveEvent(){
 	        	alert(data.msg);
 	        }else{
 	        	alert("保存成功");
+	        	setTimeout(function(){
+	        		window.location.href="/admin/video/list";
+	        	},1000);
 	        }
 	    }
     };

@@ -23,7 +23,8 @@ const (
 	LIMIT_SQL         = " limit %s,%d"
 	DEFAULT_WHERE_SQL = " "
 
-	GET_TOTAL_COUNT_SQL = "select count(*) as total_count %s"
-	VIDEO_PAGE_LIST_SQL = "select * from " + TABLE_VIDEO + "%s" + LIMIT_SQL
-	VIDEO_PAGE_SQL      = "select * from " + TABLE_VIDEO_PATH + " where video_id=%v and order_num=%v "
+	GET_TOTAL_COUNT_SQL   = "select count(*) as total_count %s"
+	VIDEO_PAGE_LIST_SQL   = "select * from " + TABLE_VIDEO + "%s" + LIMIT_SQL
+	VIDEO_PAGE_SQL        = "select * from " + TABLE_VIDEO_PATH + " where video_id=%v and order_num=%v "
+	VIDEO_PATH_INNERT_SQL = "insert into " + TABLE_VIDEO_PATH + "(video_id,path,order_num,create_time) values(?,?,?,now())"
 )

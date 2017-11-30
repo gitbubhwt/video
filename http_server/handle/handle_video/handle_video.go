@@ -141,11 +141,20 @@ func VideoSave(w http.ResponseWriter, r *http.Request) {
 
 	var responseError error
 	if _, err := sqlDb.InsertOne(video); err == nil {
-		videoPath := new(common.VideoPath)
-		videoPath.VideoId = video.Id
-		videoPath.OrderNum = 1
-		videoPath.Path = videoFile
-		if _, err := sqlDb.InsertOne(videoPath); err != nil {
+		size := 1 + len(videoChildFile)
+		videoPaths := make([]*common.VideoPath, size)
+		for i := 0; i < size; i++ {
+			videoPath := new(common.VideoPath)
+			videoPath.VideoId = video.Id
+			videoPath.OrderNum = 1
+			if i == 0 {
+				videoPath.Path = videoFile
+			} else {
+				videoPath.Path = videoChildFile[i-1]
+			}
+			videoPaths[i] = videoPath
+		}
+		if err := webCommon.BatchSaveVideoPath(videoPaths); err != nil {
 			responseError = err
 		}
 	} else {
