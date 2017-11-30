@@ -24,3 +24,17 @@ function getNowFormatDate() {
         + seperator2 + date.getSeconds();
     return currentdate;
 }
+//表单验证
+function validate_required(field,alerttxt)
+{
+  with (field){
+	  if (value==null||value=="")
+	    { 
+	    	alert(alerttxt);
+	    	return false;
+	    }
+	  else {
+	  	return true;
+	  }
+  }
+}

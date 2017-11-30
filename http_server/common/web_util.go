@@ -2,8 +2,12 @@ package common
 
 import (
 	"encoding/json"
+	"errors"
+	"fmt"
 	"html/template"
 	"net/http"
+	"strconv"
+	"strings"
 	"video/common"
 	"video/db"
 	log "video/logger"
@@ -34,4 +38,47 @@ func GoToResponse(w http.ResponseWriter, code int, msg string) {
 	} else {
 		log.Error("Go to response fail,err:", err)
 	}
+}
+
+//发送响应
+func SendResponse(w http.ResponseWriter, data interface{}) {
+	if data, err := json.Marshal(data); err == nil {
+		w.Write(data)
+	} else {
+		log.Error("Send response fail,err:", err)
+	}
+}
+
+//分页
+func GetPageOption(pageNo string, pageSize int64, sql string) (*PageOption, error) {
+	//sql select * from user where user_name like='dddd'
+	//获取数据总数
+	end := strings.Index(sql, "from")
+	getTotalCountSql := fmt.Sprintf(common.GET_TOTAL_COUNT_SQL, common.Substring(sql, end, len(sql)))
+	sqlDb := db.GetMysql()
+	results, err := sqlDb.QueryString(getTotalCountSql)
+	if err != nil {
+		return nil, err
+	}
+	if len(results) == 0 {
+		return nil, errors.New("get total count fail,results size is zero")
+	}
+	var totalCount int64
+	totalCount, err = strconv.ParseInt(results[0]["total_count"], 10, 64)
+	if err != nil {
+		return nil, err
+	}
+	pageOption := new(PageOption)
+	pageOption.PageNo = pageNo
+	pageOption.PageSize = pageSize
+	pageOption.TotalCount = totalCount
+	//计算总页数
+	var totalPage int64
+	if totalCount%pageSize == 0 {
+		totalPage = totalCount / pageSize
+	} else {
+		totalPage = totalCount/pageSize + 1
+	}
+	pageOption.TotalPage = totalPage
+	return pageOption, nil
 }

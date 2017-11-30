@@ -22,7 +22,7 @@ func VideoPlayHtml(w http.ResponseWriter, r *http.Request) {
 	sqlDb.Id(index).Cols("cover").Get(video)
 	//视频路径信息
 	videoPath := new(common.VideoPath)
-	sql := fmt.Sprintf(common.VIDEO_PATH_SQL, index, order)
+	sql := fmt.Sprintf(common.VIDEO_PAGE_SQL, index, order)
 	sqlDb.Sql(sql).Get(videoPath)
 	//播放视频信息
 	videoPlay := new(webCommon.VideoPlay)
@@ -37,7 +37,7 @@ func VideoPlayHtml(w http.ResponseWriter, r *http.Request) {
 //视频首页
 func VideoIndexHtml(w http.ResponseWriter, r *http.Request) {
 	videos := make([]common.Video, 0)
-	videoPageSql := fmt.Sprintf(common.VIDEO_PAGE_LIST_SQL, 0, 10)
+	videoPageSql := fmt.Sprintf(common.VIDEO_PAGE_LIST_SQL, common.DEFAULT_WHERE_SQL, "0", common.DEFAULT_PAGE_SIZE)
 	sqlDb := db.GetMysql()
 	sqlDb.Sql(videoPageSql).Find(&videos)
 	webCommon.GoToPage(w, route.ROUTE_INDEX_HTML_PATH, videos)
@@ -51,6 +51,23 @@ func VideoAddHtml(w http.ResponseWriter, r *http.Request) {
 //视频列表页面
 func VideoListHtml(w http.ResponseWriter, r *http.Request) {
 	webCommon.GoToPage(w, route.ROUTE_LIST_HTML_PATH, nil)
+}
+
+//视频数据列表
+func VideoList(w http.ResponseWriter, r *http.Request) {
+	pageNo := r.FormValue("pageNo")
+	log.Info("Video list,input params is pageNo:", pageNo)
+	videos := make([]common.Video, 0)
+	sqlDb := db.GetMysql()
+	sql := fmt.Sprintf(common.VIDEO_PAGE_LIST_SQL, common.DEFAULT_WHERE_SQL, pageNo, common.DEFAULT_PAGE_SIZE)
+	sqlDb.Sql(sql).Find(&videos)
+	//分页
+	if pageOption, err := webCommon.GetPageOption(pageNo, common.DEFAULT_PAGE_SIZE, sql); err != nil {
+		log.Error("Get page option fail,err:", err)
+	} else {
+		pageOption.List = videos
+		webCommon.SendResponse(w, pageOption)
+	}
 }
 
 //上传文件

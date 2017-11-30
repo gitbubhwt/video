@@ -6,15 +6,34 @@
 		<link rel="stylesheet" href="/css/head.css" />
 	</head>
 	<body>
-		<div>
-			<div>
+		<div class="data-list">
+			<div class="data-table">
 				<table>
-					<tr>
-						<th>ssss</th>
-					</tr>
-					<tr><td>ssss</td></tr>
-				</table>
+					<thead>
+						<tr>
+				    		<th>名称</th>
+				    		<th>类型</th>
+				    		<th>封面</th>
+				    		<th>创建时间</th>
+				    	</tr>
+					</thead>
+			    	<tbody id="table_data_fill">	
+			    	</tbody>
+			    </table>
+			</div>
+		    <div class="data-page">
+				<div class="page-btn-nav">
+					<div><img src="/img/a6c.png" class="page-img" onclick="videoToAddHtml()"/></div>
+				</div>
+				<div class="page-info-nav">
+					<span class="page-info-nav-btn">上一页</span>
+					<span class="page-info-nav-btn">1</span>
+					<span class="page-info-nav-btn">1</span>
+					<span class="page-info-nav-btn">下一页</span>
+				</div>
 			</div>
 		</div>
 	</body>
+    <script type="text/javascript" src="/js/util/util.js" ></script>
+	<script type="text/javascript" src="/js/admin/video/video_list.js" ></script>
 </html>

@@ -16,8 +16,14 @@ const (
 )
 
 const (
-	TABLE_VIDEO         = "video"
-	TABLE_VIDEO_PATH    = "video_path"
-	VIDEO_PAGE_LIST_SQL = "select * from " + TABLE_VIDEO + " limit %d,%d"
-	VIDEO_PATH_SQL      = "select * from " + TABLE_VIDEO_PATH + " where video_id=%v and order_num=%v "
+	TABLE_VIDEO      = "video"
+	TABLE_VIDEO_PATH = "video_path"
+
+	DEFAULT_PAGE_SIZE = 10
+	LIMIT_SQL         = " limit %s,%d"
+	DEFAULT_WHERE_SQL = " "
+
+	GET_TOTAL_COUNT_SQL = "select count(*) as total_count %s"
+	VIDEO_PAGE_LIST_SQL = "select * from " + TABLE_VIDEO + "%s" + LIMIT_SQL
+	VIDEO_PAGE_SQL      = "select * from " + TABLE_VIDEO_PATH + " where video_id=%v and order_num=%v "
 )

@@ -14,6 +14,6 @@ type VideoPath struct {
 	Id         int64     `xorm:"BIGSERIAL" json:"id"`
 	VideoId    int64     `xorm:"bigint"json:"videoId"`     //视频播放首页图片
 	Path       string    `xorm:"varchar(300)"json:"path"`  //视频路径
-	OrderNum      int       `xorm:"int(3)" json:"orderNum"`      //排序`
+	OrderNum   int       `xorm:"int(3)" json:"orderNum"`   //排序`
 	CreateTime time.Time `xorm:"updated"json:"createTime"` //创建时间
 }

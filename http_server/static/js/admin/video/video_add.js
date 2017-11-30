@@ -59,7 +59,8 @@ function uploadEvent(fileId){
 function saveEvent(){
 	var form=document.getElementById("video-add-form");
 	var fd = new FormData(form);
-	logInfo(fd);
+	validate_form(form);
+	return ;
 	var url = "/admin/video/save";
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -75,4 +76,29 @@ function saveEvent(){
 	    }
     };
     xhr.send(fd);
+}
+
+function validate_form(thisform)
+{
+with (thisform)
+  {
+    if (validate_required(video_name,"请输入名称")==false)
+    {
+    	video_name.focus();
+    	return false
+    }
+    if (validate_required(video_type,"请选择类型")==false)
+    {
+    	video_type.focus();
+    	return false
+    }
+    if (validate_required(video_cover,"请上传封面")==false)
+    {
+    	return false
+    }
+    if (validate_required(video_file,"请上传文件")==false)
+    {
+    	return false
+    }
+  }
 }
