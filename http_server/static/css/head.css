@@ -195,6 +195,7 @@ input[type="range"]::-webkit-slider-thumb {-webkit-appearance: none;background-c
 
 .video-btn{
 	float: left;
+	margin-left: 2%;
     margin-right: 2%;
     width: auto;
     background-color: chartreuse;
@@ -207,6 +208,18 @@ input[type="range"]::-webkit-slider-thumb {-webkit-appearance: none;background-c
 }
 .video-btn:hover{
 	background-color: lavender;
+}
+
+.video-img-btn{
+	float: left;
+	margin-left: 2%;
+    margin-right: 2%;
+}
+
+.video-img-btn>img{
+	cursor: pointer;
+	width: 30px;
+	height: 30px;
 }
 
 button, input, select, td, textarea, th {

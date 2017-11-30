@@ -106,6 +106,11 @@ func CreateFile(path string, uploadFile multipart.File) error {
 	return nil
 }
 
+//删除文件
+func DelFile(path string) error {
+	return os.Remove(path)
+}
+
 //判断文件是否存在
 func checkFileIsExist(path string) bool {
 	_, err := os.Stat(path)

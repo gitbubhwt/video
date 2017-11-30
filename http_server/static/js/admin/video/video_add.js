@@ -11,7 +11,7 @@ function upload(ele){
 	if(text=="上传"){
 		uploadFile(file,btn);
 	}else if(text=="取消"){
-		delFile(file,btn);
+//		delFile(file,btn);
 	}
 }
 
@@ -59,6 +59,7 @@ function uploadFile(file,btn){
 	        }else if(data.code==0){
 	        	file.setAttribute("type","text");
 	        	file.setAttribute("readonly","readonly");
+                file.removeAttribute("accept");
 	        	file.value=data.msg;
 	        	
 	        	btn.innerText="取消";
@@ -94,11 +95,25 @@ function delFile(file,btn){
     xhr.send(fd);
 }
 
+//添加上传文件组件
+function addUploadFile(ev){
+	var elem=document.getElementById("muli-file");
+	var div="<div><div class='video-add-elem'><span>文件</span><input type='file' class='file' name='video_child_file' accept='.mp4'/>";
+	div+="<div class='video-btn' onclick='upload(this)'><span />上传</span></div>";
+	div+="<div class='video-img-btn' onclick='removeUploadFile(this)'><img src='/img/ajx.png'/></div></div></div>";
+	elem.outerHTML=div+elem.outerHTML;
+}
+//删除上传文件组件
+function removeUploadFile(ev){
+	var elem=ev.parentNode;
+	elem.remove();
+}
 //保存
 function saveEvent(){
 	var form=document.getElementById("video-add-form");
 	var fd = new FormData(form);
 	var b=validate_form(form);
+	logInfo(b);
 	if(!b){
 		return ;
 	}
@@ -126,20 +141,21 @@ with (thisform)
     if (validate_required(video_name,"请输入名称")==false)
     {
     	video_name.focus();
-    	return false
+    	return false;
     }
     if (validate_required(video_type,"请选择类型")==false)
     {
     	video_type.focus();
-    	return false
+    	return false;
     }
     if (validate_required(video_cover,"请上传封面")==false)
     {
-    	return false
+    	return false;
     }
     if (validate_required(video_file,"请上传文件")==false)
     {
-    	return false
+    	return false;
     }
+    return true;
   }
 }
