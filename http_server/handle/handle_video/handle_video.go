@@ -131,7 +131,8 @@ func VideoSave(w http.ResponseWriter, r *http.Request) {
 	videoType := r.FormValue("video_type")
 	videoCover := r.FormValue("video_cover")
 	videoFile := r.FormValue("video_file")
-	log.Info(videoName, videoType, videoCover, videoFile)
+	videoChildFile := r.PostForm["video_child_file"]
+	log.Info(videoName, videoType, videoCover, videoFile, videoChildFile)
 	sqlDb := db.GetMysql()
 	video := new(common.Video)
 	video.Name = videoName   //名称
