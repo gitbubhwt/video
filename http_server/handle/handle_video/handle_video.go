@@ -93,21 +93,35 @@ func VideoUpload(w http.ResponseWriter, r *http.Request) {
 	rootPathT := db.GetValue(common.SYSTEM_CONFIG_KEY, common.SYSTEM_CONFIG_ROOT_PATH)
 	if rootPath, ok := rootPathT.(string); ok {
 		fileName = path + fileName
-		//path := fmt.Sprintf(webCommon.WEB_SERVER_UPLOAD_FILE_PATH, fileName)
-		path := fmt.Sprintf(rootPath+webCommon.WEB_SERVER_UPLOAD_FILE_PATH, fileName)
-		if err := common.CreateFile(path, uploadFile); err != nil {
-			msg = fmt.Sprintf("Video upload file fail,err:%v", err)
-			log.Error(msg)
-			webCommon.GoToResponse(w, common.ACK_FAIL, msg)
-			return
-		}
-		msg = fmt.Sprintf("/upload/%s", fileName)
-		log.Info(msg)
-		webCommon.GoToResponse(w, common.ACK_SUCCESS, msg)
-	} else {
-		msg = fmt.Sprintf(common.SYSTEM_CONFIG_ROOT_PATH+"type is wrong %v", rootPath)
+		path = fmt.Sprintf(rootPath+webCommon.WEB_SERVER_UPLOAD_FILE_PATH, fileName)
+	}
+	if err := common.CreateFile(path, uploadFile); err != nil {
+		msg = fmt.Sprintf("Video upload file fail,err:%v", err)
 		log.Error(msg)
 		webCommon.GoToResponse(w, common.ACK_FAIL, msg)
+		return
+	}
+	msg = fmt.Sprintf("/upload/%s", fileName)
+	log.Info(msg)
+	webCommon.GoToResponse(w, common.ACK_SUCCESS, msg)
+}
+
+//删除文件
+func VideoDel(w http.ResponseWriter, r *http.Request) {
+	var msg string
+	path := r.FormValue("path")
+	rootPathT := db.GetValue(common.SYSTEM_CONFIG_KEY, common.SYSTEM_CONFIG_ROOT_PATH)
+	if rootPath, ok := rootPathT.(string); ok {
+		path = rootPath + webCommon.WEN_SERVER_STATIC_PATH + path
+	}
+	if err := common.DelFile(path); err != nil {
+		msg = fmt.Sprintf("Video del file fail,err:%v,path:%v", err, path)
+		log.Error(msg)
+		webCommon.GoToResponse(w, common.ACK_FAIL, msg)
+	} else {
+		msg = fmt.Sprintf("Video del file success,path:%v", path)
+		log.Info(msg)
+		webCommon.GoToResponse(w, common.ACK_SUCCESS, msg)
 	}
 }
 

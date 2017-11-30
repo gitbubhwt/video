@@ -22,17 +22,15 @@
 			</div>
 			<div class="video-add-elem">
 				<span>封面</span>
-				<input type="file" class="file" id="video_cover" accept="image/*"/>
-				<input type="hidden" name="video_cover" id="video_cover_1"/>
-				<div class="video-btn" onclick="uploadEvent('video_cover')" disabled="disabled">
+				<input type="file" class="file" name="video_cover" accept="image/*"/>
+				<div class="video-btn" onclick="upload(this)">
 					<span />上传</span>
 				</div>
 			</div>
 			<div class="video-add-elem">
 				<span>文件</span>
-				<input type="file" class="file" id="video_file" accept=".mp4"/>
-				<input type="hidden" name="video_file" id="video_file_1"/>
-				<div class="video-btn" onclick="uploadEvent('video_file')">
+				<input type="file" class="file" name="video_file" accept=".mp4"/>
+				<div class="video-btn" onclick="upload(this)">
 					<span />上传</span>
 				</div>
 			</div>

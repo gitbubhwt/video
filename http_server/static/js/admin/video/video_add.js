@@ -1,18 +1,28 @@
 var uploadProgress=document.getElementById("uploadProgress");
 var fileName =null;
+
 //上传文件
-function uploadEvent(fileId){
-	var elem=document.getElementById(fileId);
-	if(elem.value==""){
+function upload(ele){
+	var parentElem=ele.parentNode;
+	filterElem(parentElem);
+	var file=parentElem.childNodes[1];//上传文件组件
+	var btn=parentElem.childNodes[2];//按键组件
+	var text=btn.innerText;
+	if(text=="上传"){
+		uploadFile(file,btn);
+	}else if(text=="取消"){
+		delFile(file,btn);
+	}
+}
+
+//上传文件
+function uploadFile(file,btn){
+	if(file.value==""){
 		alert("请选择文件");
 		return ;
 	}
-	var fileObj = document.getElementById(fileId).files[0];
+	var fileObj = file.files[0];
 	var name=fileObj.name;
-	if(fileName==name){
-		alert("该文件已上传成功过");
-		return ;
-	}
 	var path ="img/"
 	if(name.indexOf('.')!=-1){
 		var arr=name.split('.');
@@ -24,7 +34,7 @@ function uploadEvent(fileId){
 	uploadProgress.showModal();
 	//创建xhr
     var xhr = new XMLHttpRequest();
-    var url = "http://127.0.0.1:8080/admin/video/upload";
+    var url = "/admin/video/upload";
     //FormData对象
     var fd = new FormData();
     fd.append("name",name);
@@ -47,8 +57,37 @@ function uploadEvent(fileId){
 	        if(data.code==-1){
 	        	alert(data.msg);
 	        }else if(data.code==0){
-	        	document.getElementById(fileId+"_1").value=data.msg;
-	        	fileName=fileObj.name;
+	        	file.setAttribute("type","text");
+	        	file.setAttribute("readonly","readonly");
+	        	file.value=data.msg;
+	        	
+	        	btn.innerText="取消";
+	        }
+	    }
+    };
+    xhr.send(fd);
+}
+
+//删除文件
+function delFile(file,btn){
+	//创建xhr
+    var xhr = new XMLHttpRequest();
+    var url = "/admin/video/del";
+    //FormData对象
+    var fd = new FormData();
+    fd.append("path",file.value);
+    xhr.open("POST", url, true);
+    xhr.onreadystatechange = function () {
+	    if (xhr.readyState == 4 && xhr.status == 200) {
+	        var response=xhr.responseText;
+	        var data=JSON.parse(response);
+	        if(data.code==-1){
+	        	alert(data.msg);
+	        }else if(data.code==0){
+	        	file.setAttribute("type","file");
+	        	file.removeAttribute("value");
+	        	
+	        	btn.innerText="上传";
 	        }
 	    }
     };
@@ -59,8 +98,10 @@ function uploadEvent(fileId){
 function saveEvent(){
 	var form=document.getElementById("video-add-form");
 	var fd = new FormData(form);
-	validate_form(form);
-	return ;
+	var b=validate_form(form);
+	if(!b){
+		return ;
+	}
 	var url = "/admin/video/save";
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);

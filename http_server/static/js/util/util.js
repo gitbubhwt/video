@@ -28,13 +28,27 @@ function getNowFormatDate() {
 function validate_required(field,alerttxt)
 {
   with (field){
+  	  if(type=="file"){
+  	  	alert(alerttxt);
+	    return false;
+  	  }
 	  if (value==null||value=="")
-	    { 
-	    	alert(alerttxt);
-	    	return false;
-	    }
+	  { 
+	    alert(alerttxt);
+	    return false;
+	  }
 	  else {
 	  	return true;
 	  }
   }
+}
+//删除子元素中无用的元素
+function filterElem(elem){
+	var elem_child = elem.childNodes;
+	for(var i=0; i<elem_child.length;i++){
+		if(elem_child[i].nodeName == "#text" && !/\s/.test(elem_child.nodeValue))
+		 {
+			elem.removeChild(elem_child[i])
+		 }
+	}
 }
