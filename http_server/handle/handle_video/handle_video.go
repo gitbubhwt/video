@@ -90,7 +90,7 @@ func VideoUpload(w http.ResponseWriter, r *http.Request) {
 		webCommon.GoToResponse(w, common.ACK_FAIL, msg)
 		return
 	}
-	rootPathT := db.GetValue(common.SYSTEM_CONFIG_KEY, common.SYSTEM_CONFIG_ROOT_PATH)
+	rootPathT := db.GetValue(common.SYSTEM_CONFIG_KEY, common.SYSTEM_CONFIG_WEB_SERVER_PATH)
 	if rootPath, ok := rootPathT.(string); ok {
 		fileName = path + fileName
 		path = fmt.Sprintf(rootPath+webCommon.WEB_SERVER_UPLOAD_FILE_PATH, fileName)
@@ -110,7 +110,7 @@ func VideoUpload(w http.ResponseWriter, r *http.Request) {
 func VideoDel(w http.ResponseWriter, r *http.Request) {
 	var msg string
 	path := r.FormValue("path")
-	rootPathT := db.GetValue(common.SYSTEM_CONFIG_KEY, common.SYSTEM_CONFIG_ROOT_PATH)
+	rootPathT := db.GetValue(common.SYSTEM_CONFIG_KEY, common.SYSTEM_CONFIG_WEB_SERVER_PATH)
 	if rootPath, ok := rootPathT.(string); ok {
 		path = rootPath + webCommon.WEN_SERVER_STATIC_PATH + path
 	}

@@ -1,10 +1,12 @@
 package db
 
 import (
+	"video/common"
+
+	"fmt"
 	"github.com/astaxie/beego/config"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-xorm/xorm"
-	"video/common"
 )
 
 var engine *xorm.Engine
@@ -12,7 +14,9 @@ var engine *xorm.Engine
 /**单列模式**/
 func GetMysqlDb() error {
 	if engine == nil {
-		newconfig, err := config.NewConfig("ini", "conf/db.conf")
+		systemPath := GetValue(common.SYSTEM_CONFIG_KEY, common.SYSTEM_CONFIG_ROOT_PATH)
+		dbConfPath := fmt.Sprintf(common.CONF_PATH, systemPath, common.DB_CONF_NAME)
+		newconfig, err := config.NewConfig("ini", dbConfPath)
 		userName := newconfig.String("mysqluser")
 		password := newconfig.String("mysqlpass")
 		dbName := newconfig.String("mysqldb")

@@ -11,8 +11,9 @@ const (
 const (
 	keyPrefix = "video."
 	//配置表
-	SYSTEM_CONFIG_KEY       = keyPrefix + "config"
-	SYSTEM_CONFIG_ROOT_PATH = "root_path" //系统配置路径
+	SYSTEM_CONFIG_KEY             = keyPrefix + "config"
+	SYSTEM_CONFIG_WEB_SERVER_PATH = "web_server_path" //web系统服务路径
+	SYSTEM_CONFIG_ROOT_PATH       = "root_path"       //系统服务路径
 )
 
 const (

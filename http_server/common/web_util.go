@@ -15,7 +15,7 @@ import (
 
 //跳转页面
 func GoToPage(w http.ResponseWriter, htmlPath string, data interface{}) {
-	rootPathT := db.GetValue(common.SYSTEM_CONFIG_KEY, common.SYSTEM_CONFIG_ROOT_PATH)
+	rootPathT := db.GetValue(common.SYSTEM_CONFIG_KEY, common.SYSTEM_CONFIG_WEB_SERVER_PATH)
 	if rootPath, ok := rootPathT.(string); ok {
 		htmlPath = rootPath + WEN_SERVER_HTML_PATH + htmlPath
 		if t, err := template.ParseFiles(htmlPath); err == nil {
@@ -24,7 +24,7 @@ func GoToPage(w http.ResponseWriter, htmlPath string, data interface{}) {
 			log.Error(err)
 		}
 	} else {
-		log.Error(common.SYSTEM_CONFIG_ROOT_PATH, "type is wrong", rootPath)
+		log.Error(common.SYSTEM_CONFIG_WEB_SERVER_PATH, "type is wrong", rootPath)
 	}
 }
 
