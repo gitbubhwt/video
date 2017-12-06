@@ -29,3 +29,7 @@ const (
 	VIDEO_PAGE_SQL        = "select * from " + TABLE_VIDEO_PATH + " where video_id=%v and order_num=%v "
 	VIDEO_PATH_INNERT_SQL = "insert into " + TABLE_VIDEO_PATH + "(video_id,path,order_num,create_time) values(?,?,?,now())"
 )
+
+const (
+	MONGO_COLLECTION_VIDEO = "video"
+)

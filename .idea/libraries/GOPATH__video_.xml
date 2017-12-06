@@ -1,7 +1,9 @@
 <component name="libraryTable">
-  <library name="GOPATH &lt;vedio&gt;">
+  <library name="GOPATH &lt;video&gt;">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/../im2app" />
+      <root url="file://$PROJECT_DIR$/../im-cs-pressure" />
+      <root url="file://C:/Go/src/gopkg.in" />
       <root url="file://C:/Go/src/container" />
       <root url="file://$PROJECT_DIR$/../icsoclib" />
       <root url="file://C:/Go/src/mime" />
@@ -23,7 +25,10 @@
       <root url="file://C:/Go/src/sort" />
       <root url="file://C:/Go/src/encoding" />
       <root url="file://C:/Go/src/sync" />
+      <root url="file://$PROJECT_DIR$/../chat" />
+      <root url="file://$PROJECT_DIR$/../im-cs" />
       <root url="file://C:/Go/src/crypto" />
+      <root url="file://$PROJECT_DIR$/../im-report-monitor" />
       <root url="file://$PROJECT_DIR$/../golang.org" />
       <root url="file://C:/Go/src/strconv" />
       <root url="file://C:/Go/src/unicode" />
@@ -40,7 +45,6 @@
       <root url="file://C:/Go/src/flag" />
       <root url="file://C:/Go/src/log" />
       <root url="file://C:/Go/src/unsafe" />
-      <root url="file://$PROJECT_DIR$/../im-cs" />
       <root url="file://C:/Go/src/database" />
       <root url="file://C:/Go/src/strings" />
       <root url="file://C:/Go/src/vendor" />
@@ -57,11 +61,15 @@
       <root url="file://$PROJECT_DIR$/../gopkg.in" />
       <root url="file://$PROJECT_DIR$/../github.com" />
       <root url="file://$PROJECT_DIR$/../sourcegraph.com" />
+      <root url="file://$PROJECT_DIR$/../im-cs-datafix" />
       <root url="file://$PROJECT_DIR$/../queueing" />
+      <root url="file://$PROJECT_DIR$/../timer" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="file://$PROJECT_DIR$/../im2app" />
+      <root url="file://$PROJECT_DIR$/../im-cs-pressure" />
+      <root url="file://C:/Go/src/gopkg.in" />
       <root url="file://C:/Go/src/container" />
       <root url="file://$PROJECT_DIR$/../icsoclib" />
       <root url="file://C:/Go/src/mime" />
@@ -83,7 +91,10 @@
       <root url="file://C:/Go/src/sort" />
       <root url="file://C:/Go/src/encoding" />
       <root url="file://C:/Go/src/sync" />
+      <root url="file://$PROJECT_DIR$/../chat" />
+      <root url="file://$PROJECT_DIR$/../im-cs" />
       <root url="file://C:/Go/src/crypto" />
+      <root url="file://$PROJECT_DIR$/../im-report-monitor" />
       <root url="file://$PROJECT_DIR$/../golang.org" />
       <root url="file://C:/Go/src/strconv" />
       <root url="file://C:/Go/src/unicode" />
@@ -100,7 +111,6 @@
       <root url="file://C:/Go/src/flag" />
       <root url="file://C:/Go/src/log" />
       <root url="file://C:/Go/src/unsafe" />
-      <root url="file://$PROJECT_DIR$/../im-cs" />
       <root url="file://C:/Go/src/database" />
       <root url="file://C:/Go/src/strings" />
       <root url="file://C:/Go/src/vendor" />
@@ -117,7 +127,9 @@
       <root url="file://$PROJECT_DIR$/../gopkg.in" />
       <root url="file://$PROJECT_DIR$/../github.com" />
       <root url="file://$PROJECT_DIR$/../sourcegraph.com" />
+      <root url="file://$PROJECT_DIR$/../im-cs-datafix" />
       <root url="file://$PROJECT_DIR$/../queueing" />
+      <root url="file://$PROJECT_DIR$/../timer" />
     </SOURCES>
     <excluded>
       <root url="file://$PROJECT_DIR$" />

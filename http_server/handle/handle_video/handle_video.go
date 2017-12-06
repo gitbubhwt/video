@@ -139,6 +139,9 @@ func VideoSave(w http.ResponseWriter, r *http.Request) {
 	video.Cover = videoCover //封面
 	video.Type = videoType   //类型
 
+	//mongo := db.GetMongoDB()
+	//collection := mongo.C(common.MONGO_COLLECTION_VIDEO)
+	//collection.Insert(&video)
 	var responseError error
 	if _, err := sqlDb.InsertOne(video); err == nil {
 		size := 1 + len(videoChildFile)

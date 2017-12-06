@@ -121,10 +121,11 @@ input[type="range"]::-webkit-slider-thumb {-webkit-appearance: none;background-c
     padding-top: 5%;
 }
 .video-add-elem{
+    margin-top: 15px;
     width: 100%;
     float: left;
     font-size: 14px;
-    margin-bottom: 3%;
+    /* margin-bottom: 3%; */
     color: grey;
 }
 .video-add-elem>span{
@@ -149,6 +150,11 @@ input[type="range"]::-webkit-slider-thumb {-webkit-appearance: none;background-c
     min-width: 100px;
     min-height: 25px;
     max-width: 350px;
+}
+
+.video-img-btn>img{
+	width: 28px;
+	cursor: pointer;
 }
 
 .buttons{
@@ -195,7 +201,6 @@ input[type="range"]::-webkit-slider-thumb {-webkit-appearance: none;background-c
 
 .video-btn{
 	float: left;
-	margin-left: 2%;
     margin-right: 2%;
     width: auto;
     background-color: chartreuse;
@@ -208,18 +213,6 @@ input[type="range"]::-webkit-slider-thumb {-webkit-appearance: none;background-c
 }
 .video-btn:hover{
 	background-color: lavender;
-}
-
-.video-img-btn{
-	float: left;
-	margin-left: 2%;
-    margin-right: 2%;
-}
-
-.video-img-btn>img{
-	cursor: pointer;
-	width: 30px;
-	height: 30px;
 }
 
 button, input, select, td, textarea, th {
