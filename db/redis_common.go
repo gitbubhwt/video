@@ -6,7 +6,7 @@ import (
 
 //保存或者更新数据 hash 表
 func UpdateHash(key, filedName string, value interface{}) bool {
-	db := GetClient()
+	db := GetRedisClient()
 	if err := db.HSet(key, filedName, value).Err(); err != nil {
 		log.Error("Update fail,key:", key, "filedName:", filedName, "value:", value, "err:", err)
 		return false
@@ -17,7 +17,7 @@ func UpdateHash(key, filedName string, value interface{}) bool {
 
 //批量保存或者更新数据 hash 表
 func UpdateBatchHash(key string, data map[string]interface{}) bool {
-	pipe := GetClient().Pipeline()
+	pipe := GetRedisClient().Pipeline()
 	for k, v := range data {
 		pipe.HSet(key, k, v)
 	}
@@ -30,7 +30,7 @@ func UpdateBatchHash(key string, data map[string]interface{}) bool {
 
 //获取表属性数据 hash 表
 func GetValue(key, filedName string) interface{} {
-	db := GetClient()
+	db := GetRedisClient()
 	var err error
 	if result, err := db.HGet(key, filedName).Result(); err == nil {
 		log.Info("Get value success,key:", key, "filedName:", filedName, "result:", result)

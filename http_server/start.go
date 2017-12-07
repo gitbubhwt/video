@@ -36,9 +36,8 @@ func main() {
 }
 
 func init() {
-	err := db.GetRedisClient()
+	err := db.InitRedis()
 	if err != nil {
-		log.Error("fail to connect to redis,err:", err)
 		os.Exit(1)
 		return
 	}
@@ -58,9 +57,13 @@ func init() {
 			return
 		}
 	}
-	err = db.GetMysqlDb()
+	err = db.InitMysql()
 	if err != nil {
-		log.Error("fail to connect to mysql,err:", err)
+		os.Exit(1)
+		return
+	}
+	err = db.InitMongo()
+	if err != nil {
 		os.Exit(1)
 		return
 	}

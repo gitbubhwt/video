@@ -13,7 +13,7 @@ const (
 	SERVER_FILE_ROOT_PATH = "C:/video/file/server/"
 	STRING_NULL           = ""
 	CONF_PATH             = "%v/conf/%s"
-	DB_CONF_NAME          = "db.conf"
+	CONF_NAME             = "app.conf"
 )
 const (
 	PACKAGE_HEAD_A = 0xaa
