@@ -31,5 +31,6 @@ const (
 )
 
 const (
-	MONGO_COLLECTION_VIDEO = "video"
+	MONGO_COLLECTION_VIDEO      = "video"
+	MONGO_COLLECTION_VIDEO_PATH = "video_path"
 )

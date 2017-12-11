@@ -11,6 +11,7 @@ import (
 	"video/common"
 	"video/db"
 	log "video/logger"
+	"gopkg.in/mgo.v2"
 )
 
 //跳转页面
@@ -80,5 +81,33 @@ func GetPageOption(pageNo string, pageSize int64, sql string) (*PageOption, erro
 		totalPage = totalCount/pageSize + 1
 	}
 	pageOption.TotalPage = totalPage
+	return pageOption, nil
+}
+
+type MongoPageOption struct {
+	PageNo     int         `json:"pageNo"`
+	PageSize   int         `json:"pageSize"`
+	TotalPage  int         `json:"totalPage"`
+	TotalCount int         `json:"totalCount"`
+	List       interface{} `json:"list"`
+}
+
+//分页
+func (pageOption *MongoPageOption) GetMongoPageOption(query *mgo.Query, data interface{}) (*MongoPageOption, error) {
+	totalCount, err := query.Count()
+	if err != nil {
+		return nil, err
+	}
+	pageSize := pageOption.PageSize
+	pageOption.TotalCount = totalCount
+	//计算总页数
+	var totalPage int
+	if totalCount%pageSize == 0 {
+		totalPage = totalCount / pageSize
+	} else {
+		totalPage = totalCount/pageSize + 1
+	}
+	pageOption.TotalPage = totalPage
+	pageOption.List = data
 	return pageOption, nil
 }

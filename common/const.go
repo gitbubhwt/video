@@ -1,6 +1,7 @@
 package common
 
 const (
+	SERVER_NAME        = "video"
 	SERVER_NET         = "tcp"
 	LOG_HEAD_SERVER    = "Server"
 	LOG_HEAD_CLIENT    = "Client"

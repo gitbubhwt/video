@@ -31,7 +31,8 @@ function videoPageList(obj){
 	        	tr+="<td>"+list[i].name+"</td>";
 	        	tr+="<td>"+list[i].type+"</td>";
 	        	tr+="<td>"+list[i].cover+"</td>";
-	        	tr+="<td>"+list[i].createTime+"</td>";
+	        	var unixTimestamp = new Date(list[i].createTime) ;
+	        	tr+="<td>"+unixTimestamp.toLocaleString()+"</td>";
 	        	tr+="</tr>";
 	        	
 	        	elem.innerHTML+=tr;

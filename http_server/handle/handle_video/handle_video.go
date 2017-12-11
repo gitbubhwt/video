@@ -2,7 +2,10 @@ package handle_video
 
 import (
 	"fmt"
+	"gopkg.in/mgo.v2/bson"
 	"net/http"
+	"strconv"
+	"time"
 	"video/common"
 	"video/db"
 	webCommon "video/http_server/common"
@@ -16,30 +19,20 @@ func VideoPlayHtml(w http.ResponseWriter, r *http.Request) {
 	index := r.FormValue(webCommon.HEAD_VIDEO_ID)    //video id
 	order := r.FormValue(webCommon.HEAD_VIDEO_ORDER) //video order
 	log.Info("input params:", webCommon.HEAD_VIDEO_ID, ":", index, webCommon.HEAD_VIDEO_ORDER, ":", order)
-	sqlDb := db.GetMysql()
 	//视频封面
-	video := new(common.Video)
-	sqlDb.Id(index).Cols("cover").Get(video)
-	//视频路径信息
-	videoPath := new(common.VideoPath)
-	sql := fmt.Sprintf(common.VIDEO_PAGE_SQL, index, order)
-	sqlDb.Sql(sql).Get(videoPath)
-	//播放视频信息
-	videoPlay := new(webCommon.VideoPlay)
-	videoPlay.VideoId = index
-	videoPlay.Cover = video.Cover
-	videoPlay.Path = videoPath.Path
-	videoPlay.Order = order
-	log.Info(*videoPlay)
-	webCommon.GoToPage(w, route.ROUTE_PLAY_HTML_PATH, videoPlay)
+	video := new(common.MonVideo)
+	mongo := db.GetMongo()
+	orderT, _ := strconv.Atoi(order)
+	mongo.C(common.MONGO_COLLECTION_VIDEO).Find(bson.M{"id": index, "path.orderNum": orderT}).One(&video)
+	webCommon.GoToPage(w, route.ROUTE_PLAY_HTML_PATH, video)
 }
 
 //视频首页
 func VideoIndexHtml(w http.ResponseWriter, r *http.Request) {
-	videos := make([]common.Video, 0)
-	videoPageSql := fmt.Sprintf(common.VIDEO_PAGE_LIST_SQL, common.DEFAULT_WHERE_SQL, "0", common.DEFAULT_PAGE_SIZE)
-	sqlDb := db.GetMysql()
-	sqlDb.Sql(videoPageSql).Find(&videos)
+	videos := make([]common.MonVideo, 0)
+	mongo := db.GetMongo()
+	filter := bson.M{"path": 0}
+	mongo.C(common.MONGO_COLLECTION_VIDEO).Find(nil).Select(filter).All(&videos)
 	webCommon.GoToPage(w, route.ROUTE_INDEX_HTML_PATH, videos)
 }
 
@@ -57,16 +50,19 @@ func VideoListHtml(w http.ResponseWriter, r *http.Request) {
 func VideoList(w http.ResponseWriter, r *http.Request) {
 	pageNo := r.FormValue("pageNo")
 	log.Info("Video list,input params is pageNo:", pageNo)
-	videos := make([]common.Video, 0)
-	sqlDb := db.GetMysql()
-	sql := fmt.Sprintf(common.VIDEO_PAGE_LIST_SQL, common.DEFAULT_WHERE_SQL, pageNo, common.DEFAULT_PAGE_SIZE)
-	sqlDb.Sql(sql).Find(&videos)
+	videos := make([]common.MonVideo, 0)
+	mongo := db.GetMongo()
+	query := mongo.C(common.MONGO_COLLECTION_VIDEO).Find(nil)
+	pageOption := new(webCommon.MongoPageOption)
+	pageOption.PageNo = 1
+	pageOption.PageSize = 10
+	query.Skip((pageOption.PageNo - 1) * pageOption.PageSize).Limit(pageOption.PageSize).All(&videos)
 	//分页
-	if pageOption, err := webCommon.GetPageOption(pageNo, common.DEFAULT_PAGE_SIZE, sql); err != nil {
+	if page, err := pageOption.GetMongoPageOption(query, videos); err != nil {
 		log.Error("Get page option fail,err:", err)
 	} else {
 		pageOption.List = videos
-		webCommon.SendResponse(w, pageOption)
+		webCommon.SendResponse(w, page)
 	}
 }
 
@@ -102,7 +98,6 @@ func VideoUpload(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	msg = fmt.Sprintf("/upload/%s", fileName)
-	log.Info(msg)
 	webCommon.GoToResponse(w, common.ACK_SUCCESS, msg)
 }
 
@@ -133,43 +128,35 @@ func VideoSave(w http.ResponseWriter, r *http.Request) {
 	videoFile := r.FormValue("video_file")
 	videoChildFile := r.PostForm["video_child_file"]
 	log.Info(videoName, videoType, videoCover, videoFile, videoChildFile)
-	sqlDb := db.GetMysql()
-	video := new(common.Video)
+	video := new(common.MonVideo)
+	video.Id = common.UniqueId()
 	video.Name = videoName   //名称
 	video.Cover = videoCover //封面
 	video.Type = videoType   //类型
-
-	//mongo := db.GetMongoDB()
-	//collection := mongo.C(common.MONGO_COLLECTION_VIDEO)
-	//collection.Insert(&video)
-	var responseError error
-	if _, err := sqlDb.InsertOne(video); err == nil {
-		size := 1 + len(videoChildFile)
-		videoPaths := make([]*common.VideoPath, size)
-		for i := 0; i < size; i++ {
-			videoPath := new(common.VideoPath)
-			videoPath.VideoId = video.Id
-			videoPath.OrderNum = 1
-			if i == 0 {
-				videoPath.Path = videoFile
-			} else {
-				videoPath.Path = videoChildFile[i-1]
-			}
-			videoPaths[i] = videoPath
+	video.CreateTime = time.Now().UnixNano() / 1e6
+	size := 1 + len(videoChildFile)
+	videoPaths := make([]common.MonVideoPath, size)
+	for i := 0; i < size; i++ {
+		videoPath := new(common.MonVideoPath)
+		videoPath.OrderNum = i + 1
+		if i == 0 {
+			videoPath.Path = videoFile
+		} else {
+			videoPath.Path = videoChildFile[i-1]
 		}
-		if err := webCommon.BatchSaveVideoPath(videoPaths); err != nil {
-			responseError = err
-		}
-	} else {
-		responseError = err
+		videoPaths[i] = *videoPath
 	}
-	if responseError != nil {
-		msg := fmt.Sprintf("Video save fail,err:%v", responseError)
-		log.Info(msg)
+	video.Path = videoPaths
+	mongo := db.GetMongo()
+	collection := mongo.C(common.MONGO_COLLECTION_VIDEO)
+	err := collection.Insert(&video)
+	var msg string
+	if err != nil {
+		msg := fmt.Sprintf("Video save fail,err:%v", err)
 		webCommon.GoToResponse(w, common.ACK_FAIL, msg)
 	} else {
 		msg := fmt.Sprintf("Video save success")
-		log.Info(msg)
 		webCommon.GoToResponse(w, common.ACK_SUCCESS, msg)
 	}
+	log.Info(msg)
 }

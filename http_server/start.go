@@ -57,11 +57,11 @@ func init() {
 			return
 		}
 	}
-	err = db.InitMysql()
-	if err != nil {
-		os.Exit(1)
-		return
-	}
+	//err = db.InitMysql()
+	//if err != nil {
+	//	os.Exit(1)
+	//	return
+	//}
 	err = db.InitMongo()
 	if err != nil {
 		os.Exit(1)

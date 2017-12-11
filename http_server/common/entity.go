@@ -8,9 +8,9 @@ type VideoPlay struct {
 }
 
 type PageOption struct {
-	PageNo     string         `json:"pageNo"`
-	PageSize   int64         `json:"pageSize"`
-	TotalPage  int64         `json:"totalPage"`
-	TotalCount int64         `json:"totalCount"`
+	PageNo     string       `json:"pageNo"`
+	PageSize   int64       `json:"pageSize"`
+	TotalPage  int64       `json:"totalPage"`
+	TotalCount int64       `json:"totalCount"`
 	List       interface{} `json:"list"`
 }

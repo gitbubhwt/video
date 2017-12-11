@@ -9,6 +9,7 @@ import (
 	"gopkg.in/mgo.v2"
 	"reflect"
 	"strconv"
+	"strings"
 	"time"
 	. "video/common"
 	log "video/logger"
@@ -40,6 +41,11 @@ type SystemConf struct {
 func init() {
 	if conf == nil {
 		path := GetCurrentDirectory()
+		index := strings.Index(path, SERVER_NAME)
+		if index != -1 {
+			bytes := []byte(path)
+			path = string(bytes[:index+len([]byte(SERVER_NAME))])
+		}
 		dbConf := fmt.Sprintf(CONF_PATH, path, CONF_NAME)
 		log.Info(dbConf)
 		newconfig, err := config.NewConfig("ini", dbConf)
