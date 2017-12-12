@@ -1,3 +1,4 @@
+var img_dailog=document.getElementById("img-dialog");
 //初始化数据
 videoPageList(null);
 //跳转至增加页面
@@ -30,14 +31,22 @@ function videoPageList(obj){
 	        	tr+="<tr>";
 	        	tr+="<td>"+list[i].name+"</td>";
 	        	tr+="<td>"+list[i].type+"</td>";
-	        	tr+="<td>"+list[i].cover+"</td>";
+	        	var cover='"'+list[i].cover+'"';
+	        	tr+="<td><a href='javascript:showImg("+cover+");'>"+list[i].cover+"</a></td>";
 	        	var unixTimestamp = new Date(list[i].createTime) ;
 	        	tr+="<td>"+unixTimestamp.toLocaleString()+"</td>";
 	        	tr+="</tr>";
-	        	
 	        	elem.innerHTML+=tr;
 	        }
 	    }
     };
     xhr.send(fd);
+}
+
+//展示图片
+function showImg(data){
+	logInfo("showImg");
+	var img=document.getElementById("img-dailog-src");
+	img.src=data;
+	img_dailog.showModal();
 }

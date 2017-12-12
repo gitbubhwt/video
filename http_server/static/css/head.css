@@ -299,3 +299,9 @@ ant-btn {
 	float: left;
 	width: auto;
 }
+
+.img-btn{
+	width: 26px;
+    height: 26px;
+    background: blue;
+}
