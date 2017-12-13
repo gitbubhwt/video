@@ -169,15 +169,17 @@ input[type="range"]::-webkit-slider-thumb {-webkit-appearance: none;background-c
 .buttons .buttons-left{
 	cursor: pointer;
 	float: left;
-	background-color: chartreuse;
     width: 80px;
     height: 30px;
     margin-right: 1%;
     text-align: center;
     padding-top: 10px;
+    border-radius: 16px;
+    font-size: 14px;
+    background: #15a9ff;
 }
 .buttons .buttons-left>span{
-	    color: gray;
+	 color: #fff;
 }
 .buttons .buttons-left:hover{
 	background-color: lavender;
@@ -191,6 +193,8 @@ input[type="range"]::-webkit-slider-thumb {-webkit-appearance: none;background-c
     margin-right: 1%;
     text-align: center;
     padding-top: 10px;
+    border-radius: 16px;
+    font-size: 14px;
 }
 .buttons .buttons-right>span{
 	color: gray;
@@ -203,13 +207,16 @@ input[type="range"]::-webkit-slider-thumb {-webkit-appearance: none;background-c
 	float: left;
     margin-right: 2%;
     width: auto;
-    background-color: chartreuse;
+    border-radius: 16px;
+    font-size: 14px;
     text-align: center;
     height: 25px;
     padding-top: 5px;
     padding-left: 20px;
     padding-right: 20px;
     cursor: pointer;
+    background: #15a9ff;
+    color: #fff;
 }
 .video-btn:hover{
 	background-color: lavender;
@@ -304,4 +311,18 @@ ant-btn {
 	width: 26px;
     height: 26px;
     background: blue;
+}
+
+.from-btn{
+	width: auto;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 20px;
+    font-size: 14px;
+    background: #15a9ff;
+    text-align: center;
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+}
 }

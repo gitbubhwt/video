@@ -1,12 +1,5 @@
 package common
 
-//redis 配置
-const (
-	REDIS_ADDR     = "127.0.0.1:6379"
-	REDIS_PASSWORD = ""
-	REDIS_database = 5
-)
-
 //表配置
 const (
 	keyPrefix = "video."
@@ -14,6 +7,8 @@ const (
 	SYSTEM_CONFIG_KEY             = keyPrefix + "config"
 	SYSTEM_CONFIG_WEB_SERVER_PATH = "web_server_path" //web系统服务路径
 	SYSTEM_CONFIG_ROOT_PATH       = "root_path"       //系统服务路径
+	//管理员会话表
+	ADMIN_SESSION_KEY = keyPrefix + "admin.session"
 )
 
 const (
@@ -31,6 +26,5 @@ const (
 )
 
 const (
-	MONGO_COLLECTION_VIDEO      = "video"
-	MONGO_COLLECTION_VIDEO_PATH = "video_path"
+	MONGO_COLLECTION_VIDEO = "video"
 )
