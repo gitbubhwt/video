@@ -86,18 +86,18 @@ func VideoUpload(w http.ResponseWriter, r *http.Request) {
 		webCommon.GoToResponse(w, common.ACK_FAIL, msg)
 		return
 	}
+	var filePath string
 	rootPathT := db.GetValue(common.SYSTEM_CONFIG_KEY, common.SYSTEM_CONFIG_WEB_SERVER_PATH)
 	if rootPath, ok := rootPathT.(string); ok {
-		fileName = path + fileName
-		path = fmt.Sprintf(rootPath+webCommon.WEB_SERVER_UPLOAD_FILE_PATH, fileName)
+		filePath = fmt.Sprintf(rootPath+webCommon.WEB_SERVER_UPLOAD_FILE_PATH, path)
 	}
-	if err := common.CreateFile(path, uploadFile); err != nil {
+	if err := common.CreateFile(filePath, fileName, uploadFile); err != nil {
 		msg = fmt.Sprintf("Video upload file fail,err:%v", err)
 		log.Error(msg)
 		webCommon.GoToResponse(w, common.ACK_FAIL, msg)
 		return
 	}
-	msg = fmt.Sprintf("/upload/%s", fileName)
+	msg = fmt.Sprintf("/upload/%s", path+fileName)
 	webCommon.GoToResponse(w, common.ACK_SUCCESS, msg)
 }
 

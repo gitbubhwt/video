@@ -87,12 +87,15 @@ func WriteFile(path string, data []byte, off int64) {
 }
 
 //创建文件
-func CreateFile(path string, uploadFile multipart.File) error {
+func CreateFile(path, fileName string, uploadFile multipart.File) error {
 	var file *os.File
 	var err error
+	if err := os.MkdirAll(path, os.ModePerm); err != nil { //生成多级目录
+		return err
+	}
+	path = path + fileName
 	if !checkFileIsExist(path) {
-		_, err = os.Create(path)
-		if err != nil {
+		if _, err = os.Create(path); err != nil {
 			return err
 		}
 	}
