@@ -12,9 +12,12 @@ const (
 	ROUTE_VIDEO_DEL_REQUEST       = ROUTE_ADMIN_REQUEST + "/video/del"
 	ROUTE_VIDEO_SAVE_REQUEST      = ROUTE_ADMIN_REQUEST + "/video/save"
 	ROUTE_VIDEO_LIST_DATA_REQUEST = ROUTE_ADMIN_REQUEST + "/video/pageList"
-	ROUTE_FILTER                  = "/"
-	ROUTE_INDEX_HTML_PATH         = "/index.html"
-	ROUTE_PLAY_HTML_PATH          = "/video.html"
-	ROUTE_ADD_HTML_PATH           = "/admin/video/video_add.html"
-	ROUTE_LIST_HTML_PATH          = "/admin/video/video_list.html"
+
+	ROUTE_LOGIN_REQUEST   = ROUTE_ADMIN_REQUEST + "/login" //登陆页面
+	ROUTE_FILTER          = "/"
+	ROUTE_INDEX_HTML_PATH = "/index.html"
+	ROUTE_PLAY_HTML_PATH  = "/video.html"
+	ROUTE_ADD_HTML_PATH   = "/admin/video/video_add.html"
+	ROUTE_LIST_HTML_PATH  = "/admin/video/video_list.html"
+	ROUTE_LOGIN_HTML_PATH = "/admin/login/login.html"
 )

@@ -7,6 +7,7 @@ import (
 	"video/common"
 	"video/db"
 	webCommon "video/http_server/common"
+	"video/http_server/handle/handle_login"
 	"video/http_server/handle/handle_video"
 	"video/http_server/route"
 	log "video/logger"
@@ -44,6 +45,8 @@ func initUrlMap() {
 	urlMaps[route.ROUTE_VIDEO_UPLOAD_REQUEST] = handle_video.VideoUpload  //视频上传
 	urlMaps[route.ROUTE_VIDEO_SAVE_REQUEST] = handle_video.VideoSave      //视频保存
 	urlMaps[route.ROUTE_VIDEO_LIST_DATA_REQUEST] = handle_video.VideoList //视频列表数据
+	urlMaps[route.ROUTE_LOGIN_REQUEST] = handle_login.LoginHtml           //管理员登陆页面
+
 }
 
 func filter(w http.ResponseWriter, r *http.Request) {
