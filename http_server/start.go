@@ -9,6 +9,7 @@ import (
 	webCommon "video/http_server/common"
 	"video/http_server/handle/handle_login"
 	"video/http_server/handle/handle_video"
+	"video/http_server/handle/handle_index"
 	"video/http_server/route"
 	log "video/logger"
 )
@@ -37,16 +38,16 @@ func initUrlMap() {
 	if urlMaps == nil {
 		urlMaps = make(map[string]func(writer http.ResponseWriter, request *http.Request))
 	}
-	urlMaps[route.ROUTE_FILTER] = filter                                  //过滤器
-	urlMaps[route.ROUTE_PLAY_REQUEST] = handle_video.VideoPlayHtml        //播放页面
-	urlMaps[route.ROUTE_INDEX_REQUEST] = handle_video.VideoIndexHtml      //首页
-	urlMaps[route.ROUTE_VIDEO_ADD_REQUEST] = handle_video.VideoAddHtml    //视频添加
-	urlMaps[route.ROUTE_VIDEO_LIST_REQUEST] = handle_video.VideoListHtml  //视频列表页面
-	urlMaps[route.ROUTE_VIDEO_UPLOAD_REQUEST] = handle_video.VideoUpload  //视频上传
-	urlMaps[route.ROUTE_VIDEO_SAVE_REQUEST] = handle_video.VideoSave      //视频保存
-	urlMaps[route.ROUTE_VIDEO_LIST_DATA_REQUEST] = handle_video.VideoList //视频列表数据
-	urlMaps[route.ROUTE_LOGIN_REQUEST] = handle_login.LoginHtml           //管理员登陆页面
-
+	urlMaps[route.ROUTE_FILTER] = filter                                             //过滤器
+	urlMaps[route.ROUTE_PLAY_REQUEST] = handle_video.VideoPlayHtml                   //播放页面
+	urlMaps[route.ROUTE_INDEX_REQUEST] = handle_video.VideoIndexHtml                 //首页
+	urlMaps[route.ROUTE_ADMIN_VIDEO_ADD_REQUEST] = handle_video.AdminVideoAddHtml    //视频添加
+	urlMaps[route.ROUTE_ADMIN_VIDEO_LIST_REQUEST] = handle_video.AdminVideoListHtml  //视频列表页面
+	urlMaps[route.ROUTE_ADMIN_VIDEO_UPLOAD_REQUEST] = handle_video.AdminVideoUpload  //视频上传
+	urlMaps[route.ROUTE_ADMIN_VIDEO_SAVE_REQUEST] = handle_video.AdminVideoSave      //视频保存
+	urlMaps[route.ROUTE_ADMIN_VIDEO_LIST_DATA_REQUEST] = handle_video.AdminVideoList //视频列表数据
+	urlMaps[route.ROUTE_ADMIN_LOGIN_REQUEST] = handle_login.AdminLoginHtml           //管理员登陆页面
+	urlMaps[route.ROUTE_ADMIN_INDEX_REQUEST] = handle_index.AdminIndexHtml           //后台管理首页
 }
 
 func filter(w http.ResponseWriter, r *http.Request) {

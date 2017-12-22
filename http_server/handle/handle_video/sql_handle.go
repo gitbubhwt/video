@@ -31,7 +31,7 @@ func VideoPlayHtml_1(w http.ResponseWriter, r *http.Request) {
 	videoPlay.Path = videoPath.Path
 	videoPlay.Order = order
 	log.Info(*videoPlay)
-	webCommon.GoToPage(w, route.ROUTE_PLAY_HTML_PATH, videoPlay)
+	webCommon.GoToPage(w, route.ROUTE_PLAY_HTML, videoPlay)
 }
 //视频首页
 func VideoIndexHtml_1(w http.ResponseWriter, r *http.Request) {
@@ -39,7 +39,7 @@ func VideoIndexHtml_1(w http.ResponseWriter, r *http.Request) {
 	videoPageSql := fmt.Sprintf(common.VIDEO_PAGE_LIST_SQL, common.DEFAULT_WHERE_SQL, "0", common.DEFAULT_PAGE_SIZE)
 	sqlDb := db.GetMysql()
 	sqlDb.Sql(videoPageSql).Find(&videos)
-	webCommon.GoToPage(w, route.ROUTE_INDEX_HTML_PATH, videos)
+	webCommon.GoToPage(w, route.ROUTE_INDEX_HTML, videos)
 }
 
 

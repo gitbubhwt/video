@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"gopkg.in/mgo.v2"
 	"html/template"
 	"net/http"
 	"strconv"
@@ -11,7 +12,6 @@ import (
 	"video/common"
 	"video/db"
 	log "video/logger"
-	"gopkg.in/mgo.v2"
 )
 
 //跳转页面
@@ -85,11 +85,16 @@ func GetPageOption(pageNo string, pageSize int64, sql string) (*PageOption, erro
 }
 
 type MongoPageOption struct {
-	PageNo     int         `json:"pageNo"`
-	PageSize   int         `json:"pageSize"`
-	TotalPage  int         `json:"totalPage"`
-	TotalCount int         `json:"totalCount"`
-	List       interface{} `json:"list"`
+	IsHome       bool        `json:"isHome"`
+	IsEnd        bool        `json:"isEnd"`
+	IsShow       bool        `json:"isShow"`
+	PageNo       int         `json:"pageNo"`
+	PageSize     int         `json:"pageSize"`
+	TotalPage    int         `json:"totalPage"`
+	TotalCount   int         `json:"totalCount"`
+	List         interface{} `json:"list"`
+	PageText     string      `json:"pageText"`
+	PageSizeText string      `json:"pageSizeText"`
 }
 
 //分页
@@ -107,7 +112,22 @@ func (pageOption *MongoPageOption) GetMongoPageOption(query *mgo.Query, data int
 	} else {
 		totalPage = totalCount/pageSize + 1
 	}
+	pageOption.IsShow = true
 	pageOption.TotalPage = totalPage
 	pageOption.List = data
+	if pageOption.TotalPage <= 1 {
+		pageOption.IsShow = false
+		return pageOption, nil
+	}
+	pageOption.IsHome = false
+	pageOption.IsEnd = false
+	if pageOption.PageNo <= 1 {
+		pageOption.IsHome = true
+	}
+	if pageOption.PageNo >= pageOption.TotalPage {
+		pageOption.IsEnd = true
+	}
+	pageOption.PageText = fmt.Sprintf(common.PAGE_TEXT, (pageOption.PageNo-1)*pageOption.PageSize+1, pageOption.PageNo*pageOption.PageSize, pageOption.TotalCount)
+	pageOption.PageSizeText = fmt.Sprintf(common.PAGE_SIZE_TEXT, pageOption.PageNo, pageOption.TotalPage)
 	return pageOption, nil
 }

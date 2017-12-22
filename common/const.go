@@ -51,3 +51,8 @@ const (
 	ACK_FAIL    = -1
 	ACK_SUCCESS = 0
 )
+
+const (
+	PAGE_TEXT      = "显示 %d 到 %d，共 %d 条记录"
+	PAGE_SIZE_TEXT = "%d/%d"
+)

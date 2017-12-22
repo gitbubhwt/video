@@ -7,6 +7,6 @@ import (
 	//log "video/logger"
 )
 //视频播放页面
-func LoginHtml(w http.ResponseWriter, r *http.Request) {
-	webCommon.GoToPage(w, route.ROUTE_LOGIN_HTML_PATH, nil)
+func AdminLoginHtml(w http.ResponseWriter, r *http.Request) {
+	webCommon.GoToPage(w, route.ROUTE_ADMIN_LOGIN_HTML, nil)
 }

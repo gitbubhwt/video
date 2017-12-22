@@ -24,7 +24,7 @@ func VideoPlayHtml(w http.ResponseWriter, r *http.Request) {
 	mongo := db.GetMongo()
 	orderT, _ := strconv.Atoi(order)
 	mongo.C(common.MONGO_COLLECTION_VIDEO).Find(bson.M{"id": index, "path.orderNum": orderT}).One(&video)
-	webCommon.GoToPage(w, route.ROUTE_PLAY_HTML_PATH, video)
+	webCommon.GoToPage(w, route.ROUTE_PLAY_HTML, video)
 }
 
 //视频首页
@@ -33,41 +33,41 @@ func VideoIndexHtml(w http.ResponseWriter, r *http.Request) {
 	mongo := db.GetMongo()
 	filter := bson.M{"path": 0}
 	mongo.C(common.MONGO_COLLECTION_VIDEO).Find(nil).Select(filter).All(&videos)
-	webCommon.GoToPage(w, route.ROUTE_INDEX_HTML_PATH, videos)
+	webCommon.GoToPage(w, route.ROUTE_INDEX_HTML, videos)
 }
 
 //视频新增页面
-func VideoAddHtml(w http.ResponseWriter, r *http.Request) {
-	webCommon.GoToPage(w, route.ROUTE_ADD_HTML_PATH, nil)
+func AdminVideoAddHtml(w http.ResponseWriter, r *http.Request) {
+	webCommon.GoToPage(w, route.ROUTE_ADMIN_ADD_HTML, nil)
 }
 
 //视频列表页面
-func VideoListHtml(w http.ResponseWriter, r *http.Request) {
-	webCommon.GoToPage(w, route.ROUTE_LIST_HTML_PATH, nil)
+func AdminVideoListHtml(w http.ResponseWriter, r *http.Request) {
+	webCommon.GoToPage(w, route.ROUTE_ADMIN_LIST_HTML, nil)
 }
 
 //视频数据列表
-func VideoList(w http.ResponseWriter, r *http.Request) {
+func AdminVideoList(w http.ResponseWriter, r *http.Request) {
 	pageNo := r.FormValue("pageNo")
 	log.Info("Video list,input params is pageNo:", pageNo)
 	videos := make([]common.MonVideo, 0)
 	mongo := db.GetMongo()
 	query := mongo.C(common.MONGO_COLLECTION_VIDEO).Find(nil)
 	pageOption := new(webCommon.MongoPageOption)
-	pageOption.PageNo = 1
-	pageOption.PageSize = 10
-	query.Skip((pageOption.PageNo - 1) * pageOption.PageSize).Limit(pageOption.PageSize).All(&videos)
+	pageOption.PageNo,_ = strconv.Atoi(pageNo)
+	pageOption.PageSize = 3
 	//分页
 	if page, err := pageOption.GetMongoPageOption(query, videos); err != nil {
 		log.Error("Get page option fail,err:", err)
 	} else {
+		query.Skip((pageOption.PageNo - 1) * pageOption.PageSize).Limit(pageOption.PageSize).All(&videos)
 		pageOption.List = videos
 		webCommon.SendResponse(w, page)
 	}
 }
 
 //上传文件
-func VideoUpload(w http.ResponseWriter, r *http.Request) {
+func AdminVideoUpload(w http.ResponseWriter, r *http.Request) {
 	var msg string
 	fileName := r.FormValue("name")
 	path := r.FormValue("path")
@@ -121,7 +121,7 @@ func VideoDel(w http.ResponseWriter, r *http.Request) {
 }
 
 //保存数据
-func VideoSave(w http.ResponseWriter, r *http.Request) {
+func AdminVideoSave(w http.ResponseWriter, r *http.Request) {
 	videoName := r.FormValue("video_name")
 	videoType := r.FormValue("video_type")
 	videoCover := r.FormValue("video_cover")

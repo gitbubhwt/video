@@ -3,14 +3,29 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>video</title>
-		<link rel="stylesheet" href="/css/head.css" />
+		<link rel="stylesheet" href="/css/common.css" />
 		<link rel="stylesheet" href="/css/dialog.css" />
 	</head>
-	<body>
-		<div class="data-list">
-			<div class="data-table">
-				<table>
-					<thead>
+	<body class="body">
+		 <div class="body-top-title">
+		 	<div class="page-action">
+		 	 	 <ul class="page-action ul" unselectable="unselectable">
+		 	 	 	  <li class="page-action text">
+		 	 	    	查询条件:
+		 	 	     </li>
+		 	 	 	 <li class="page-action search">
+		 	 	    	<input type="text" placeholder="查询条件"/>
+		 	 	     </li>
+		 	 	 	 <li class="page-action btn search">
+		 	 	    	<a>搜索</a>
+		 	 	    </li> 
+		 	 	 </ul>
+		 	 </div>
+		 </div>
+		 <div class="body-cneter">
+		 	 <div class="page-data" id="page_elem">
+		 	 	<table>
+		 	 	    <thead>
 						<tr>
 				    		<th>名称</th>
 				    		<th>类型</th>
@@ -18,28 +33,26 @@
 				    		<th>创建时间</th>
 				    	</tr>
 					</thead>
-			    	<tbody id="table_data_fill">	
-			    	</tbody>
-			    </table>
-			</div>
-		    <div class="data-page">
-				<div class="page-btn-nav">
-					<div><img src="/img/a6c.png" class="page-img" onclick="videoToAddHtml()"/></div>
-				</div>
-				<div class="page-info-nav">
-					<span class="page-info-nav-btn">上一页</span>
-					<span class="page-info-nav-btn">1</span>
-					<span class="page-info-nav-btn">1</span>
-					<span class="page-info-nav-btn">下一页</span>
-				</div>
-			</div>
-		</div>
-		
-		<dialog id="img-dialog" class="title-dialog">
+		 	    </table>
+		 	 </div>
+		 	 <div class="page-action">
+		 	 	 <ul class="page-action ul" unselectable="unselectable">
+		 	 	 	 <li class="page-action btn" onclick="videoToAddHtml();">
+		 	 	    	<span>新增</span>
+		 	 	    </li>
+		 	 	 </ul>
+		 	 </div>
+		 </div>
+		 <!--
+         	作者：offline
+         	时间：2017-12-21
+         	描述：对话框
+         -->
+		 <dialog id="img-dialog" class="title-dialog">
 			<span class="close" onclick="javascript:this.parentNode.close()">关闭</span>
 			<img style="width: 100%;height: 100%;" id="img-dailog-src"/>
 		</dialog>
 	</body>
-    <script type="text/javascript" src="/js/util/util.js" ></script>
+	<script type="text/javascript" src="/js/util/util.js" ></script>
 	<script type="text/javascript" src="/js/admin/video/video_list.js" ></script>
 </html>

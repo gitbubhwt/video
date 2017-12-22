@@ -102,7 +102,7 @@ input[type="range"]::-webkit-slider-thumb {-webkit-appearance: none;background-c
 	background-color: lawngreen;
 }
 .tv-number:hover{
-	background-color: lavender;
+	background-color: #88a0ae;
 }
 .tv-number>span{
 	font-size: 16px;
@@ -191,7 +191,7 @@ input[type="range"]::-webkit-slider-thumb {-webkit-appearance: none;background-c
 	 color: #fff;
 }
 .buttons .buttons-left:hover{
-	background-color: lavender;
+	background-color: #88a0ae;
 }
 .buttons .buttons-right{
 	cursor: pointer;
@@ -209,7 +209,7 @@ input[type="range"]::-webkit-slider-thumb {-webkit-appearance: none;background-c
 	color: gray;
 }
 .buttons .buttons-right:hover{
-	background-color: lavender;
+	background-color: #88a0ae;
 }
 
 .video-btn{
@@ -228,7 +228,7 @@ input[type="range"]::-webkit-slider-thumb {-webkit-appearance: none;background-c
     color: #fff;
 }
 .video-btn:hover{
-	background-color: lavender;
+	background-color: #88a0ae;
 }
 
 button, input, select, td, textarea, th {
@@ -274,7 +274,7 @@ th {
     height: 25px;
     cursor: pointer;
 }
-ant-btn {
+.ant-btn {
     display: inline-block;
     margin-bottom: 0;
     font-weight: 500;
@@ -298,7 +298,7 @@ ant-btn {
 }
 
 .page-info-nav-btn:hover{
-	background-color: lavender;
+	background-color: #88a0ae;
 }
 .page-img{
 	width: 30px;
@@ -379,6 +379,59 @@ ant-btn {
 }
 
 .btns .login-btn:hover{
-	background: lavender;
-	border: solid 1px lavender;
+	background: #88a0ae;
+	border: solid 1px #88a0ae;
+}
+.menu{
+	/*width: 120px;*/
+	margin-left: 10px;
+	float: left;
+	width: 10%;
+}
+
+.menu-li-head{
+	float: right;
+	background: #15a9ff;
+	text-align: center;
+	width: 100%;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    color: white;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin-left: 10px;
+    border-radius: 8px;
+}
+.menu-li-head:hover{
+	background: #88a0ae;
+}
+
+.menu-li-item{
+	width: 80%;
+    font-size: 13px;
+    background: #88a0ae;;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    color: white;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    float: right;
+    margin-right: 10%;
+}
+
+.main{
+	float: left;
+	width: 87%;
+	height: 100%;
+}
+
+.main-iframe{
+	margin-left: 10px;
+	width: 100%;
+	height: 100%;
+	/*padding-top: 20px;*/
 }
