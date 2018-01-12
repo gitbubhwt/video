@@ -39,7 +39,7 @@ function uploadFile(file, btn) {
     var fd = new FormData();
     fd.append("name", name);
     fd.append("file", fileObj);
-    fd.append("path", path); //本人喜欢在参数中添加时间戳，防止缓存（--、）
+    fd.append("path", path);
     xhr.open("POST", url, true);
     //进度条部分
     xhr.upload.onprogress = function(evt) {
