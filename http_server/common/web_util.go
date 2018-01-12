@@ -16,24 +16,25 @@ import (
 
 //跳转页面
 func GoToPage(w http.ResponseWriter, htmlPath string, data interface{}) {
-	rootPathT := db.GetValue(common.SYSTEM_CONFIG_KEY, common.SYSTEM_CONFIG_WEB_SERVER_PATH)
-	if rootPath, ok := rootPathT.(string); ok {
-		htmlPath = rootPath + WEN_SERVER_HTML_PATH + htmlPath
-		if t, err := template.ParseFiles(htmlPath); err == nil {
-			t.Execute(w, data)
+	rootPath := db.GetStringValue(common.SYSTEM_CONFIG_HASH_KEY, common.WEB_SERVER_PATH_FILED)
+	htmlPath = rootPath + WEB_SERVER_HTML_PATH + htmlPath
+	if t, err := template.ParseFiles(htmlPath); err == nil {
+		if err := t.Execute(w, data); err == nil {
+			log.Info(fmt.Sprintf("Go to page success,htmlPath:%v", htmlPath))
 		} else {
-			log.Error(err)
+			log.Error(fmt.Sprintf("Go to page fail,htmlPath:%v,err:%v", htmlPath, err))
 		}
 	} else {
-		log.Error(common.SYSTEM_CONFIG_WEB_SERVER_PATH, "type is wrong", rootPath)
+		log.Error(fmt.Sprintf("Go to page fail,err:%v", err))
 	}
 }
 
 //提示响应
-func GoToResponse(w http.ResponseWriter, code int, msg string) {
+func GoToResponse(w http.ResponseWriter, code int, msg string, data interface{}) {
 	ack := new(common.Ack)
 	ack.Msg = msg
 	ack.Code = code
+	ack.Data = data
 	if data, err := json.Marshal(ack); err == nil {
 		w.Write(data)
 	} else {
@@ -127,7 +128,12 @@ func (pageOption *MongoPageOption) GetMongoPageOption(query *mgo.Query, data int
 	if pageOption.PageNo >= pageOption.TotalPage {
 		pageOption.IsEnd = true
 	}
-	pageOption.PageText = fmt.Sprintf(common.PAGE_TEXT, (pageOption.PageNo-1)*pageOption.PageSize+1, pageOption.PageNo*pageOption.PageSize, pageOption.TotalCount)
+	startCount := (pageOption.PageNo-1)*pageOption.PageSize + 1
+	endCount := pageOption.PageNo * pageOption.PageSize
+	if endCount > pageOption.TotalCount {
+		endCount = pageOption.TotalCount
+	}
+	pageOption.PageText = fmt.Sprintf(common.PAGE_TEXT, startCount, endCount, pageOption.TotalCount)
 	pageOption.PageSizeText = fmt.Sprintf(common.PAGE_SIZE_TEXT, pageOption.PageNo, pageOption.TotalPage)
 	return pageOption, nil
 }

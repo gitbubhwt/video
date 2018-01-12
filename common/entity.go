@@ -62,8 +62,9 @@ type VideoState struct {
 }
 
 type Ack struct {
-	Code int    `json:"code"`
-	Msg  string `json:"msg"`
+	Code int         `json:"code"`
+	Msg  string      `json:"msg"`
+	Data interface{} `json:"data"`
 }
 
 func (ack *Ack) ResponseError() []byte {

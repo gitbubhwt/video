@@ -61,11 +61,11 @@ func (this *Client) ProcessingMsg(data []byte, conn net.Conn) {
 //发送心跳包
 func (this *Client) SendHeartPackage(conn net.Conn) {
 	msg := common.Msg{
-		MsgCommon: common.MsgCommon{
+		From: common.MsgCommon{
 			Id:         "1",
 			Ip:         "192.168.96.131",
-			CreateTime: time.Now().Unix(),
 		},
+		CreateTime: time.Now().Unix(),
 		MsgType: common.MessageType_MSG_TYPE_HEART,
 	}
 	bytes, err := json.Marshal(msg)

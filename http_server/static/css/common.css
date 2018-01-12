@@ -1,29 +1,31 @@
-.body{
-	background: #e8e8e8;
+.body {
+    background: #e8e8e8;
 }
-.body-top-title{
-	background: white;
-	width: 100%;
-	height: 50px;
-	border-radius: 2px;
-	float: left;
+
+.body-top-title {
+    background: white;
+    width: 100%;
+    height: 50px;
+    border-radius: 2px;
+    float: left;
     margin-top: 10px;
     padding-bottom: 10px;
 }
-.body-cneter{
-	margin-top: 10px;
-	float: left;
-	background: white;
-	width: 100%;
-	border-radius: 2px;
+
+.body-cneter {
+    margin-top: 10px;
+    float: left;
+    background: white;
+    width: 100%;
+    border-radius: 2px;
 }
 
-.page-data{
-	width: 100%;
-	float: left;
+.page-data {
+    width: 100%;
+    float: left;
 }
 
-.page-data >table {
+.page-data>table {
     border-collapse: collapse;
     width: 98%;
     margin-left: 1%;
@@ -32,67 +34,72 @@
     border-spacing: 0;
     border-radius: 4px 4px 0 0;
 }
-.page-data >table td, th {
+
+.page-data>table td,
+th {
     line-height: 2em;
     min-width: 24px;
     border: 1px solid #d4d4d4;
     padding: 5px;
     vertical-align: inherit;
     display: table-cell;
-    color: rgba(0,0,0,.85);
+    color: rgba(0, 0, 0, .85);
     font-family: monospace;
     transition: all .3s;
     font-weight: 500;
     text-align: -internal-center;
     word-break: break-all;
 }
-.page-data >table th {
-	background: #f7f7f7;
-	padding-top: 8px;
-	padding-bottom: 8px;
+
+.page-data>table th {
+    background: #f7f7f7;
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
-.page-data >table td {
+
+.page-data>table td {
     background: white;
 }
 
-.page-action{
-	font-size: 13px;
+.page-action {
+    font-size: 13px;
 }
 
-.ul{
-	margin: 16px 0;
+.ul {
+    margin: 16px 0;
     float: left;
 }
 
-.search{
-	display: inline-block;
+.search {
+    display: inline-block;
     vertical-align: middle;
 }
 
-.search>input{
-	height: 20px;
-	line-height: 20px;
+.search>input {
+    height: 20px;
+    line-height: 20px;
 }
 
-.page-info{
-	font-size: 12px;
-	margin-right: 15px;
+.page-info {
+    font-size: 12px;
+    margin-right: 15px;
 }
-.page-ul{
-	margin: 16px 0;
+
+.page-ul {
+    margin: 16px 0;
     float: right;
 }
 
-.text{
-	display: inline-block;
+.text {
+    display: inline-block;
     vertical-align: middle;
     height: 28px;
     line-height: 28px;
     margin-right: 8px;
 }
 
-.btn{
-	display: inline-block;
+.btn {
+    display: inline-block;
     vertical-align: middle;
     margin-right: 8px;
     cursor: pointer;
@@ -105,21 +112,24 @@
     height: 30px;
     line-height: 30px;
 }
-.page{
-	height: 20px;
+
+.page {
+    height: 20px;
     line-height: 20px;
     padding: 0px 5px 0px 5px;
 }
-.search{
-	height: 28px;
+
+.search {
+    height: 28px;
     line-height: 28px;
     padding: 0px 20px 0px 20px;
 }
-.btn:hover{
-	background-color: #88a0ae;
+
+.btn:hover {
+    background-color: #88a0ae;
     border-color: #88a0ae;
 }
-.disable{
+
+.disable {
     cursor: not-allowed;
 }
-

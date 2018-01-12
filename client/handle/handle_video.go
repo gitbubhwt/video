@@ -9,7 +9,7 @@ import (
 
 //客户端处理视频
 func (this *Client) ProcessingVideo(msg *common.Msg, conn net.Conn) {
-	msgData := msg.MsgData
+	msgData,_ := msg.Content.([]byte)
 	video := new(common.VideoClient)
 	err := json.Unmarshal(msgData, &video)
 	if err != nil {

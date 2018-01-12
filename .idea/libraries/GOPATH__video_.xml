@@ -7,6 +7,7 @@
       <root url="file://C:/Go/src/container" />
       <root url="file://$PROJECT_DIR$/../icsoclib" />
       <root url="file://C:/Go/src/mime" />
+      <root url="file://$PROJECT_DIR$/../test" />
       <root url="file://C:/Go/src/fmt" />
       <root url="file://C:/Go/src/path" />
       <root url="file://C:/Go/src/reflect" />
@@ -43,6 +44,7 @@
       <root url="file://C:/Go/src/expvar" />
       <root url="file://$PROJECT_DIR$/../im" />
       <root url="file://C:/Go/src/flag" />
+      <root url="file://$PROJECT_DIR$/../boot" />
       <root url="file://C:/Go/src/log" />
       <root url="file://C:/Go/src/unsafe" />
       <root url="file://C:/Go/src/database" />
@@ -73,6 +75,7 @@
       <root url="file://C:/Go/src/container" />
       <root url="file://$PROJECT_DIR$/../icsoclib" />
       <root url="file://C:/Go/src/mime" />
+      <root url="file://$PROJECT_DIR$/../test" />
       <root url="file://C:/Go/src/fmt" />
       <root url="file://C:/Go/src/path" />
       <root url="file://C:/Go/src/reflect" />
@@ -109,6 +112,7 @@
       <root url="file://C:/Go/src/expvar" />
       <root url="file://$PROJECT_DIR$/../im" />
       <root url="file://C:/Go/src/flag" />
+      <root url="file://$PROJECT_DIR$/../boot" />
       <root url="file://C:/Go/src/log" />
       <root url="file://C:/Go/src/unsafe" />
       <root url="file://C:/Go/src/database" />

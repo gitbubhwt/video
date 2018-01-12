@@ -44,7 +44,7 @@ func (this *Socket) ProcessingMsg(data []byte) {
 	switch msg.MsgType {
 	case common.MessageType_MSG_TYPE_HEART:
 		{ //心跳
-			this.ProcessingHeart(msg, this.Conn)
+			this.ProcessingHeart(msg)
 		}
 
 	case common.MessageType_MSG_TYPE_VEDIO:

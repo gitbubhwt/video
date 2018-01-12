@@ -4,14 +4,23 @@ package common
 const (
 	keyPrefix = "video."
 	//配置表
-	SYSTEM_CONFIG_KEY             = keyPrefix + "config"
-	SYSTEM_CONFIG_WEB_SERVER_PATH = "web_server_path" //web系统服务路径
-	SYSTEM_CONFIG_ROOT_PATH       = "root_path"       //系统服务路径
-	//管理员会话表
-	ADMIN_SESSION_KEY = keyPrefix + "admin.session"
+	SYSTEM_CONFIG_HASH_KEY = keyPrefix + "config"
+	WEB_SERVER_PATH_FILED  = "web_server_path" //web系统服务路径
+	ROOT_PATH_FILED        = "root_path"       //系统服务路径
+	//会话表
+	SESSION_HASH_KEY      = keyPrefix + "session.%s.%v"
+	SESSION_F_USER_NAME   = "user_name"
+	SESSION_F_PWD         = "pwd"
+	SESSION_F_CREATE_TIME = "create_time"
+	//ip对应的会话sid
+	IP_SESSION_HASH_KEY = keyPrefix + "ip.session.%s"
 )
 
 const (
+	DB_user             = "user"
+	DB_admin            = "admin"
+	SESSION_expire_time = 60 //秒
+
 	TABLE_VIDEO      = "video"
 	TABLE_VIDEO_PATH = "video_path"
 

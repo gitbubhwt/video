@@ -4,8 +4,8 @@ import "video/client/handle"
 
 func main() {
 	client := handle.Client{
-		Ip:   "192.168.96.131",
-		Port: "56234",
+		Ip:   "127.0.0.1",
+		Port: "5624",
 	}
 	client.InstallConnection()
 }

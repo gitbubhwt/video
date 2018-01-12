@@ -9,5 +9,5 @@ import (
 
 //视频播放页面
 func AdminIndexHtml(w http.ResponseWriter, r *http.Request) {
-	webCommon.GoToPage(w, route.ROUTE_ADMIN_INDEX_HTML, nil)
+	webCommon.GoToPage(w, route.ROUTE_admin_index_html, nil)
 }

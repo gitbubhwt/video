@@ -24,7 +24,7 @@ func VideoPlayHtml(w http.ResponseWriter, r *http.Request) {
 	mongo := db.GetMongo()
 	orderT, _ := strconv.Atoi(order)
 	mongo.C(common.MONGO_COLLECTION_VIDEO).Find(bson.M{"id": index, "path.orderNum": orderT}).One(&video)
-	webCommon.GoToPage(w, route.ROUTE_PLAY_HTML, video)
+	webCommon.GoToPage(w, route.ROUTE_play_html, video)
 }
 
 //视频首页
@@ -33,17 +33,17 @@ func VideoIndexHtml(w http.ResponseWriter, r *http.Request) {
 	mongo := db.GetMongo()
 	filter := bson.M{"path": 0}
 	mongo.C(common.MONGO_COLLECTION_VIDEO).Find(nil).Select(filter).All(&videos)
-	webCommon.GoToPage(w, route.ROUTE_INDEX_HTML, videos)
+	webCommon.GoToPage(w, route.ROUTE_admin_html, videos)
 }
 
 //视频新增页面
 func AdminVideoAddHtml(w http.ResponseWriter, r *http.Request) {
-	webCommon.GoToPage(w, route.ROUTE_ADMIN_ADD_HTML, nil)
+	webCommon.GoToPage(w, route.ROUTE_admin_video_add_html, nil)
 }
 
 //视频列表页面
 func AdminVideoListHtml(w http.ResponseWriter, r *http.Request) {
-	webCommon.GoToPage(w, route.ROUTE_ADMIN_LIST_HTML, nil)
+	webCommon.GoToPage(w, route.ROUTE_admin_video_list_html, nil)
 }
 
 //视频数据列表
@@ -54,15 +54,15 @@ func AdminVideoList(w http.ResponseWriter, r *http.Request) {
 	mongo := db.GetMongo()
 	query := mongo.C(common.MONGO_COLLECTION_VIDEO).Find(nil)
 	pageOption := new(webCommon.MongoPageOption)
-	pageOption.PageNo,_ = strconv.Atoi(pageNo)
-	pageOption.PageSize = 3
+	pageOption.PageNo, _ = strconv.Atoi(pageNo)
+	pageOption.PageSize = 10
 	//分页
 	if page, err := pageOption.GetMongoPageOption(query, videos); err != nil {
 		log.Error("Get page option fail,err:", err)
 	} else {
 		query.Skip((pageOption.PageNo - 1) * pageOption.PageSize).Limit(pageOption.PageSize).All(&videos)
 		pageOption.List = videos
-		webCommon.SendResponse(w, page)
+		webCommon.GoToResponse(w, common.ACK_SUCCESS, "", page)
 	}
 }
 
@@ -74,7 +74,7 @@ func AdminVideoUpload(w http.ResponseWriter, r *http.Request) {
 	if fileName == common.STRING_NULL || path == common.STRING_NULL {
 		msg = fmt.Sprintf("Video upload file fail,fileName,path is empty,fileName:%v,path:%v", fileName, path)
 		log.Error(msg)
-		webCommon.GoToResponse(w, common.ACK_FAIL, msg)
+		webCommon.GoToResponse(w, common.ACK_FAIL, msg, nil)
 		return
 	}
 	//解析文件时候需要 ParseForm
@@ -83,40 +83,40 @@ func AdminVideoUpload(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		msg = fmt.Sprintf("Video upload file fail,err:%v", err)
 		log.Error(msg)
-		webCommon.GoToResponse(w, common.ACK_FAIL, msg)
+		webCommon.GoToResponse(w, common.ACK_FAIL, msg, nil)
 		return
 	}
 	var filePath string
-	rootPathT := db.GetValue(common.SYSTEM_CONFIG_KEY, common.SYSTEM_CONFIG_WEB_SERVER_PATH)
+	rootPathT := db.GetValue(common.SYSTEM_CONFIG_HASH_KEY, common.WEB_SERVER_PATH_FILED)
 	if rootPath, ok := rootPathT.(string); ok {
 		filePath = fmt.Sprintf(rootPath+webCommon.WEB_SERVER_UPLOAD_FILE_PATH, path)
 	}
 	if err := common.CreateFile(filePath, fileName, uploadFile); err != nil {
 		msg = fmt.Sprintf("Video upload file fail,err:%v", err)
 		log.Error(msg)
-		webCommon.GoToResponse(w, common.ACK_FAIL, msg)
+		webCommon.GoToResponse(w, common.ACK_FAIL, msg, nil)
 		return
 	}
 	msg = fmt.Sprintf("/upload/%s", path+fileName)
-	webCommon.GoToResponse(w, common.ACK_SUCCESS, msg)
+	webCommon.GoToResponse(w, common.ACK_SUCCESS, msg, nil)
 }
 
 //删除文件
 func VideoDel(w http.ResponseWriter, r *http.Request) {
 	var msg string
 	path := r.FormValue("path")
-	rootPathT := db.GetValue(common.SYSTEM_CONFIG_KEY, common.SYSTEM_CONFIG_WEB_SERVER_PATH)
+	rootPathT := db.GetValue(common.SYSTEM_CONFIG_HASH_KEY, common.WEB_SERVER_PATH_FILED)
 	if rootPath, ok := rootPathT.(string); ok {
-		path = rootPath + webCommon.WEN_SERVER_STATIC_PATH + path
+		path = rootPath + webCommon.WEB_SERVER_STATIC_PATH + path
 	}
 	if err := common.DelFile(path); err != nil {
 		msg = fmt.Sprintf("Video del file fail,err:%v,path:%v", err, path)
 		log.Error(msg)
-		webCommon.GoToResponse(w, common.ACK_FAIL, msg)
+		webCommon.GoToResponse(w, common.ACK_FAIL, msg, nil)
 	} else {
 		msg = fmt.Sprintf("Video del file success,path:%v", path)
 		log.Info(msg)
-		webCommon.GoToResponse(w, common.ACK_SUCCESS, msg)
+		webCommon.GoToResponse(w, common.ACK_SUCCESS, msg, nil)
 	}
 }
 
@@ -153,10 +153,10 @@ func AdminVideoSave(w http.ResponseWriter, r *http.Request) {
 	var msg string
 	if err != nil {
 		msg := fmt.Sprintf("Video save fail,err:%v", err)
-		webCommon.GoToResponse(w, common.ACK_FAIL, msg)
+		webCommon.GoToResponse(w, common.ACK_FAIL, msg, nil)
 	} else {
 		msg := fmt.Sprintf("Video save success")
-		webCommon.GoToResponse(w, common.ACK_SUCCESS, msg)
+		webCommon.GoToResponse(w, common.ACK_SUCCESS, msg, nil)
 	}
 	log.Info(msg)
 }

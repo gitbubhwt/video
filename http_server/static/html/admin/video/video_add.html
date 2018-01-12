@@ -1,61 +1,64 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>video</title>
-		<link rel="stylesheet" href="/css/head.css" />
-		<link rel="stylesheet" href="/css/dialog.css" />
-	</head>
-	<body>
-		<form id="video-add-form">
-		<div class="video-content">
-			<div class="video-add-elem">
-				<span>名称</span>
-				<input type="text" name="video_name" class="input"/>
-			</div>
-			<div class="video-add-elem">
-				<span>类型</span>
-				<select name="video_type">
+
+<head>
+    <meta charset="UTF-8">
+    <title>video</title>
+    <link rel="stylesheet" href="/css/head.css" />
+    <link rel="stylesheet" href="/css/dialog.css" />
+</head>
+
+<body>
+    <form id="video-add-form">
+        <div class="video-content">
+            <div class="video-add-elem">
+                <span>名称</span>
+                <input type="text" name="video_name" class="input" />
+            </div>
+            <div class="video-add-elem">
+                <span>类型</span>
+                <select name="video_type">
 					<option value="1">MOVIE</option>
 					<option value="2">TV</option>
 				</select>
-			</div>
-			<div class="video-add-elem">
-				<span>封面</span>
-				<input type="file" class="file" name="video_cover" accept="image/*"/>
-				<div class="video-btn" onclick="upload(this)">
-					<span />上传</span>
-				</div>
-			</div>
-			<div class="video-add-elem">
-					<span>文件</span>
-					<input type="file" class="file" name="video_file" accept=".mp4"/>
-					<div class="video-btn" onclick="upload(this)">
-						<span />上传</span>
-					</div>
-					<div class="video-img-btn" onclick="addUploadFile(this)">
-						<img src="/img/aaf.png"/>
-			</div>
-			<div id="muli-file">
-				
-			 </div>
-			</div>
-			<div class="buttons">
-				<div class="buttons-left" onclick="saveEvent()">
-					<span >保存</span>
-				</div>
-				<div class="buttons-right">
-					<span>重置</span>
-				</div>
-			</div>
-		</div>
-		</form>
-		
-		<dialog id="uploadProgress" class="nav-dialog">
-			<span>上传进度</span></br>
-			<progress id="progress" value="0" max="100"></progress>
-		</dialog>
-	</body>
-	<script type="text/javascript" src="/js/util/util.js" ></script>
-	<script type="text/javascript" src="/js/admin/video/video_add.js" ></script>
+            </div>
+            <div class="video-add-elem">
+                <span>封面</span>
+                <input type="file" class="file" name="video_cover" accept="image/*" />
+                <div class="video-btn" onclick="upload(this)">
+                    <span />上传</span>
+                </div>
+            </div>
+            <div class="video-add-elem">
+                <span>文件</span>
+                <input type="file" class="file" name="video_file" accept=".mp4" />
+                <div class="video-btn" onclick="upload(this)">
+                    <span />上传</span>
+                </div>
+                <div class="video-img-btn" onclick="addUploadFile(this)">
+                    <img src="/img/aaf.png" />
+                </div>
+                <div id="muli-file">
+
+                </div>
+            </div>
+            <div class="buttons">
+                <div class="buttons-left" onclick="saveEvent()">
+                    <span>保存</span>
+                </div>
+                <div class="buttons-right">
+                    <span>重置</span>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <dialog id="uploadProgress" class="nav-dialog">
+        <span>上传进度</span></br>
+        <progress id="progress" value="0" max="100"></progress>
+    </dialog>
+</body>
+<script type="text/javascript" src="/js/util/util.js"></script>
+<script type="text/javascript" src="/js/admin/video/video_add.js"></script>
+
 </html>

@@ -48,8 +48,9 @@ const (
 )
 
 const (
-	ACK_FAIL    = -1
-	ACK_SUCCESS = 0
+	ACK_FAIL     = -1
+	ACK_SUCCESS  = 0
+	ACK_TIME_OUT = 2
 )
 
 const (

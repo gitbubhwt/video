@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>video</title>
-		<link rel="stylesheet" href="/css/head.css" />
-		<link rel="stylesheet" href="/css/dialog.css" />
-	</head>
-	<body>
-		<form class="nav-login">
-			<input type="text" placeholder="用户名"/>
-			<input type="password" placeholder="密码"/>
-			<div class="btns">
-				<button class="login-btn" type="button">登录</button>
-			</div>
-		</form>
-	</body>
+
+<head>
+    <meta charset="UTF-8">
+    <title>video</title>
+    <link rel="stylesheet" href="/css/head.css" />
+    <link rel="stylesheet" href="/css/dialog.css" />
+</head>
+
+<body>
+    <form class="nav-login" id="admin-login-form">
+        <input type="text" placeholder="用户名" name="admin_userName" />
+        <input type="password" placeholder="密码" name="admin_pwd" />
+        <div class="btns">
+            <button class="login-btn" type="button" onclick="adminLogin()">登录</button>
+        </div>
+    </form>
+</body>
+<script type="text/javascript" src="/js/util/util.js"></script>
+<script type="text/javascript" src="/js/admin/login/login.js"></script>
+
 </html>

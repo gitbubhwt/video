@@ -31,7 +31,7 @@ func VideoPlayHtml_1(w http.ResponseWriter, r *http.Request) {
 	videoPlay.Path = videoPath.Path
 	videoPlay.Order = order
 	log.Info(*videoPlay)
-	webCommon.GoToPage(w, route.ROUTE_PLAY_HTML, videoPlay)
+	webCommon.GoToPage(w, route.ROUTE_play_html, videoPlay)
 }
 //视频首页
 func VideoIndexHtml_1(w http.ResponseWriter, r *http.Request) {
@@ -39,7 +39,7 @@ func VideoIndexHtml_1(w http.ResponseWriter, r *http.Request) {
 	videoPageSql := fmt.Sprintf(common.VIDEO_PAGE_LIST_SQL, common.DEFAULT_WHERE_SQL, "0", common.DEFAULT_PAGE_SIZE)
 	sqlDb := db.GetMysql()
 	sqlDb.Sql(videoPageSql).Find(&videos)
-	webCommon.GoToPage(w, route.ROUTE_INDEX_HTML, videos)
+	webCommon.GoToPage(w, route.ROUTE_admin_html, videos)
 }
 
 
@@ -103,10 +103,10 @@ func VideoSave_1(w http.ResponseWriter, r *http.Request) {
 	if responseError != nil {
 		msg := fmt.Sprintf("Video save fail,err:%v", responseError)
 		log.Info(msg)
-		webCommon.GoToResponse(w, common.ACK_FAIL, msg)
+		webCommon.GoToResponse(w, common.ACK_FAIL, msg,nil)
 	} else {
 		msg := fmt.Sprintf("Video save success")
 		log.Info(msg)
-		webCommon.GoToResponse(w, common.ACK_SUCCESS, msg)
+		webCommon.GoToResponse(w, common.ACK_SUCCESS, msg,nil)
 	}
 }

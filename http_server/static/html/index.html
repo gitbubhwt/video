@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title>video</title>
-    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link href="css/mui.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/head.css" />
     <script src="js/mui/mui.min.js"></script>
     <script type="text/javascript" charset="utf-8">
-      	mui.init();
+        mui.init();
     </script>
 </head>
+
 <body>
-<div class="wrap"  >
-    <ul class="content">
-    	{{range .}}
-          <li class="nav" onclick="palyingFunc({{.Id}},1);">
-            <img src="{{.Cover}}" />
-            <span>{{.Name}}</span>
-          </li>
-        {{end}}
-    </ul>
-    <!--<ul class="content">
+    <div class="wrap">
+        <ul class="content">
+            {{range .}}
+            <li class="nav" onclick="palyingFunc({{.Id}},1);">
+                <img src="{{.Cover}}" />
+                <span>{{.Name}}</span>
+            </li>
+            {{end}}
+        </ul>
+        <!--<ul class="content">
           <li class="nav" >
             <img src="img/1.jpg" />
             <span>h哈哈哈哈</span>
           </li>
     </ul>-->
-</div>
-<script type="text/javascript" src="/js/util/util.js" ></script>
-<script src="js/head/head.js"></script>
+    </div>
+    <script type="text/javascript" src="/js/util/util.js"></script>
+    <script src="js/head/head.js"></script>
 </body>
+
 </html>

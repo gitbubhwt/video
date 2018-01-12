@@ -2,6 +2,7 @@ package db
 
 import (
 	log "video/logger"
+	"video/common"
 )
 
 //保存或者更新数据 hash 表
@@ -30,12 +31,22 @@ func UpdateBatchHash(key string, data map[string]interface{}) bool {
 
 //获取表属性数据 hash 表
 func GetValue(key, filedName string) interface{} {
-	db := GetRedisClient()
-	var err error
-	if result, err := db.HGet(key, filedName).Result(); err == nil {
+	if result, err := GetRedisClient().HGet(key, filedName).Result(); err == nil {
 		log.Info("Get value success,key:", key, "filedName:", filedName, "result:", result)
 		return result
+	} else {
+		log.Error("Get value fail,key:", key, "filedName:", filedName, "err:", err, "result:", result)
 	}
-	log.Error("Get value fail,key:", key, "filedName:", filedName, "err:", err)
 	return nil
+}
+
+//获取表属性数据 hash 表
+func GetStringValue(key, filedName string) string {
+	if result, err := GetRedisClient().HGet(key, filedName).Result(); err == nil {
+		log.Info("Get string value success,key:", key, "filedName:", filedName, "result:", result)
+		return result
+	} else {
+		log.Error("Get string value fail,key:", key, "filedName:", filedName, "err:", err, "result:", result)
+		return common.STRING_NULL
+	}
 }
