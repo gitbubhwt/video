@@ -59,9 +59,7 @@ function HandleAdminAjaxRequest(xhr) {
         var response = xhr.responseText;
         var data = JSON.parse(response);
         if (data.code == 2) {
-            setTimeout(function() {
-                window.location.href = "/admin/tologin";
-            }, 1000);
+            window.location.href = "/admin/tologin";
             return "";
         }
         return data;

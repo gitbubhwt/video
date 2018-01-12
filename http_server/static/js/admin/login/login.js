@@ -1,3 +1,7 @@
+//跳出iframe
+if (window.parent.length > 0) {
+    window.parent.location = location;
+}
 //后台登录
 function adminLogin() {
     var form = document.getElementById("admin-login-form");
@@ -18,9 +22,7 @@ function adminLogin() {
         if (data.code == -1) {
             alert(data.msg);
         } else {
-            setTimeout(function() {
-                window.location.href = "/admin/index";
-            }, 1000);
+            window.location.href = "/admin/index";
         }
     };
     xhr.send(fd);
